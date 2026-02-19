@@ -29,6 +29,12 @@ const SERVICES = [
     description:
       "We map out how work actually moves through your business, find the bottlenecks, and redesign your processes so nothing falls through the cracks.",
   },
+  {
+    problem: "You need a tool that doesn't exist off the shelf",
+    solution: "Custom Micro-Apps",
+    description:
+      "A quote calculator for your sales team. A job tracker for your techs. A customer portal that actually works. We build small, focused apps tailored to exactly how your business operates.",
+  },
 ];
 
 export default function Home() {
@@ -119,7 +125,7 @@ export default function Home() {
             {SERVICES.map((service, i) => (
               <div
                 key={i}
-                className="bg-white rounded-xl border border-bark/8 p-8 hover:border-forest/20 hover:shadow-sm transition-all"
+                className={`bg-white rounded-xl border border-bark/8 p-8 hover:border-forest/20 hover:shadow-sm transition-all ${i === SERVICES.length - 1 ? "sm:col-span-2" : ""}`}
               >
                 <p className="text-stone text-sm italic mb-3">
                   &ldquo;{service.problem}&rdquo;
@@ -156,12 +162,11 @@ export default function Home() {
               working for the small businesses that keep this country running.
             </p>
             <p>
-              Before starting Main Loop, Tom spent years in operations and
-              technology — seeing firsthand how much time and money gets wasted
-              when systems don&apos;t work together. Dispatchers re-entering the
-              same data three times. Sales teams losing track of follow-ups.
-              Owners spending Sunday nights on spreadsheets instead of with
-              their families.
+              Tom started Main Loop after seeing how much time and money gets
+              wasted when systems don&apos;t work together — dispatchers
+              re-entering the same data three times, sales teams losing track
+              of follow-ups, owners spending Sunday nights on spreadsheets
+              instead of with their families.
             </p>
             <p>
               We&apos;re not a big agency. We&apos;re a small, focused team that
