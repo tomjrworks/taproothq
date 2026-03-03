@@ -184,32 +184,58 @@ export default function Home() {
 
       {/* About */}
       <section id="about" className="py-20 sm:py-28 px-6">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <p className="text-forest font-medium text-sm tracking-wide uppercase mb-3">
             About
           </p>
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-bark tracking-tight">
             Built for businesses that build things
           </h2>
-          <div className="mt-8 space-y-5 text-stone text-lg leading-relaxed">
-            <p>
-              Main Loop Systems was founded by Tom in Cleveland, OH with a
-              simple idea: the same AI tools transforming big companies should be
-              working for the small businesses that keep this country running.
-            </p>
-            <p>
-              Tom started Main Loop after seeing how much time and money gets
-              wasted when systems don&apos;t work together — dispatchers
-              re-entering the same data three times, sales teams losing track
-              of follow-ups, owners spending Sunday nights on spreadsheets
-              instead of with their families.
-            </p>
-            <p>
-              We&apos;re not a big agency. We&apos;re a small, focused team that
-              works directly with business owners to find what&apos;s broken,
-              build what&apos;s needed, and get out of the way. No jargon, no
-              six-month timelines, no bloated retainers.
-            </p>
+
+          <div className="mt-12 flex flex-col sm:flex-row gap-10 sm:gap-14 items-start">
+            <div className="shrink-0 sm:order-last">
+              <div className="w-48 sm:w-64 rounded-2xl overflow-hidden border-2 border-bark/8 shadow-sm">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/tom.jpg"
+                  alt="Tom, founder of Main Loop Systems"
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="mt-3 text-center font-display font-semibold text-bark">
+                Tom
+              </p>
+              <p className="text-center text-stone text-sm">
+                Founder
+              </p>
+            </div>
+
+            <div className="space-y-5 text-stone text-lg leading-relaxed">
+              <p>
+                I&apos;ve been obsessed with two things for as long as I can
+                remember: how businesses work and how technology can make them
+                work better. I started Main Loop Systems to bring those two
+                worlds together for the companies that need it most.
+              </p>
+              <p>
+                Small businesses are the backbone of every local economy, but
+                most are still running on manual processes, disconnected tools,
+                and workflows that haven&apos;t changed in decades. Meanwhile,
+                enterprise companies are using AI and automation to move faster
+                than ever. That gap doesn&apos;t have to exist.
+              </p>
+              <p>
+                I&apos;m younger than most people in this space, and I see that
+                as an advantage. I grew up building with these tools. AI
+                automation, workflow integration, and modern systems design
+                aren&apos;t abstract concepts to me. They&apos;re how I think.
+              </p>
+              <p>
+                No big agency overhead, no jargon, no six-month timelines. Just
+                direct work with business owners to find what&apos;s broken,
+                build what&apos;s needed, and get out of the way.
+              </p>
+            </div>
           </div>
 
           <div className="mt-12 bg-cream-dark rounded-xl p-8 border border-bark/5">
@@ -281,7 +307,7 @@ export default function Home() {
             </a>
 
             <a
-              href="https://calendly.com/mainloopsystems"
+              href="https://calendly.com/tom-at-mainloop/free-discovery-call"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 bg-forest text-cream rounded-xl p-6 hover:bg-forest-dark transition-colors group"
@@ -313,9 +339,9 @@ export default function Home() {
 
             <a
               href="mailto:tom@mainloopsystems.com"
-              className="flex items-center gap-4 bg-white border border-bark/10 rounded-xl p-6 hover:border-forest/20 hover:shadow-sm transition-all group"
+              className="flex items-center gap-4 bg-cream-dark border border-bark/10 rounded-xl p-6 hover:border-forest/20 hover:shadow-sm transition-all group"
             >
-              <div className="w-12 h-12 rounded-lg bg-cream-dark flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-lg bg-forest/10 flex items-center justify-center shrink-0">
                 <svg
                   className="w-6 h-6 text-forest"
                   fill="none"
@@ -330,11 +356,11 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="font-display font-semibold text-lg text-bark">
                   Email Us
                 </p>
-                <p className="text-stone text-sm mt-0.5">
+                <p className="text-stone text-xs mt-0.5 break-all">
                   tom@mainloopsystems.com
                 </p>
               </div>
