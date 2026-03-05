@@ -137,7 +137,7 @@ export default function Home() {
             {SERVICES.map((service, i) => (
               <div
                 key={i}
-                className={`bg-white rounded-xl border border-bark/8 p-8 hover:border-forest/20 hover:shadow-sm transition-all ${i === SERVICES.length - 1 ? "sm:col-span-2" : ""}`}
+                className="bg-white rounded-xl border border-bark/8 p-8 hover:border-forest/20 hover:shadow-sm transition-all"
               >
                 <p className="text-stone text-sm italic mb-3">
                   &ldquo;{service.problem}&rdquo;
