@@ -33,6 +33,12 @@ const SERVICES = [
       "We map out how work actually moves through your business, find the bottlenecks, and redesign your processes so nothing falls through the cracks.",
   },
   {
+    problem: "You wish you could clone your best employee",
+    solution: "Custom AI Agents",
+    description:
+      "We build AI agents that handle real work for your business. An agent that answers customer questions, qualifies leads, processes intake forms, or follows up on overdue invoices. They learn your business, work around the clock, and never call in sick.",
+  },
+  {
     problem: "You need a tool that doesn't exist off the shelf",
     solution: "Custom Micro-Apps",
     description:
