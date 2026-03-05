@@ -93,7 +93,8 @@ export default function Home() {
           <p className="mt-6 text-lg sm:text-xl text-stone max-w-xl leading-relaxed">
             We help small businesses stop losing time and money to manual work.
             AI automation, better workflows, and systems that actually talk to
-            each other.
+            each other. No bloated agency, no generic playbook. Just fast,
+            personalized solutions.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a
