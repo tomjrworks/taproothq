@@ -83,7 +83,7 @@ export default function Home() {
       <section className="pt-32 pb-20 px-6 sm:pt-40 sm:pb-28">
         <div className="max-w-3xl mx-auto">
           <p className="text-forest font-medium text-sm tracking-wide uppercase mb-4">
-            AI Automation &middot; Cleveland, OH
+            AI-Native Agency &middot; Cleveland, OH
           </p>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-bark leading-[1.1] tracking-tight">
             Your business runs on&nbsp;systems.
@@ -237,9 +237,12 @@ export default function Home() {
                 aren&apos;t abstract concepts to me. They&apos;re how I think.
               </p>
               <p>
-                No big agency overhead, no jargon, no six-month timelines. Just
-                direct work with business owners to find what&apos;s broken,
-                build what&apos;s needed, and get out of the way.
+                Main Loop is AI-native. We use the same tools we build for our
+                clients, which means we move faster than traditional agencies
+                and deliver in weeks, not months. No big overhead, no jargon,
+                no six-month timelines. Just direct work with business owners
+                to find what&apos;s broken, build what&apos;s needed, and get
+                out of the way.
               </p>
             </div>
           </div>
