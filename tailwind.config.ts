@@ -10,14 +10,25 @@ const config: Config = {
     extend: {
       colors: {
         cream: "#faf9f6",
-        "cream-dark": "#f0eeea",
+        "cream-dark": "#ece9e3",
         forest: {
-          DEFAULT: "#166534",
+          DEFAULT: "#1a5c32",
           dark: "#14532d",
-          light: "#22c55e",
+          light: "#d4e8d0",
         },
         bark: "#3d3529",
         stone: "#57534e",
+        gold: "#c9a84c",
+        moss: "#8a9a7b",
+      },
+      keyframes: {
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+      },
+      animation: {
+        "gradient-shift": "gradient-shift 12s ease infinite",
       },
       fontFamily: {
         display: ['"DM Sans"', "sans-serif"],
@@ -25,6 +36,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;

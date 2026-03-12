@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Main Loop Systems | AI Automation & Operations Consulting",
+  title: "Main Loop Systems | AI Automation for Small Business",
   description:
-    "AI automation, workflow design, and operations consulting for small businesses. We help HVAC contractors, manufacturers, insurance agencies, and trades businesses run smarter.",
+    "We help small businesses stop losing time to manual work. AI automation, connected tools, and workflows that actually run — built fast, built for you.",
   keywords:
-    "AI automation, operations consulting, small business automation, workflow design, Cleveland OH",
+    "AI automation, small business automation, workflow design, Cleveland OH",
   openGraph: {
-    title: "Main Loop Systems | AI Automation & Operations Consulting",
+    title: "Main Loop Systems | AI Automation for Small Business",
     description:
-      "AI automation and operations consulting for small businesses that build things.",
+      "AI automation and workflows for small businesses. Built fast, built for you.",
     url: "https://mainloopsystems.com",
     siteName: "Main Loop Systems",
     type: "website",
@@ -36,7 +37,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body antialiased">
+      <body className="font-body antialiased bg-cream text-bark">
+        <Navbar />
         {children}
       </body>
     </html>
