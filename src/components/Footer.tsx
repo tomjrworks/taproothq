@@ -3,7 +3,8 @@ import { AUDIT_URL, CALENDLY_URL, LINKEDIN_URL, EMAIL } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-bark/10 py-12 px-6 bg-cream-dark">
+    <footer className="relative border-t border-bark/10 py-12 px-6 bg-cream-dark">
+      <div className="absolute inset-0 bg-dot-grid opacity-[0.04] pointer-events-none" />
       <div className="max-w-5xl mx-auto">
         <div className="grid gap-8 sm:grid-cols-3">
           {/* Brand */}

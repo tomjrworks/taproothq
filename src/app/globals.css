@@ -23,3 +23,9 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+.bg-dot-grid {
+  background-image: radial-gradient(circle, #3d3529 0.8px, transparent 0.8px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}

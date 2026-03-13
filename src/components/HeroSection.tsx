@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { AUDIT_URL, CALENDLY_URL } from "@/lib/constants";
+import ParticleMesh from "./ParticleMesh";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -24,6 +25,8 @@ export default function HeroSection() {
           backgroundSize: "300% 300%",
         }}
       />
+      {/* Particle mesh overlay */}
+      <ParticleMesh />
 
       <div className="relative max-w-3xl mx-auto text-center">
         <motion.p

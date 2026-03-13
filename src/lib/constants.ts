@@ -70,17 +70,46 @@ export const SERVICE_CATEGORIES = [
 export const HOW_IT_WORKS_STEPS = [
   {
     number: "1",
-    title: "Tell us where it hurts",
-    description: "Describe your workflows and pain points. We'll listen.",
+    title: "Discovery",
+    tagline: "Tell us where it hurts",
+    description: "Walk us through your day-to-day.",
+    hoverDetail:
+      "Start with our free audit or book a call. We learn how your business runs day-to-day.",
   },
   {
     number: "2",
-    title: "We build the fix",
-    description: "Custom automation delivered in days to weeks, not months.",
+    title: "Diagnosis",
+    tagline: "We find the bottlenecks",
+    description:
+      "We map your workflows and pinpoint what's costing you time.",
+    hoverDetail:
+      "We look for the copy-paste, the manual handoffs, the 'there has to be a better way' moments.",
   },
   {
     number: "3",
-    title: "You get your time back",
-    description: "Less manual work, more capacity to grow.",
+    title: "Build",
+    tagline: "AI + automation, tailored to you",
+    description:
+      "Custom tools, integrations, and automations — built in days to weeks.",
+    hoverDetail:
+      "You get a working prototype fast — not a proposal deck. Real automations you can see running.",
+  },
+  {
+    number: "4",
+    title: "Launch",
+    tagline: "Live and running",
+    description:
+      "We deploy, test, and make sure everything works in your real workflow.",
+    hoverDetail:
+      "We don't just hand it off. We make sure it works with your team, your tools, your real workflow.",
+  },
+  {
+    number: "5",
+    title: "Support",
+    tagline: "We don't disappear",
+    description:
+      "Ongoing tweaks, new automations, and support as your business grows.",
+    hoverDetail:
+      "Your business changes. Your automations should too. We're here when you need us.",
   },
 ];
