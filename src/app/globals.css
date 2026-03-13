@@ -24,6 +24,10 @@ body {
   }
 }
 
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .bg-dot-grid {
   background-image: radial-gradient(circle, #3d3529 0.8px, transparent 0.8px);
   background-size: 24px 24px;

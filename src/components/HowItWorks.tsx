@@ -4,58 +4,25 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { HOW_IT_WORKS_STEPS } from "@/lib/constants";
 
-function ConnectorArrow({
-  vertical,
-  animDelay,
-}: {
-  vertical?: boolean;
-  animDelay: number;
-}) {
-  if (vertical) {
-    return (
-      <motion.div
-        className="flex justify-center py-2 md:hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: animDelay, duration: 0.3 }}
-      >
-        <svg width="2" height="32" viewBox="0 0 2 32" aria-hidden="true">
-          <motion.line
-            x1="1"
-            y1="0"
-            x2="1"
-            y2="32"
-            stroke="#1a5c32"
-            strokeWidth="2"
-            strokeDasharray="4 4"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 0.35 }}
-            transition={{ delay: animDelay, duration: 0.35, ease: "easeOut" }}
-          />
-        </svg>
-      </motion.div>
-    );
-  }
-
+function ConnectorArrow({ animDelay }: { animDelay: number }) {
   return (
     <motion.div
-      className="hidden md:flex items-center -mx-1"
+      className="flex items-center shrink-0 mx-1"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: animDelay, duration: 0.3 }}
     >
       <svg
-        width="48"
+        width="32"
         height="16"
-        viewBox="0 0 48 16"
+        viewBox="0 0 32 16"
         fill="none"
         aria-hidden="true"
-        className="shrink-0"
       >
         <motion.line
           x1="0"
           y1="8"
-          x2="40"
+          x2="24"
           y2="8"
           stroke="#1a5c32"
           strokeWidth="2"
@@ -65,7 +32,7 @@ function ConnectorArrow({
           transition={{ delay: animDelay, duration: 0.35, ease: "easeOut" }}
         />
         <motion.polygon
-          points="40,4 48,8 40,12"
+          points="24,4 32,8 24,12"
           fill="#1a5c32"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.35 }}
@@ -94,15 +61,15 @@ function PipelineCard({
 
   return (
     <motion.div
-      className="relative flex-1 min-w-0"
-      initial={{ opacity: 0, y: 24 }}
+      className="shrink-0 w-[260px] md:w-auto md:flex-1 md:min-w-0"
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: animDelay, duration: 0.45, ease: "easeOut" }}
+      transition={{ delay: animDelay, duration: 0.4, ease: "easeOut" }}
       onMouseEnter={() => onHover(index)}
       onMouseLeave={() => onHover(null)}
     >
       <motion.div
-        className="rounded-xl border border-bark/10 bg-cream p-5 h-full cursor-default transition-colors"
+        className="rounded-xl border border-bark/10 bg-cream p-5 h-full cursor-default"
         animate={{
           y: isHovered ? -4 : 0,
           opacity: isDimmed ? 0.55 : 1,
@@ -116,15 +83,17 @@ function PipelineCard({
         transition={{ duration: 0.25 }}
       >
         {/* Number badge */}
-        <div className="w-9 h-9 rounded-full bg-forest text-cream flex items-center justify-center font-display font-bold text-sm mb-3">
+        <div className="w-8 h-8 rounded-full bg-forest text-cream flex items-center justify-center font-display font-bold text-sm mb-2">
           {step.number}
         </div>
 
-        <h3 className="font-display text-lg font-semibold text-bark">
+        <h3 className="font-display text-base font-semibold text-bark">
           {step.title}
         </h3>
-        <p className="text-forest text-sm font-medium mt-1">{step.tagline}</p>
-        <p className="text-stone text-sm leading-relaxed mt-2">
+        <p className="text-forest text-sm font-medium mt-0.5">
+          {step.tagline}
+        </p>
+        <p className="text-stone text-sm leading-relaxed mt-1.5">
           {step.description}
         </p>
 
@@ -134,7 +103,7 @@ function PipelineCard({
             {isHovered && (
               <motion.p
                 initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+                animate={{ opacity: 1, height: "auto", marginTop: 6 }}
                 exit={{ opacity: 0, height: 0, marginTop: 0 }}
                 transition={{ duration: 0.25 }}
                 className="text-stone/80 text-xs leading-relaxed overflow-hidden"
@@ -146,7 +115,7 @@ function PipelineCard({
         </div>
 
         {/* Mobile: always show detail */}
-        <p className="md:hidden text-stone/80 text-xs leading-relaxed mt-2">
+        <p className="md:hidden text-stone/80 text-xs leading-relaxed mt-1.5">
           {step.hoverDetail}
         </p>
       </motion.div>
@@ -156,18 +125,18 @@ function PipelineCard({
 
 export default function HowItWorks() {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-80px" });
+  const isInView = useInView(sectionRef, { once: true, margin: "-60px" });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative py-20 sm:py-28 px-6 bg-cream-dark overflow-hidden">
+    <section className="relative py-16 sm:py-20 bg-cream-dark overflow-hidden">
       <div className="absolute inset-0 bg-dot-grid opacity-[0.04] pointer-events-none" />
       <div className="relative max-w-6xl mx-auto" ref={sectionRef}>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-14"
+          className="text-center mb-10 px-6"
         >
           <p className="text-forest font-medium text-sm tracking-wide uppercase mb-3">
             How It Works
@@ -178,14 +147,23 @@ export default function HowItWorks() {
         </motion.div>
 
         {isInView && (
-          <>
-            {/* Desktop: horizontal pipeline */}
-            <div className="hidden md:flex items-start gap-0">
-              {HOW_IT_WORKS_STEPS.map((step, i) => {
-                const cardDelay = i * 0.4;
-                const connectorDelay = cardDelay + 0.3;
-                return (
-                  <div key={step.number} className="contents">
+          <div
+            className="flex items-start gap-0 overflow-x-auto px-6 pb-4 scrollbar-hide snap-x snap-mandatory md:snap-none md:overflow-visible"
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {HOW_IT_WORKS_STEPS.map((step, i) => {
+              const cardDelay = i * 0.3;
+              const connectorDelay = cardDelay + 0.2;
+              return (
+                <div
+                  key={step.number}
+                  className="contents"
+                >
+                  <div className="snap-start">
                     <PipelineCard
                       step={step}
                       index={i}
@@ -193,36 +171,14 @@ export default function HowItWorks() {
                       onHover={setHoveredIndex}
                       animDelay={cardDelay}
                     />
-                    {i < HOW_IT_WORKS_STEPS.length - 1 && (
-                      <ConnectorArrow animDelay={connectorDelay} />
-                    )}
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Mobile: vertical stack */}
-            <div className="md:hidden flex flex-col">
-              {HOW_IT_WORKS_STEPS.map((step, i) => {
-                const cardDelay = i * 0.3;
-                const connectorDelay = cardDelay + 0.2;
-                return (
-                  <div key={step.number}>
-                    <PipelineCard
-                      step={step}
-                      index={i}
-                      hoveredIndex={null}
-                      onHover={() => {}}
-                      animDelay={cardDelay}
-                    />
-                    {i < HOW_IT_WORKS_STEPS.length - 1 && (
-                      <ConnectorArrow vertical animDelay={connectorDelay} />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </>
+                  {i < HOW_IT_WORKS_STEPS.length - 1 && (
+                    <ConnectorArrow animDelay={connectorDelay} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     </section>
