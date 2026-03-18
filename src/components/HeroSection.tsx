@@ -58,9 +58,9 @@ export default function HeroSection() {
           variants={fadeUp}
           className="mt-6 text-lg sm:text-xl text-stone max-w-xl mx-auto leading-relaxed"
         >
-          We help small businesses stop losing time to manual work. AI
-          automation, connected tools, and workflows that actually run — built
-          fast, built for you.
+          Most small businesses know AI can help. They just don&apos;t know where
+          to start or who to trust. We figure out what&apos;s costing you the most
+          time and money, and fix it. No jargon. No six-month timelines.
         </motion.p>
 
         <motion.div

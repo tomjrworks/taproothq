@@ -23,9 +23,9 @@ export default function ServicesSection() {
             Real problems. Real solutions.
           </h2>
           <p className="mt-4 text-stone text-lg max-w-2xl">
-            Whether you run a salon, manage properties, photograph weddings, or
-            book event spaces — if manual work is slowing you down, we can fix
-            it.
+            Your business has its own way of doing things. Off-the-shelf
+            software doesn&apos;t get that. We do. Tell us what&apos;s not working
+            and we&apos;ll build something that does.
           </p>
         </RevealOnScroll>
 
