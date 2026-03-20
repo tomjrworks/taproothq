@@ -1,5 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
+import ChaosToCalm from "@/components/ChaosToCalm";
 import ServicesSection from "@/components/ServicesSection";
 import AuditCTA from "@/components/AuditCTA";
 import AboutSection from "@/components/AboutSection";
@@ -11,6 +12,7 @@ export default function Home() {
     <div className="min-h-screen">
       <HeroSection />
       <HowItWorks />
+      <ChaosToCalm />
       <ServicesSection />
       <AuditCTA />
       <AboutSection />
