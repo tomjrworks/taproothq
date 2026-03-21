@@ -33,3 +33,20 @@ body {
   background-size: 24px 24px;
   background-position: 0 0;
 }
+
+/* Override old font classes to use Geist */
+.font-display, .font-body {
+  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
+}
+
+/* Button hover upgrade */
+.bg-forest {
+  transition: all 0.2s ease;
+}
+.bg-forest:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(26, 92, 50, 0.25);
+}
+.bg-forest:active {
+  transform: translateY(0);
+}

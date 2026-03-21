@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import StickyNav from "@/components/v2/StickyNav";
 
 export const metadata: Metadata = {
   title: "Main Loop Systems | AI Automation for Small Business",
@@ -24,21 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Outfit:wght@300;400;500;600&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="font-body antialiased bg-cream text-bark">
-        <Navbar />
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body
+        className="antialiased bg-cream text-bark"
+        style={{ fontFamily: "var(--font-geist-sans), system-ui, sans-serif" }}
+      >
+        <StickyNav />
         {children}
       </body>
     </html>

@@ -9,7 +9,7 @@ import FAQ from "@/components/v2/FAQ";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function V2Page() {
   return (
     <div className="min-h-screen">
       <HeroV2 />
