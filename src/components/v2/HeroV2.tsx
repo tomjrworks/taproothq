@@ -36,9 +36,9 @@ export default function HeroV2() {
       <div className="absolute inset-0 bg-dot-grid opacity-[0.03] pointer-events-none" />
 
       {/* Two-column layout — text gets ~60% on desktop */}
-      <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center gap-12 lg:gap-20">
-        {/* Left: copy */}
-        <div className="lg:w-[55%] shrink-0 py-24 sm:py-28 lg:py-32">
+      <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 flex items-center lg:gap-20">
+        {/* Left: copy — full width on mobile, 55% on desktop */}
+        <div className="w-full lg:w-[55%] lg:shrink-0 py-24 sm:py-28 lg:py-32">
           <motion.p
             custom={0}
             initial="hidden"
