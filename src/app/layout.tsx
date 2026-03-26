@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import StickyNav from "@/components/v2/StickyNav";
 
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         <StickyNav />
         {children}
+        <Analytics />
       </body>
     </html>
   );
