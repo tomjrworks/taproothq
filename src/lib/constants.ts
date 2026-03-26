@@ -1,5 +1,5 @@
 export const AUDIT_URL = "https://audit.mainloopsystems.com";
-export const CALENDLY_URL = "https://calendly.com/tom-at-mainloop/free-discovery-call";
+export const CALENDLY_URL = "https://cal.com/tomgirgash/free-discovery-call";
 export const LINKEDIN_URL = "https://linkedin.com/company/mainloopsystems";
 export const EMAIL = "tom@mainloopsystems.com";
 
