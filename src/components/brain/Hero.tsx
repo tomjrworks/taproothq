@@ -24,7 +24,7 @@ export default function Hero() {
           animate="visible"
           custom={0}
         >
-          Knowledge Intelligence
+          Knowledge + Automation
         </motion.p>
 
         {/* Headline */}
@@ -35,10 +35,10 @@ export default function Hero() {
           animate="visible"
           custom={1}
         >
-          The answers exist.
+          Your team&rsquo;s knowledge, captured.
           <br />
           <em className="text-forest-dark">
-            Your team just can&rsquo;t find them.
+            Your workflows, automated.
           </em>
         </motion.h1>
 
@@ -50,9 +50,9 @@ export default function Hero() {
           animate="visible"
           custom={2}
         >
-          We build your firm a brain&nbsp;&mdash; a living knowledge system your
-          whole team can query. Instant answers. Cited sources. Gets smarter
-          every month.
+          We build your business a brain&nbsp;&mdash; then put it to work.
+          Instant answers for your team. Automations that actually understand
+          your business. Gets smarter every month.
         </motion.p>
 
         {/* CTA row */}
