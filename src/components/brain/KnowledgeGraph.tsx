@@ -70,19 +70,42 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
     const cx = w / 2;
     const cy = h / 2;
 
-    // Ring around the text — use the viewport to size it
-    const ringRx = isMobile ? w * 0.38 : w * 0.33; // horizontal radius (ellipse)
-    const ringRy = isMobile ? h * 0.32 : h * 0.33; // vertical radius
+    // Exclusion zone — keep labeled nodes OUT of the text area
+    const exHalfW = isMobile ? w * 0.42 : 320;
+    const exHalfH = isMobile ? 200 : 220;
 
-    // Place labeled nodes in an elliptical ring around center
-    const labeledNodes: Node[] = LABELED_NODES.map((n, i) => {
-      const angle = (i / LABELED_NODES.length) * Math.PI * 2 - Math.PI / 2; // start from top
+    // Place labeled nodes randomly in the outer areas (not a perfect ring)
+    function randomOuterPosition(): { x: number; y: number } {
+      // Keep trying until we get a position outside the exclusion zone
+      for (let attempt = 0; attempt < 50; attempt++) {
+        // Bias toward edges with padding from viewport edges
+        const pad = 40;
+        const x = pad + Math.random() * (w - pad * 2);
+        const y = pad + Math.random() * (h - pad * 2);
+
+        // Check if outside exclusion zone
+        const dx = Math.abs(x - cx);
+        const dy = Math.abs(y - cy);
+        if (dx > exHalfW || dy > exHalfH) {
+          return { x, y };
+        }
+      }
+      // Fallback: place at a random edge
+      const side = Math.floor(Math.random() * 4);
+      if (side === 0) return { x: Math.random() * w, y: Math.random() * 80 };
+      if (side === 1) return { x: Math.random() * w, y: h - Math.random() * 80 };
+      if (side === 2) return { x: Math.random() * 100, y: Math.random() * h };
+      return { x: w - Math.random() * 100, y: Math.random() * h };
+    }
+
+    const labeledNodes: Node[] = LABELED_NODES.map((n) => {
+      const pos = randomOuterPosition();
       return {
-        x: cx + Math.cos(angle) * ringRx,
-        y: cy + Math.sin(angle) * ringRy,
+        x: pos.x,
+        y: pos.y,
         label: n.label,
-        size: isMobile ? n.size * 0.7 : n.size,
-        opacity: n.size >= 10 ? 0.35 : n.size >= 7 ? 0.25 : 0.15,
+        size: isMobile ? n.size * 0.6 : n.size,
+        opacity: n.size >= 10 ? 0.3 : n.size >= 7 ? 0.2 : 0.12,
         isLabeled: true,
         vx: 0,
         vy: 0,
@@ -90,7 +113,7 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
     });
 
     // Scatter dots spread across the ENTIRE canvas
-    const scatterCount = isMobile ? 40 : 80;
+    const scatterCount = isMobile ? 30 : 80;
     const scatterNodes: Node[] = [];
     for (let i = 0; i < scatterCount; i++) {
       scatterNodes.push({
@@ -241,9 +264,9 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
         ctx.fillStyle = `rgba(${NODE_COLOR.r}, ${NODE_COLOR.g}, ${NODE_COLOR.b}, ${alpha})`;
         ctx.fill();
 
-        // Labels
-        if (node.isLabeled) {
-          const fontSize = node.size >= 10 ? 9 : 7;
+        // Labels — skip on very small mobile sizes
+        if (node.isLabeled && node.size > 4) {
+          const fontSize = isMobile ? 6 : node.size >= 10 ? 9 : 7;
           ctx.font = `${fontSize}px ui-monospace, monospace`;
           ctx.textAlign = "center";
           const labelAlpha = 0.2 + (isPulsing ? pulseIntensity * 0.2 : 0);
@@ -259,15 +282,11 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
 
     const onResize = () => {
       setSize();
-      // Recompute ring positions
-      const newCx = w / 2;
-      const newCy = h / 2;
-      const newRx = w < 768 ? w * 0.38 : w * 0.33;
-      const newRy = w < 768 ? h * 0.32 : h * 0.33;
-      for (let i = 0; i < labeledNodes.length; i++) {
-        const angle = (i / labeledNodes.length) * Math.PI * 2 - Math.PI / 2;
-        labeledNodes[i].x = newCx + Math.cos(angle) * newRx;
-        labeledNodes[i].y = newCy + Math.sin(angle) * newRy;
+      // Reposition labeled nodes outside the new exclusion zone
+      for (const node of labeledNodes) {
+        const pos = randomOuterPosition();
+        node.x = pos.x;
+        node.y = pos.y;
       }
     };
     window.addEventListener("resize", onResize);
