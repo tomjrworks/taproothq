@@ -17,8 +17,8 @@ interface Node {
   vy: number;
 }
 
-const NODE_COLOR = { r: 90, g: 105, b: 95 }; // Darker gray-green
-const LABEL_COLOR = { r: 100, g: 120, b: 108 };
+const NODE_COLOR = { r: 70, g: 85, b: 75 };
+const LABEL_COLOR = { r: 80, g: 100, b: 88 };
 
 const LABELED_NODES = [
   { label: "Procedures", size: 5 },
@@ -101,7 +101,7 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
         ...pos,
         label: n.label,
         size: isMobile ? n.size * 0.6 : n.size,
-        opacity: 0.22,
+        opacity: 0.3,
         isLabeled: true,
         vx: 0,
         vy: 0,
@@ -118,7 +118,7 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
         x, y,
         label: "",
         size: 0.8 + Math.random() * 1.2,
-        opacity: 0.06 + Math.random() * 0.05,
+        opacity: 0.08 + Math.random() * 0.06,
         isLabeled: false,
         vx: (Math.random() - 0.5) * 0.08,
         vy: (Math.random() - 0.5) * 0.08,
@@ -200,7 +200,7 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
         if (!a || !b) continue;
 
         const isPulsing = (ai === pulseIdx || bi === pulseIdx) && pulseIntensity > 0;
-        const alpha = isPulsing ? 0.06 + pulseIntensity * 0.05 : 0.05;
+        const alpha = isPulsing ? 0.08 + pulseIntensity * 0.06 : 0.065;
 
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
@@ -235,7 +235,7 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
         if (node.isLabeled && !isMobile) {
           ctx.font = "7px ui-monospace, monospace";
           ctx.textAlign = "center";
-          const labelAlpha = 0.2 + (isPulsing ? pulseIntensity * 0.12 : 0);
+          const labelAlpha = 0.28 + (isPulsing ? pulseIntensity * 0.15 : 0);
           ctx.fillStyle = `rgba(${LABEL_COLOR.r}, ${LABEL_COLOR.g}, ${LABEL_COLOR.b}, ${labelAlpha})`;
           ctx.fillText(node.label.toUpperCase(), node.x, node.y + r + 10);
         }
