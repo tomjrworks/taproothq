@@ -17,25 +17,22 @@ interface Node {
   vy: number;
 }
 
-const NODE_COLOR = { r: 45, g: 55, b: 50 };
-const ACCENT = { r: 26, g: 92, b: 50 };
+const NODE_COLOR = { r: 120, g: 135, b: 125 }; // Muted gray-green, not dark
+const LABEL_COLOR = { r: 140, g: 155, b: 145 }; // Even lighter for labels
 
-// Labeled nodes — these get fixed positions in a ring around center
 const LABELED_NODES = [
-  { label: "Procedures", size: 12 },
-  { label: "Clients", size: 12 },
-  { label: "Team Knowledge", size: 11 },
-  { label: "Vendors", size: 10 },
-  { label: "Onboarding", size: 8 },
-  { label: "Compliance", size: 8 },
-  { label: "Billing", size: 7 },
-  { label: "Service", size: 7 },
-  { label: "Contacts", size: 6 },
-  { label: "Training", size: 6 },
-  { label: "Templates", size: 5 },
-  { label: "Policies", size: 5 },
-  { label: "History", size: 5 },
-  { label: "Meetings", size: 5 },
+  { label: "Procedures", size: 5 },
+  { label: "Clients", size: 5 },
+  { label: "Team Knowledge", size: 4.5 },
+  { label: "Vendors", size: 4 },
+  { label: "Onboarding", size: 3.5 },
+  { label: "Compliance", size: 3.5 },
+  { label: "Billing", size: 3 },
+  { label: "Service", size: 3 },
+  { label: "Contacts", size: 3 },
+  { label: "Training", size: 2.5 },
+  { label: "Templates", size: 2.5 },
+  { label: "Policies", size: 2.5 },
 ];
 
 export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
@@ -67,177 +64,149 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
     setSize();
 
     const isMobile = w < 768;
-    const cx = w / 2;
-    const cy = h / 2;
 
-    // Exclusion zone — keep labeled nodes OUT of the text area
-    const exHalfW = isMobile ? w * 0.42 : 320;
-    const exHalfH = isMobile ? 200 : 220;
+    // Exclusion zone — generous clear space for text
+    const exW = isMobile ? w * 0.9 : 550;
+    const exH = isMobile ? 380 : 320;
+    const exL = w / 2 - exW / 2;
+    const exR = w / 2 + exW / 2;
+    const exT = h / 2 - exH / 2 - 20; // offset up slightly since text is centered high
+    const exB = exT + exH;
 
-    // Place labeled nodes randomly in the outer areas (not a perfect ring)
-    function randomOuterPosition(): { x: number; y: number } {
-      // Keep trying until we get a position outside the exclusion zone
-      for (let attempt = 0; attempt < 50; attempt++) {
-        // Bias toward edges with padding from viewport edges
-        const pad = 40;
-        const x = pad + Math.random() * (w - pad * 2);
-        const y = pad + Math.random() * (h - pad * 2);
-
-        // Check if outside exclusion zone
-        const dx = Math.abs(x - cx);
-        const dy = Math.abs(y - cy);
-        if (dx > exHalfW || dy > exHalfH) {
-          return { x, y };
-        }
-      }
-      // Fallback: place at a random edge
-      const side = Math.floor(Math.random() * 4);
-      if (side === 0) return { x: Math.random() * w, y: Math.random() * 80 };
-      if (side === 1) return { x: Math.random() * w, y: h - Math.random() * 80 };
-      if (side === 2) return { x: Math.random() * 100, y: Math.random() * h };
-      return { x: w - Math.random() * 100, y: Math.random() * h };
+    function isInExclusion(x: number, y: number): boolean {
+      return x > exL && x < exR && y > exT && y < exB;
     }
 
-    const labeledNodes: Node[] = LABELED_NODES.map((n) => {
-      const pos = randomOuterPosition();
+    function randomOuterPos(): { x: number; y: number } {
+      for (let i = 0; i < 100; i++) {
+        const x = 20 + Math.random() * (w - 40);
+        const y = 20 + Math.random() * (h - 40);
+        if (!isInExclusion(x, y)) return { x, y };
+      }
+      // Fallback to corners
+      const corners = [
+        { x: w * 0.1, y: h * 0.1 },
+        { x: w * 0.9, y: h * 0.1 },
+        { x: w * 0.1, y: h * 0.9 },
+        { x: w * 0.9, y: h * 0.9 },
+      ];
+      return corners[Math.floor(Math.random() * 4)];
+    }
+
+    // On mobile: fewer labeled nodes, no labels, just dots
+    const labelCount = isMobile ? 6 : LABELED_NODES.length;
+    const labeledNodes: Node[] = LABELED_NODES.slice(0, labelCount).map((n) => {
+      const pos = randomOuterPos();
       return {
-        x: pos.x,
-        y: pos.y,
+        ...pos,
         label: n.label,
         size: isMobile ? n.size * 0.6 : n.size,
-        opacity: n.size >= 10 ? 0.3 : n.size >= 7 ? 0.2 : 0.12,
+        opacity: 0.15,
         isLabeled: true,
         vx: 0,
         vy: 0,
       };
     });
 
-    // Scatter dots spread across the ENTIRE canvas
-    const scatterCount = isMobile ? 30 : 80;
+    // Scatter dots — small, subtle, everywhere
+    const scatterCount = isMobile ? 25 : 60;
     const scatterNodes: Node[] = [];
     for (let i = 0; i < scatterCount; i++) {
+      const x = Math.random() * w;
+      const y = Math.random() * h;
       scatterNodes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
+        x, y,
         label: "",
-        size: 1 + Math.random() * 2.5,
-        opacity: 0.04 + Math.random() * 0.06,
+        size: 0.8 + Math.random() * 1.2,
+        opacity: 0.04 + Math.random() * 0.04,
         isLabeled: false,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
+        vx: (Math.random() - 0.5) * 0.08,
+        vy: (Math.random() - 0.5) * 0.08,
       });
     }
 
     const allNodes = [...labeledNodes, ...scatterNodes];
 
-    // Build connections
+    // Connections — sparse and light
     const connections: [number, number][] = [];
 
-    // Connect labeled nodes in sequence (ring connections)
+    // Connect labeled nodes to their nearest 1-2 labeled neighbors only
     for (let i = 0; i < labeledNodes.length; i++) {
-      const next = (i + 1) % labeledNodes.length;
-      connections.push([i, next]);
-      // Also connect to node 2 spots away for cross-links
-      if (i % 2 === 0) {
-        connections.push([i, (i + 2) % labeledNodes.length]);
-      }
-    }
-    // Cross-ring connections — create a web, not just a circle
-    connections.push([0, 3]);  // Procedures → Vendors
-    connections.push([0, 5]);  // Procedures → Compliance
-    connections.push([0, 7]);  // Procedures → Service
-    connections.push([0, 13]); // Procedures → Meetings
-    connections.push([1, 4]);  // Clients → Onboarding
-    connections.push([1, 8]);  // Clients → Contacts
-    connections.push([1, 12]); // Clients → History
-    connections.push([2, 6]);  // Team → Billing
-    connections.push([2, 9]);  // Team → Training
-    connections.push([2, 13]); // Team → Meetings
-    connections.push([3, 8]);  // Vendors → Contacts
-    connections.push([3, 11]); // Vendors → Policies
-    connections.push([4, 9]);  // Onboarding → Training
-    connections.push([4, 10]); // Onboarding → Templates
-    connections.push([5, 11]); // Compliance → Policies
-    connections.push([6, 12]); // Billing → History
-    connections.push([7, 10]); // Service → Templates
-
-    // Connect every scatter node to its 2-3 closest labeled nodes
-    for (let si = 0; si < scatterNodes.length; si++) {
-      const sIdx = labeledNodes.length + si;
-      const sn = scatterNodes[si];
-
-      // Sort labeled nodes by distance
-      const byDist = labeledNodes
-        .map((ln, li) => {
-          const dx = sn.x - ln.x;
-          const dy = sn.y - ln.y;
-          return { idx: li, dist: Math.sqrt(dx * dx + dy * dy) };
-        })
-        .sort((a, b) => a.dist - b.dist);
-
-      // Connect to closest 2 (or 3 for some variety)
-      const connectCount = Math.random() < 0.4 ? 3 : 2;
-      for (let c = 0; c < connectCount && c < byDist.length; c++) {
-        connections.push([sIdx, byDist[c].idx]);
-      }
-
-      // Connect scatter nodes to nearby scatter nodes
-      for (let sj = si + 1; sj < scatterNodes.length; sj++) {
-        const sjIdx = labeledNodes.length + sj;
-        const dx = sn.x - scatterNodes[sj].x;
-        const dy = sn.y - scatterNodes[sj].y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 200) {
-          connections.push([sIdx, sjIdx]);
+      const dists = labeledNodes
+        .map((n, j) => ({
+          j,
+          d: Math.hypot(n.x - labeledNodes[i].x, n.y - labeledNodes[i].y),
+        }))
+        .filter((d) => d.j !== i)
+        .sort((a, b) => a.d - b.d);
+      // Connect to 1 or 2 closest
+      const count = Math.random() < 0.5 ? 1 : 2;
+      for (let c = 0; c < count && c < dists.length; c++) {
+        const pair: [number, number] = [
+          Math.min(i, dists[c].j),
+          Math.max(i, dists[c].j),
+        ];
+        if (!connections.some(([a, b]) => a === pair[0] && b === pair[1])) {
+          connections.push(pair);
         }
       }
     }
 
-    // Pulse state
-    let pulseTimer = 1500;
+    // Connect each scatter dot to its closest labeled node only
+    for (let si = 0; si < scatterNodes.length; si++) {
+      const sIdx = labeledNodes.length + si;
+      const sn = scatterNodes[si];
+      let closestDist = Infinity;
+      let closestIdx = 0;
+      for (let li = 0; li < labeledNodes.length; li++) {
+        const d = Math.hypot(sn.x - labeledNodes[li].x, sn.y - labeledNodes[li].y);
+        if (d < closestDist) { closestDist = d; closestIdx = li; }
+      }
+      // Only connect if reasonably close
+      if (closestDist < (isMobile ? 250 : 400)) {
+        connections.push([closestIdx, sIdx]);
+      }
+    }
+
+    // Pulse
+    let pulseTimer = 2000;
     let pulseIdx = -1;
     let pulseIntensity = 0;
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
-      // Update scatter node positions (gentle drift)
+      // Drift scatter nodes
       for (const node of scatterNodes) {
         node.x += node.vx;
         node.y += node.vy;
         if (node.x < 0 || node.x > w) node.vx *= -1;
         if (node.y < 0 || node.y > h) node.vy *= -1;
-        node.x = Math.max(0, Math.min(w, node.x));
-        node.y = Math.max(0, Math.min(h, node.y));
       }
 
-      // Update pulse
+      // Pulse update
       pulseTimer -= 16;
       if (pulseTimer <= 0) {
         pulseIdx = Math.floor(Math.random() * labeledNodes.length);
         pulseIntensity = 1;
-        pulseTimer = 3000 + Math.random() * 4000;
+        pulseTimer = 4000 + Math.random() * 5000;
       }
-      if (pulseIntensity > 0) pulseIntensity -= 0.005;
+      if (pulseIntensity > 0) pulseIntensity -= 0.004;
 
-      // Draw all connections
+      // Draw connections — very thin and subtle
       for (const [ai, bi] of connections) {
         const a = allNodes[ai];
         const b = allNodes[bi];
         if (!a || !b) continue;
 
-        const isLabeledConnection = ai < labeledNodes.length && bi < labeledNodes.length;
-        const isPulsing =
-          (ai === pulseIdx || bi === pulseIdx) && pulseIntensity > 0;
-
-        const baseAlpha = isLabeledConnection ? 0.09 : 0.04;
-        const alpha = baseAlpha + (isPulsing ? pulseIntensity * 0.07 : 0);
+        const isPulsing = (ai === pulseIdx || bi === pulseIdx) && pulseIntensity > 0;
+        const alpha = isPulsing ? 0.04 + pulseIntensity * 0.04 : 0.03;
 
         ctx.beginPath();
         ctx.moveTo(a.x, a.y);
         ctx.lineTo(b.x, b.y);
         ctx.strokeStyle = `rgba(${NODE_COLOR.r}, ${NODE_COLOR.g}, ${NODE_COLOR.b}, ${alpha})`;
-        ctx.lineWidth = isLabeledConnection ? 0.8 : 0.4;
+        ctx.lineWidth = 0.5;
         ctx.stroke();
       }
 
@@ -246,32 +215,29 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
         const node = allNodes[i];
         const isPulsing = i === pulseIdx && pulseIntensity > 0;
 
-        const alpha = node.opacity + (isPulsing ? pulseIntensity * 0.3 : 0);
-        const r = node.size + (isPulsing ? pulseIntensity * 3 : 0);
+        const alpha = node.opacity + (isPulsing ? pulseIntensity * 0.15 : 0);
+        const r = node.size + (isPulsing ? pulseIntensity * 1.5 : 0);
 
-        // Glow for labeled nodes
-        if (node.isLabeled && (isPulsing || node.size >= 10)) {
+        // Soft glow on pulse
+        if (isPulsing && pulseIntensity > 0.3) {
           ctx.beginPath();
-          ctx.arc(node.x, node.y, r * 2.5, 0, Math.PI * 2);
-          const glowA = (node.size >= 10 ? 0.02 : 0) + (isPulsing ? pulseIntensity * 0.04 : 0);
-          ctx.fillStyle = `rgba(${NODE_COLOR.r}, ${NODE_COLOR.g}, ${NODE_COLOR.b}, ${glowA})`;
+          ctx.arc(node.x, node.y, r * 3, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${NODE_COLOR.r}, ${NODE_COLOR.g}, ${NODE_COLOR.b}, ${pulseIntensity * 0.03})`;
           ctx.fill();
         }
 
-        // Node circle
         ctx.beginPath();
         ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${NODE_COLOR.r}, ${NODE_COLOR.g}, ${NODE_COLOR.b}, ${alpha})`;
         ctx.fill();
 
-        // Labels — skip on very small mobile sizes
-        if (node.isLabeled && node.size > 4) {
-          const fontSize = isMobile ? 6 : node.size >= 10 ? 9 : 7;
-          ctx.font = `${fontSize}px ui-monospace, monospace`;
+        // Labels — desktop only, very subtle
+        if (node.isLabeled && !isMobile) {
+          ctx.font = "7px ui-monospace, monospace";
           ctx.textAlign = "center";
-          const labelAlpha = 0.2 + (isPulsing ? pulseIntensity * 0.2 : 0);
-          ctx.fillStyle = `rgba(${ACCENT.r}, ${ACCENT.g}, ${ACCENT.b}, ${labelAlpha})`;
-          ctx.fillText(node.label.toUpperCase(), node.x, node.y + r + 12);
+          const labelAlpha = 0.12 + (isPulsing ? pulseIntensity * 0.1 : 0);
+          ctx.fillStyle = `rgba(${LABEL_COLOR.r}, ${LABEL_COLOR.g}, ${LABEL_COLOR.b}, ${labelAlpha})`;
+          ctx.fillText(node.label.toUpperCase(), node.x, node.y + r + 10);
         }
       }
 
@@ -282,12 +248,6 @@ export default function KnowledgeGraph({ className }: KnowledgeGraphProps) {
 
     const onResize = () => {
       setSize();
-      // Reposition labeled nodes outside the new exclusion zone
-      for (const node of labeledNodes) {
-        const pos = randomOuterPosition();
-        node.x = pos.x;
-        node.y = pos.y;
-      }
     };
     window.addEventListener("resize", onResize);
 
