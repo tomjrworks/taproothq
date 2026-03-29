@@ -8,12 +8,12 @@ html {
 
 body {
   color: #3d3529;
-  background: #faf9f6;
+  background: #F2F0EB;
 }
 
 ::selection {
-  background: #1a5c32;
-  color: #faf9f6;
+  background: #1A5C32;
+  color: #F2F0EB;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -28,25 +28,55 @@ body {
   display: none;
 }
 
-.bg-dot-grid {
-  background-image: radial-gradient(circle, #3d3529 0.8px, transparent 0.8px);
-  background-size: 24px 24px;
-  background-position: 0 0;
+/* Film grain overlay */
+.film-grain {
+  position: relative;
+}
+.film-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
 }
 
-/* Override old font classes to use Geist */
-.font-display, .font-body {
-  font-family: var(--font-geist-sans), system-ui, sans-serif !important;
+/* Subtle grid overlay */
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(61, 53, 41, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61, 53, 41, 0.03) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-/* Button hover upgrade */
-.bg-forest {
-  transition: all 0.2s ease;
+/* Button styles */
+.btn-primary {
+  @apply bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest px-8 py-4 rounded transition-all duration-200;
 }
-.bg-forest:hover {
+.btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(26, 92, 50, 0.25);
+  box-shadow: 0 4px 20px rgba(26, 92, 50, 0.25);
 }
-.bg-forest:active {
+.btn-primary:active {
   transform: translateY(0);
+}
+
+.btn-secondary {
+  @apply border border-bark/20 text-bark font-mono text-xs uppercase tracking-widest px-8 py-4 rounded transition-all duration-200;
+}
+.btn-secondary:hover {
+  @apply border-forest-dark/40 text-forest-dark;
+}
+
+/* Section spacing */
+.section-padding {
+  @apply py-24 md:py-32 lg:py-40;
+}
+
+/* Glass effect for dark sections */
+.glass {
+  background: rgba(15, 18, 16, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }

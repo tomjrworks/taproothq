@@ -1,29 +1,36 @@
-import HeroV2 from "@/components/v2/HeroV2";
-import HowItWorksV2 from "@/components/v2/HowItWorksV2";
-import WhatsNotWorking from "@/components/v2/WhatsNotWorking";
-import WhatChanges from "@/components/v2/WhatChanges";
-import WhoItsFor from "@/components/v2/WhoItsFor";
-import AuditCTA from "@/components/AuditCTA";
-import AboutV2 from "@/components/v2/AboutV2";
-import FAQ from "@/components/v2/FAQ";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import KnowledgeGraph from "@/components/brain/KnowledgeGraph";
+import Hero from "@/components/brain/Hero";
+import Problem from "@/components/brain/Problem";
+import HowItWorks from "@/components/brain/HowItWorks";
+import Product from "@/components/brain/Product";
+import Features from "@/components/brain/Features";
+import Expansion from "@/components/brain/Expansion";
+import Stats from "@/components/brain/Stats";
+import About from "@/components/brain/About";
+import FAQ from "@/components/brain/FAQ";
+import FinalCTA from "@/components/brain/FinalCTA";
+import Footer from "@/components/brain/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
-      <HeroV2 />
-      <HowItWorksV2 />
-      <WhatsNotWorking />
-      <WhatChanges />
-      <WhoItsFor />
-      <AuditCTA />
-      <AboutV2 />
-      <div className="max-w-5xl mx-auto px-6">
-        <div className="h-px bg-bark/10" />
-      </div>
+      {/* Hero with knowledge graph background */}
+      <section className="relative min-h-screen overflow-hidden bg-cream">
+        <KnowledgeGraph className="absolute inset-0 z-0" />
+        <div className="relative z-10">
+          <Hero />
+        </div>
+      </section>
+
+      <Problem />
+      <HowItWorks />
+      <Product />
+      <Features />
+      <Expansion />
+      <Stats />
+      <About />
       <FAQ />
-      <ContactSection />
+      <FinalCTA />
       <Footer />
     </div>
   );

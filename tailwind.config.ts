@@ -9,16 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: "#faf9f6",
-        "cream-dark": "#ece9e3",
+        night: {
+          DEFAULT: "#0F1210",
+          light: "#161B18",
+          lighter: "#1C2420",
+        },
+        cream: "#F2F0EB",
+        "cream-dark": "#E8E6E0",
         forest: {
-          DEFAULT: "#1a5c32",
-          dark: "#14532d",
-          light: "#d4e8d0",
+          DEFAULT: "#2ECC71",
+          dark: "#1A5C32",
+          muted: "#1A5C32",
+          dim: "rgba(46, 204, 113, 0.15)",
+          glow: "rgba(46, 204, 113, 0.08)",
         },
         bark: "#3d3529",
-        stone: "#57534e",
-        gold: "#c9a84c",
+        ivory: "#E8E6E0",
+        stone: "#8B9490",
+        gold: "#C9A84C",
         moss: "#8a9a7b",
       },
       keyframes: {
@@ -26,13 +34,22 @@ const config: Config = {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "pulse-soft": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.8" },
+        },
       },
       animation: {
         "gradient-shift": "gradient-shift 12s ease infinite",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-soft": "pulse-soft 4s ease-in-out infinite",
       },
       fontFamily: {
-        display: ['"DM Sans"', "sans-serif"],
-        body: ['"Outfit"', "sans-serif"],
+        serif: ["Georgia", "'Times New Roman'", "serif"],
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
       },
