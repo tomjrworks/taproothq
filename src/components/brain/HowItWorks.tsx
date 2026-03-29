@@ -14,13 +14,13 @@ const STEPS: Step[] = [
     number: "01",
     title: "Capture",
     description:
-      "We sit with your senior people and extract what\u2019s in their heads \u2014 the decisions, the relationships, the institutional knowledge that no document captures. 90 minutes that preserves years of expertise.",
+      "We take your existing documentation \u2014 SOPs, procedures, client files, training materials, whatever your firm already has \u2014 and structure it into a searchable knowledge base. Then we fill the gaps with a focused session with your team to capture what\u2019s in their heads but never made it into a document.",
   },
   {
     number: "02",
     title: "Connect",
     description:
-      "Every piece of knowledge gets linked to related knowledge. Carriers connect to products connect to procedures connect to client situations. Your brain thinks in connections, and now your firm\u2019s brain does too.",
+      "Every piece of knowledge gets linked to related knowledge. Clients connect to procedures connect to contacts connect to past decisions. The connections are what make this a brain, not just a folder of files. When you ask about one thing, related context surfaces automatically.",
   },
   {
     number: "03",
@@ -32,7 +32,7 @@ const STEPS: Step[] = [
     number: "04",
     title: "Grow",
     description:
-      "Meeting notes, email insights, and team contributions feed back into the brain automatically. Every month it knows more. Every quarter we add new capabilities. The brain compounds.",
+      "The brain gets smarter every month. New knowledge feeds in from meetings, emails, and team contributions. And once the foundation is in place, we build automations on top of it \u2014 onboarding sequences, document generation, follow-up workflows, and anything else your firm needs to run faster.",
   },
 ];
 
