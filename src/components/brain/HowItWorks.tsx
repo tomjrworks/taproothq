@@ -14,7 +14,7 @@ const STEPS: Step[] = [
     number: "01",
     title: "Capture",
     description:
-      "We take your existing documentation \u2014 SOPs, procedures, client files, training materials, whatever your firm already has \u2014 and structure it into a searchable knowledge base. Then we fill the gaps with a focused session with your team to capture what\u2019s in their heads but never made it into a document.",
+      "We take your existing documentation \u2014 SOPs, procedures, client files, training materials, whatever your firm already has \u2014 and structure it into a searchable knowledge base. Organized by topic, linked by context, and ready to query from day one.",
   },
   {
     number: "02",
@@ -67,10 +67,7 @@ function StepRow({ step, index }: { step: Step; index: number }) {
 
 export default function HowItWorks() {
   return (
-    <section
-      id="how-it-works"
-      className="bg-white py-24 md:py-32 lg:py-40"
-    >
+    <section id="how-it-works" className="bg-white py-24 md:py-32 lg:py-40">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-forest-dark">
           How It Works

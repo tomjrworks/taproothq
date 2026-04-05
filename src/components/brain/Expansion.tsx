@@ -12,12 +12,30 @@ const fadeUp = {
 };
 
 const capabilities = [
-  { title: "Client prep sheets", desc: "Auto-generated briefings before every meeting with everything the brain knows about that client, their history, and what to discuss." },
-  { title: "Meeting capture", desc: "Zoom and Teams meetings automatically transcribed, summarized, and filed into the brain. It grows from every conversation without anyone lifting a finger." },
-  { title: "Email intelligence", desc: "Incoming emails scanned for knowledge worth capturing \u2014 policy changes, client updates, vendor announcements \u2014 and filed automatically." },
-  { title: "Onboarding autopilot", desc: "New hire starts? The brain sends them a structured training sequence by role. Weeks to productive, not months." },
-  { title: "Document generation", desc: "Draft proposals, renewal summaries, and reports from your firm\u2019s own knowledge. A 45-minute task becomes a 2-minute review." },
-  { title: "Custom workflows", desc: "Connect the brain to the tools you already use. Automate follow-ups, reminders, and handoffs powered by what the brain knows." },
+  {
+    title: "Lead capture & instant response",
+    desc: "Someone fills out a form or calls after hours. They get an intelligent response in seconds \u2014 not a generic autoresponder. Leads get qualified and booked before they move on.",
+  },
+  {
+    title: "Automated follow-ups",
+    desc: "After a quote, a job, or an inquiry \u2014 follow-ups go out on schedule without anyone remembering to send them. No leads slip through the cracks.",
+  },
+  {
+    title: "Review requests",
+    desc: "Job finished? A review request goes out automatically. Consistent five-star reviews without chasing clients for them.",
+  },
+  {
+    title: "Client onboarding",
+    desc: "New client signs on? Welcome emails, intake forms, and checklists go out in the right order. Same professional experience every time, zero manual work.",
+  },
+  {
+    title: "Proposals & document generation",
+    desc: "Quotes, proposals, and reports generated from templates that pull in the right data. A 45-minute task becomes a 2-minute review.",
+  },
+  {
+    title: "Scheduling & reminders",
+    desc: "Booking links, confirmations, and reminders handled automatically. No more back-and-forth over email or phone to find a time.",
+  },
 ];
 
 export default function Expansion() {
@@ -32,7 +50,7 @@ export default function Expansion() {
           viewport={{ once: true }}
           custom={0}
         >
-          Beyond the Brain
+          What We Build
         </motion.p>
 
         <motion.h2
@@ -43,8 +61,20 @@ export default function Expansion() {
           viewport={{ once: true }}
           custom={1}
         >
-          Once your brain is running, everything else gets easier.
+          The systems that run while you&apos;re busy working.
         </motion.h2>
+
+        <motion.p
+          className="text-stone mt-4 max-w-2xl mx-auto"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={1.5}
+        >
+          Every business has work that follows predictable logic but depends on
+          someone remembering to do it. We make that work automatic.
+        </motion.p>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
           {capabilities.map((cap, i) => (
@@ -60,7 +90,9 @@ export default function Expansion() {
               <span className="mt-1.5 block w-1.5 h-1.5 rounded-full bg-forest-dark/30 shrink-0" />
               <div>
                 <p className="text-bark font-medium">{cap.title}</p>
-                <p className="text-stone text-sm mt-1 leading-relaxed">{cap.desc}</p>
+                <p className="text-stone text-sm mt-1 leading-relaxed">
+                  {cap.desc}
+                </p>
               </div>
             </motion.div>
           ))}
@@ -72,9 +104,10 @@ export default function Expansion() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          custom={7}
+          custom={8}
         >
-          The brain is the foundation. The automations are what you build on top.
+          If it&apos;s repetitive and predictable, your team shouldn&apos;t be
+          spending time on it. That&apos;s what we automate.
         </motion.p>
       </div>
     </section>

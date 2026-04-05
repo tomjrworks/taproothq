@@ -16,12 +16,12 @@ const faqs = [
   {
     question: "What exactly do you build?",
     answer:
-      "A knowledge system your whole team can query \u2014 through Slack, Microsoft Teams, or a simple web interface. We capture your firm\u2019s institutional knowledge, connect it into a searchable graph, and add automations that keep it growing. Think of it as your firm\u2019s brain.",
+      "A knowledge system your whole team can query \u2014 through Slack, Microsoft Teams, or a simple web interface. We take your firm\u2019s existing documentation, connect it into a searchable graph, and add automations that keep it growing. Think of it as your firm\u2019s brain.",
   },
   {
     question: "How long does setup take?",
     answer:
-      "Most firms are up and running in one week. We handle everything \u2014 the knowledge capture session, the system build, and the team onboarding. Your team starts querying the brain on day four or five.",
+      "Most firms are up and running in one week. We handle everything \u2014 organizing your documentation, building the system, and onboarding your team. Your team starts querying the brain on day four or five.",
   },
   {
     question: "What if we don\u2019t use Slack?",
@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "What does the monthly retainer include?",
     answer:
-      "Weekly monitoring to catch and fix issues before your team notices. A monthly knowledge capture session to keep the brain growing. Prompt tuning based on what your team actually asks. And a new automation or capability added every quarter.",
+      "Weekly monitoring to catch and fix issues before your team notices. Monthly updates as new documentation and processes come in. Prompt tuning based on what your team actually asks. And a new automation or capability added every quarter.",
   },
   {
     question: "What if it doesn\u2019t work?",
@@ -151,9 +151,7 @@ export default function FAQ() {
               question={faq.question}
               answer={faq.answer}
               isOpen={openIndex === i}
-              onToggle={() =>
-                setOpenIndex(openIndex === i ? null : i)
-              }
+              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
             />
           ))}
         </motion.div>

@@ -22,7 +22,7 @@ const STATS = [
     value: "42%",
     label: "Of Knowledge",
     description:
-      "lives in one person\u2019s head and walks out the door when they leave",
+      "is scattered across drives, inboxes, and tools that don\u2019t talk to each other",
   },
   {
     value: "6mo",
@@ -66,10 +66,10 @@ export default function Problem() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          Client histories buried in email. Procedures locked in someone&rsquo;s
-          head. Decisions lost in Slack threads nobody can find. When a new hire
-          starts, they shadow someone for months&nbsp;&mdash; because
-          there&rsquo;s no other way to learn what your experienced people know.
+          Client histories buried in email. Procedures scattered across shared
+          drives. Decisions lost in Slack threads nobody can find. When a new
+          hire starts, they dig through folders for months&nbsp;&mdash; because
+          there&rsquo;s no single place to find what they need.
         </motion.p>
 
         {/* Stats grid */}

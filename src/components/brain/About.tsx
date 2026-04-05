@@ -81,9 +81,10 @@ export default function About() {
                 viewport={{ once: true }}
                 custom={4}
               >
-                The idea is simple: every firm has years of expertise locked in
-                people&apos;s heads. When those people are busy, sick, or
-                gone&nbsp;&mdash; the knowledge goes with them. We fix that.
+                The idea is simple: every firm has years of documentation,
+                procedures, and decisions scattered across drives, inboxes, and
+                forgotten folders. When someone needs an answer, they interrupt
+                the busiest person in the room. We fix that.
               </motion.p>
 
               <motion.p
@@ -94,9 +95,10 @@ export default function About() {
                 viewport={{ once: true }}
                 custom={5}
               >
-                We capture what your experienced people know, connect it into a
-                living system, and make it queryable by your entire team. The
-                brain gets smarter every month. Your firm gets stronger.
+                We take what your firm already has&nbsp;&mdash; SOPs, client
+                files, procedures, training materials&nbsp;&mdash; and turn it
+                into a searchable, connected system your whole team can query.
+                The brain gets smarter every month. Your firm gets stronger.
               </motion.p>
             </div>
 

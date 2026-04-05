@@ -1,6 +1,7 @@
 import KnowledgeGraph from "@/components/brain/KnowledgeGraph";
 import Hero from "@/components/brain/Hero";
 import Problem from "@/components/brain/Problem";
+import WhoItsFor from "@/components/brain/WhoItsFor";
 import HowItWorks from "@/components/brain/HowItWorks";
 import Product from "@/components/brain/Product";
 import Features from "@/components/brain/Features";
@@ -23,6 +24,7 @@ export default function Home() {
       </section>
 
       <Problem />
+      <WhoItsFor />
       <HowItWorks />
       <Product />
       <Features />

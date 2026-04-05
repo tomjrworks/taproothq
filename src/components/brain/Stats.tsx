@@ -13,24 +13,10 @@ const fadeUp = {
 
 const stats = [
   {
-    number: "$31.5B",
-    label: "Annual Cost",
-    description:
-      "Lost annually in the US due to poor knowledge sharing across organizations.",
-    source: "Panopto / IDC",
-  },
-  {
-    number: "82%",
-    label: "Faster Onboarding",
-    description:
-      "Improvement in new hire retention and time-to-productivity with structured knowledge transfer.",
-    source: "Brandon Hall Group",
-  },
-  {
     number: "1.8hrs",
     label: "Per Day Searching",
     description:
-      "The average employee spends nearly 2 hours every day looking for information that already exists.",
+      "The average employee spends nearly 2 hours every day looking for information that already exists somewhere in the business.",
     source: "McKinsey Global Institute",
   },
   {
@@ -39,6 +25,20 @@ const stats = [
     description:
       "Knowledge-mature professional services firms earn 39% more revenue per employee than their peers.",
     source: "CPA Practice Advisor",
+  },
+  {
+    number: "42hrs",
+    label: "Average Response Time",
+    description:
+      "The typical business takes nearly two days to respond to an incoming lead. By then, the customer has already moved on.",
+    source: "HubSpot / MIT",
+  },
+  {
+    number: "200hrs",
+    label: "Saved Per Year",
+    description:
+      "Hours saved per employee annually by automating repetitive tasks like follow-ups, data entry, and document processing.",
+    source: "Forrester Research",
   },
 ];
 
