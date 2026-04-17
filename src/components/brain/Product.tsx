@@ -138,8 +138,9 @@ export default function Product() {
         </h2>
 
         <p className="text-stone mt-4 max-w-2xl leading-relaxed">
-          Everything your team needs to know &mdash; searchable, connected, and
-          growing every day.
+          Built from your existing context &mdash; SOPs, client files,
+          procedures, history &mdash; and connected so your workflows actually
+          know your business.
         </p>
 
         {/* Interactive graph in a dark card */}

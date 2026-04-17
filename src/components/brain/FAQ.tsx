@@ -16,7 +16,7 @@ const faqs = [
   {
     question: "What exactly do you build?",
     answer:
-      "A knowledge system your whole team can query \u2014 through Slack, Microsoft Teams, or a simple web interface. We take your firm\u2019s existing documentation, connect it into a searchable graph, and add automations that keep it growing. Think of it as your firm\u2019s brain.",
+      "Three things. A brain \u2014 your firm\u2019s knowledge, searchable through Slack, Teams, or web chat. Workflows \u2014 automated follow-ups, onboarding, lead response, and anything else that\u2019s repetitive. And a dashboard \u2014 so you can see what\u2019s running, what it\u2019s doing, and what it\u2019s worth. The brain is built from your existing context, and the workflows work because they\u2019re connected to it.",
   },
   {
     question: "How long does setup take?",
@@ -36,7 +36,7 @@ const faqs = [
   {
     question: "What does the monthly retainer include?",
     answer:
-      "Weekly monitoring to catch and fix issues before your team notices. Monthly updates as new documentation and processes come in. Prompt tuning based on what your team actually asks. And a new automation or capability added every quarter.",
+      "Weekly monitoring to catch and fix issues before your team notices. Monthly updates as new context and processes feed into the brain. Dashboard reporting so you can see what\u2019s working. And a new workflow or capability added every quarter.",
   },
   {
     question: "What if it doesn\u2019t work?",

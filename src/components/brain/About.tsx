@@ -69,8 +69,8 @@ export default function About() {
                 custom={3}
               >
                 I&apos;m Tom Girgash. I run Main Loop Systems out of Cleveland,
-                OH. Before building knowledge systems for other firms, I built
-                one for myself&nbsp;&mdash; and it changed how I work.
+                OH. Before building these systems for other firms, I built one
+                for myself&nbsp;&mdash; and it changed how I work.
               </motion.p>
 
               <motion.p
@@ -97,8 +97,10 @@ export default function About() {
               >
                 We take what your firm already has&nbsp;&mdash; SOPs, client
                 files, procedures, training materials&nbsp;&mdash; and turn it
-                into a searchable, connected system your whole team can query.
-                The brain gets smarter every month. Your firm gets stronger.
+                into a brain your whole team can query. Then we build workflows
+                on top that handle the repetitive work automatically. A
+                dashboard ties it together so you can see what&rsquo;s running
+                and what it&rsquo;s worth.
               </motion.p>
             </div>
 
