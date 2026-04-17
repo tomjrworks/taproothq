@@ -73,7 +73,7 @@ export default function HowItWorks() {
           How It Works
         </p>
         <h2 className="font-serif text-3xl md:text-4xl text-bark mt-4">
-          From scattered context to a living system.
+          From scattered knowledge to a living system.
         </h2>
         <div className="mt-16 md:mt-20">
           {STEPS.map((step, i) => (

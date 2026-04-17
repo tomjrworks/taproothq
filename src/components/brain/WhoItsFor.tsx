@@ -32,7 +32,7 @@ const groups: GroupData[] = [
     accent: "forest",
     headline: "Your team\u2019s knowledge is scattered.",
     description:
-      "The answers exist somewhere \u2014 in a shared drive, an old email, a document only one person knows about. We build a brain from your existing context \u2014 your docs, client files, SOPs, and the way your team actually works \u2014 so the knowledge is always findable.",
+      "The answers exist somewhere \u2014 in a shared drive, an old email, a document only one person knows about. The problem isn\u2019t that the knowledge is missing. It\u2019s that nobody can find it when they need it.",
     pains: [
       { text: "SOPs and procedures buried in shared drives nobody searches" },
       {
@@ -53,7 +53,7 @@ const groups: GroupData[] = [
     accent: "gold",
     headline: "You\u2019re running your business on memory and manual effort.",
     description:
-      "The repetitive work \u2014 the follow-ups, the scheduling, the reminders \u2014 depends on someone remembering to do it. Your workflows work because they\u2019re connected to the brain. They have the context to send the right message, pull the right details, and act like someone who actually knows your business.",
+      "The repetitive work \u2014 the follow-ups, the scheduling, the reminders \u2014 depends on someone remembering to do it. When you\u2019re busy, the small stuff doesn\u2019t get done. And the small stuff is what keeps clients coming back.",
     pains: [
       { text: "Leads and inquiries sitting unanswered for hours or days" },
       { text: "Follow-ups that depend on someone remembering to send them" },
