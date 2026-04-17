@@ -16,28 +16,17 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center">
       <div className="relative z-10 max-w-3xl mx-auto text-center pt-40 pb-24 px-6 lg:px-8">
-        {/* Eyebrow */}
-        <motion.p
-          className="font-mono text-xs uppercase tracking-[0.2em] text-stone"
+        {/* Headline */}
+        <motion.h1
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-tight"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={0}
         >
-          Brain + Workflows + Dashboard
-        </motion.p>
-
-        {/* Headline */}
-        <motion.h1
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-tight mt-6"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={1}
-        >
-          Your team&rsquo;s knowledge, captured.
+          Stop running your business
           <br />
-          <em className="text-forest-dark">Your workflows, automated.</em>
+          <em className="text-forest-dark">from memory.</em>
         </motion.h1>
 
         {/* Subheadline */}
@@ -46,12 +35,10 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={2}
+          custom={1}
         >
-          We build your business a brain from the context you already
-          have&nbsp;&mdash; then put it to work. Workflows that handle the
-          repetitive stuff. A dashboard that shows you what&rsquo;s running and
-          what it&rsquo;s worth.
+          We build your team a brain from the knowledge you already
+          have&nbsp;&mdash; then automate the repetitive work on top.
         </motion.p>
 
         {/* CTA row */}
@@ -60,7 +47,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          custom={3}
+          custom={2}
         >
           <a
             href={CALENDLY_URL}
