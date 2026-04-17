@@ -73,7 +73,8 @@ export default function Expansion() {
           custom={1.5}
         >
           Every business has work that follows predictable logic but depends on
-          someone remembering to do it. We make that work automatic.
+          someone remembering to do it. Because these workflows are connected to
+          your brain, they have the context to get it right.
         </motion.p>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-4xl mx-auto">
@@ -107,7 +108,7 @@ export default function Expansion() {
           custom={8}
         >
           If it&apos;s repetitive and predictable, your team shouldn&apos;t be
-          spending time on it. That&apos;s what we automate.
+          spending time on it. That&apos;s what we build workflows for.
         </motion.p>
       </div>
     </section>

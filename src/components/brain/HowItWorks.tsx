@@ -14,25 +14,25 @@ const STEPS: Step[] = [
     number: "01",
     title: "Capture",
     description:
-      "We take your existing documentation \u2014 SOPs, procedures, client files, training materials, whatever your firm already has \u2014 and structure it into a searchable knowledge base. Organized by topic, linked by context, and ready to query from day one.",
+      "We take your existing context \u2014 SOPs, procedures, client files, how your team actually works \u2014 and build it into a searchable brain. Your knowledge, organized, connected, and ready to query from day one.",
   },
   {
     number: "02",
-    title: "Connect",
+    title: "Automate",
     description:
-      "Every piece of knowledge gets linked to related knowledge. Clients connect to procedures connect to contacts connect to past decisions. The connections are what make this a brain, not just a folder of files. When you ask about one thing, related context surfaces automatically.",
+      "Once the brain has your context, we build workflows on top. Follow-ups, lead response, onboarding, reporting \u2014 the repetitive work that used to depend on someone remembering. The workflows work because they\u2019re connected to a brain that actually knows your business.",
   },
   {
     number: "03",
-    title: "Query",
+    title: "Track",
     description:
-      "Your team asks questions in Slack, Teams, or a simple web chat. The brain finds the answer, cites the source, and surfaces related knowledge you didn\u2019t think to ask about. Instant. Accurate. 24/7.",
+      "Everything runs through a dashboard you can see. Which workflows fired, what they did, and what they\u2019re saving you. No black box. When someone asks \u201Cis this worth it?\u201D you have the answer.",
   },
   {
     number: "04",
     title: "Grow",
     description:
-      "The brain gets smarter every month. New knowledge feeds in from meetings, emails, and team contributions. And once the foundation is in place, we build automations on top of it \u2014 onboarding sequences, document generation, follow-up workflows, and anything else your firm needs to run faster.",
+      "The brain gets smarter every month. New knowledge feeds in from meetings, emails, and team contributions. More workflows stack on top. The context compounds \u2014 every month your system knows more and does more than the last.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function HowItWorks() {
           How It Works
         </p>
         <h2 className="font-serif text-3xl md:text-4xl text-bark mt-4">
-          From scattered knowledge to a living brain.
+          From scattered context to a living system.
         </h2>
         <div className="mt-16 md:mt-20">
           {STEPS.map((step, i) => (

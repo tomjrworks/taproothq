@@ -19,7 +19,7 @@ interface PainPoint {
 
 interface GroupData {
   label: string;
-  accent: "forest" | "gold";
+  accent: "forest" | "gold" | "moss";
   headline: string;
   description: string;
   pains: PainPoint[];
@@ -28,11 +28,11 @@ interface GroupData {
 
 const groups: GroupData[] = [
   {
-    label: "Knowledge Systems",
+    label: "The Brain",
     accent: "forest",
     headline: "Your team\u2019s knowledge is scattered.",
     description:
-      "The answers exist somewhere \u2014 in a shared drive, an old email, a document only one person knows about. The problem isn\u2019t that the knowledge is missing. It\u2019s that nobody can find it when they need it.",
+      "The answers exist somewhere \u2014 in a shared drive, an old email, a document only one person knows about. We build a brain from your existing context \u2014 your docs, client files, SOPs, and the way your team actually works \u2014 so the knowledge is always findable.",
     pains: [
       { text: "SOPs and procedures buried in shared drives nobody searches" },
       {
@@ -49,11 +49,11 @@ const groups: GroupData[] = [
       "Your team asks a question, gets a cited answer in seconds. No interruptions. No digging.",
   },
   {
-    label: "Workflow Automation",
+    label: "The Workflows",
     accent: "gold",
     headline: "You\u2019re running your business on memory and manual effort.",
     description:
-      "The repetitive work \u2014 the follow-ups, the scheduling, the reminders \u2014 depends on someone remembering to do it. When you\u2019re busy, the small stuff doesn\u2019t get done. And the small stuff is what keeps clients coming back.",
+      "The repetitive work \u2014 the follow-ups, the scheduling, the reminders \u2014 depends on someone remembering to do it. Your workflows work because they\u2019re connected to the brain. They have the context to send the right message, pull the right details, and act like someone who actually knows your business.",
     pains: [
       { text: "Leads and inquiries sitting unanswered for hours or days" },
       { text: "Follow-ups that depend on someone remembering to send them" },
@@ -63,12 +63,32 @@ const groups: GroupData[] = [
       {
         text: "Scheduling, invoicing, and review requests handled manually",
       },
-      {
-        text: "Reporting that means pulling numbers from five different places",
-      },
     ],
     outcome:
       "The repetitive work runs itself. You focus on the work that actually needs you.",
+  },
+  {
+    label: "The Dashboard",
+    accent: "moss",
+    headline: "You have no idea what\u2019s actually working.",
+    description:
+      "You\u2019re running automations, following up on leads, sending emails \u2014 but you can\u2019t tell what\u2019s moving the needle. When someone asks \u201Cis this worth it?\u201D you\u2019re guessing.",
+    pains: [
+      {
+        text: "No way to know which follow-ups are converting and which are noise",
+      },
+      {
+        text: "Reporting means pulling numbers from five different places",
+      },
+      {
+        text: "Can\u2019t tell if automations are saving time or just running",
+      },
+      {
+        text: "No clear picture of ROI when it\u2019s time to justify the spend",
+      },
+    ],
+    outcome:
+      "One dashboard. Everything that\u2019s running, what it\u2019s doing, and what it\u2019s worth. No guessing.",
   },
 ];
 
@@ -104,7 +124,11 @@ function GroupSection({ group, index }: { group: GroupData; index: number }) {
       <div className="flex items-center gap-3 mb-8">
         <div
           className={`w-2 h-2 rounded-full ${
-            group.accent === "forest" ? "bg-forest-dark/40" : "bg-gold/50"
+            group.accent === "forest"
+              ? "bg-forest-dark/40"
+              : group.accent === "gold"
+                ? "bg-gold/50"
+                : "bg-moss/50"
           }`}
         />
         <p className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
@@ -139,14 +163,18 @@ function GroupSection({ group, index }: { group: GroupData; index: number }) {
             className={`p-8 md:p-10 flex flex-col justify-center ${
               group.accent === "forest"
                 ? "bg-forest-dark/[0.03] border-t md:border-t-0 md:border-l border-forest-dark/10"
-                : "bg-gold/[0.03] border-t md:border-t-0 md:border-l border-gold/10"
+                : group.accent === "gold"
+                  ? "bg-gold/[0.03] border-t md:border-t-0 md:border-l border-gold/10"
+                  : "bg-moss/[0.06] border-t md:border-t-0 md:border-l border-moss/15"
             }`}
           >
             <p
               className={`font-mono text-[10px] uppercase tracking-[0.2em] ${
                 group.accent === "forest"
                   ? "text-forest-dark/60"
-                  : "text-gold/70"
+                  : group.accent === "gold"
+                    ? "text-gold/70"
+                    : "text-moss/70"
               }`}
             >
               The Outcome
@@ -156,7 +184,11 @@ function GroupSection({ group, index }: { group: GroupData; index: number }) {
             </p>
             <div
               className={`h-px w-12 mt-6 ${
-                group.accent === "forest" ? "bg-forest-dark/20" : "bg-gold/20"
+                group.accent === "forest"
+                  ? "bg-forest-dark/20"
+                  : group.accent === "gold"
+                    ? "bg-gold/20"
+                    : "bg-moss/25"
               }`}
             />
           </div>
@@ -191,7 +223,7 @@ export default function WhoItsFor() {
           viewport={{ once: true }}
           custom={1}
         >
-          Two problems we solve. Over and&nbsp;over.
+          Three things we build. Over and&nbsp;over.
         </motion.h2>
 
         {/* Groups */}
@@ -209,7 +241,7 @@ export default function WhoItsFor() {
           custom={5}
         >
           <p className="text-stone text-sm">
-            See yourself in either of these? Let&apos;s talk about what it looks
+            See yourself in any of these? Let&apos;s talk about what it looks
             like to fix it.
           </p>
           <a

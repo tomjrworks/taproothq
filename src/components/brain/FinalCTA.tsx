@@ -36,7 +36,8 @@ export default function FinalCTA() {
           Stop being your firm&apos;s Google.
           <br />
           <span className="italic text-forest">
-            Start building your firm&apos;s brain.
+            Start building your firm&apos;s brain &mdash; and the workflows that
+            run it.
           </span>
         </motion.h2>
 

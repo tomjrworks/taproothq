@@ -24,7 +24,7 @@ export default function Hero() {
           animate="visible"
           custom={0}
         >
-          Knowledge + Automation
+          Brain + Workflows + Dashboard
         </motion.p>
 
         {/* Headline */}
@@ -35,11 +35,9 @@ export default function Hero() {
           animate="visible"
           custom={1}
         >
-          Your team&rsquo;s knowledge, captured.
+          We build your business a brain.
           <br />
-          <em className="text-forest-dark">
-            Your workflows, automated.
-          </em>
+          <em className="text-forest-dark">Then we put it to work.</em>
         </motion.h1>
 
         {/* Subheadline */}
@@ -50,9 +48,10 @@ export default function Hero() {
           animate="visible"
           custom={2}
         >
-          We build your business a brain&nbsp;&mdash; then put it to work.
-          Instant answers for your team. Automations that actually understand
-          your business. Gets smarter every month.
+          Built from your context&nbsp;&mdash; your docs, clients, history, and
+          processes. Workflows that handle the repetitive stuff without anyone
+          remembering to do it. A dashboard that shows you what&rsquo;s working
+          and what it&rsquo;s worth.
         </motion.p>
 
         {/* CTA row */}
