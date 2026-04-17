@@ -41,13 +41,34 @@ export default function Hero() {
           have&nbsp;&mdash; then automate the repetitive work on top.
         </motion.p>
 
-        {/* CTA row */}
+        {/* Pillars */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-10"
+          className="flex items-center justify-center gap-3 mt-8"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={2}
+        >
+          <span className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
+            Brain
+          </span>
+          <span className="block w-1 h-1 rounded-full bg-bark/20" />
+          <span className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
+            Workflows
+          </span>
+          <span className="block w-1 h-1 rounded-full bg-bark/20" />
+          <span className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
+            Dashboard
+          </span>
+        </motion.div>
+
+        {/* CTA row */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={3}
         >
           <a
             href={CALENDLY_URL}
