@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title:
     "Main Loop Systems | Your Knowledge, Connected. Your Operations, Automated.",
   description:
-    "We capture your firm\u2019s knowledge and connect it to AI, then automate the operations that run on memory. Discovery call \u2014 free, 30 minutes.",
+    "We capture your firm\u2019s knowledge and connect it to AI, then automate the operations that run on memory. Free discovery call.",
   keywords:
     "AI implementation, knowledge management, business automation, AI for small business, operational efficiency, AI consulting",
   openGraph: {

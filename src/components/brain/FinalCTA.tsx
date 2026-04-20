@@ -57,8 +57,7 @@ export default function FinalCTA() {
           viewport={{ once: true }}
           custom={2}
         >
-          Free 30-minute call. We learn your business, you see what&apos;s
-          possible.
+          Free call. We learn your business, you see what&apos;s possible.
         </motion.p>
       </div>
     </section>

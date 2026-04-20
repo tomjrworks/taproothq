@@ -14,7 +14,7 @@ const STEPS: Step[] = [
     number: "01",
     title: "Discovery",
     description:
-      "Free 30-minute call. We learn how your business runs \u2014 where knowledge lives, what\u2019s manual, and what\u2019s falling through the cracks. Whether your team is already using AI or just getting started, we meet you where you are. You walk away with a clear picture of what to fix first, whether we work together or not.",
+      "A free call where we learn how your business runs \u2014 where knowledge lives, what\u2019s manual, and what\u2019s falling through the cracks. Whether your team is already using AI or just getting started, we meet you where you are. You walk away with a clear picture of what to fix first, whether we work together or not.",
   },
   {
     number: "02",
