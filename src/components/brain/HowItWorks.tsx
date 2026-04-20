@@ -12,27 +12,27 @@ interface Step {
 const STEPS: Step[] = [
   {
     number: "01",
-    title: "Capture",
+    title: "Discovery",
     description:
-      "We take your existing context \u2014 SOPs, procedures, client files, how your team actually works \u2014 and build it into a searchable brain. Your knowledge, organized, connected, and ready to query from day one.",
+      "Free 30-minute call. We learn how your business runs \u2014 where knowledge lives, what\u2019s manual, and what\u2019s falling through the cracks. Whether your team is already using AI or just getting started, we meet you where you are. You walk away with a clear picture of what to fix first, whether we work together or not.",
   },
   {
     number: "02",
-    title: "Automate",
+    title: "Build",
     description:
-      "Once the brain has your context, we build workflows on top. Follow-ups, lead response, onboarding, reporting \u2014 the repetitive work that used to depend on someone remembering. The workflows work because they\u2019re connected to a brain that actually knows your business.",
+      "We take your existing context \u2014 documents, procedures, client files, how your team actually works \u2014 and build your system. Knowledge organized, workflows automated, reporting connected. We handle everything.",
   },
   {
     number: "03",
-    title: "Track",
+    title: "Launch",
     description:
-      "Everything runs through a dashboard you can see. Which workflows fired, what they did, and what they\u2019re saving you. No black box. When someone asks \u201Cis this worth it?\u201D you have the answer.",
+      "Your team starts using it. We handle onboarding and training. Questions get cited answers in seconds. Follow-ups go out on schedule. You see results in days, not months.",
   },
   {
     number: "04",
-    title: "Grow",
+    title: "Improve",
     description:
-      "The brain gets smarter every month. New knowledge feeds in from meetings, emails, and team contributions. More workflows stack on top. The context compounds \u2014 every month your system knows more and does more than the last.",
+      "Monthly updates. New knowledge feeds in. Workflows get tuned based on what\u2019s working. A new capability added every quarter. The system gets smarter every month \u2014 and so does your team.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function HowItWorks() {
           How It Works
         </p>
         <h2 className="font-serif text-3xl md:text-4xl text-bark mt-4">
-          From scattered knowledge to a living system.
+          What it looks like to work with us.
         </h2>
         <div className="mt-16 md:mt-20">
           {STEPS.map((step, i) => (

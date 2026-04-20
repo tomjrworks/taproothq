@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { CALENDLY_URL } from "@/lib/constants";
 
 const fadeUp = {
@@ -13,186 +12,125 @@ const fadeUp = {
   }),
 };
 
-interface PainPoint {
-  text: string;
-}
-
 interface GroupData {
   label: string;
   accent: "forest" | "gold" | "moss";
   headline: string;
-  description: string;
-  pains: PainPoint[];
+  pains: string[];
   outcome: string;
 }
 
 const groups: GroupData[] = [
   {
-    label: "The Brain",
+    label: "Your Knowledge",
     accent: "forest",
-    headline: "Your team\u2019s knowledge is scattered.",
-    description:
-      "The answers exist somewhere \u2014 in a shared drive, an old email, a document only one person knows about. The problem isn\u2019t that the knowledge is missing. It\u2019s that nobody can find it when they need it.",
+    headline: "Scattered across drives, inboxes, and people\u2019s heads.",
     pains: [
-      { text: "SOPs and procedures buried in shared drives nobody searches" },
-      {
-        text: "The same questions asked over and over because there\u2019s no single source of truth",
-      },
-      {
-        text: "New hires digging through folders for weeks to get up to speed",
-      },
-      {
-        text: "Critical documents that only one person knows how to find",
-      },
+      "The same questions asked over and over because there\u2019s no single source of truth",
+      "New hires digging through folders for weeks to get up to speed",
+      "Critical knowledge that only one person knows how to find",
     ],
     outcome:
       "Your team asks a question, gets a cited answer in seconds. No interruptions. No digging.",
   },
   {
-    label: "The Workflows",
+    label: "Your Operations",
     accent: "gold",
-    headline: "You\u2019re running your business on memory and manual effort.",
-    description:
-      "The repetitive work \u2014 the follow-ups, the scheduling, the reminders \u2014 depends on someone remembering to do it. When you\u2019re busy, the small stuff doesn\u2019t get done. And the small stuff is what keeps clients coming back.",
+    headline: "Running on memory and manual effort.",
     pains: [
-      { text: "Leads and inquiries sitting unanswered for hours or days" },
-      { text: "Follow-ups that depend on someone remembering to send them" },
-      {
-        text: "Onboarding new clients with the same emails and forms every time",
-      },
-      {
-        text: "Scheduling, invoicing, and review requests handled manually",
-      },
+      "Inquiries sitting unanswered for hours or days",
+      "Follow-ups that depend on someone remembering to send them",
+      "Onboarding new clients with the same emails and forms every time",
     ],
     outcome:
       "The repetitive work runs itself. You focus on the work that actually needs you.",
   },
   {
-    label: "The Dashboard",
+    label: "Your Visibility",
     accent: "moss",
-    headline: "You have no idea what\u2019s actually working.",
-    description:
-      "You\u2019re running automations, following up on leads, sending emails \u2014 but you can\u2019t tell what\u2019s moving the needle. When someone asks \u201Cis this worth it?\u201D you\u2019re guessing.",
+    headline: "No idea what\u2019s actually working.",
     pains: [
-      {
-        text: "No way to know which follow-ups are converting and which are noise",
-      },
-      {
-        text: "Reporting means pulling numbers from five different places",
-      },
-      {
-        text: "Can\u2019t tell if automations are saving time or just running",
-      },
-      {
-        text: "No clear picture of ROI when it\u2019s time to justify the spend",
-      },
+      "Reporting means pulling numbers from five different places",
+      "Can\u2019t tell if your systems are saving time or just running",
+      "No clear picture of ROI when it\u2019s time to justify the spend",
     ],
     outcome:
-      "One dashboard. Everything that\u2019s running, what it\u2019s doing, and what it\u2019s worth. No guessing.",
+      "One view into everything that\u2019s running, what it\u2019s doing, and what it\u2019s worth.",
   },
 ];
 
-function PainItem({ pain, index }: { pain: PainPoint; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
+function GroupCard({ group, index }: { group: GroupData; index: number }) {
+  const accentStyles = {
+    forest: {
+      dot: "bg-forest-dark/40",
+      label: "text-forest-dark/70",
+      outcomeBg: "bg-forest-dark/[0.03] border-forest-dark/10",
+      outcomeLabel: "text-forest-dark/60",
+      line: "bg-forest-dark/20",
+    },
+    gold: {
+      dot: "bg-gold/50",
+      label: "text-gold/80",
+      outcomeBg: "bg-gold/[0.03] border-gold/10",
+      outcomeLabel: "text-gold/70",
+      line: "bg-gold/20",
+    },
+    moss: {
+      dot: "bg-moss/50",
+      label: "text-moss/70",
+      outcomeBg: "bg-moss/[0.06] border-moss/15",
+      outcomeLabel: "text-moss/70",
+      line: "bg-moss/25",
+    },
+  };
+
+  const styles = accentStyles[group.accent];
 
   return (
     <motion.div
-      ref={ref}
-      className="flex items-start gap-3"
-      initial={{ opacity: 0, x: -8 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
-      transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
-    >
-      <span className="mt-2 block w-1 h-1 rounded-full bg-bark/30 shrink-0" />
-      <p className="text-stone text-sm leading-relaxed">{pain.text}</p>
-    </motion.div>
-  );
-}
-
-function GroupSection({ group, index }: { group: GroupData; index: number }) {
-  return (
-    <motion.div
-      className={index > 0 ? "mt-20" : "mt-16"}
+      className="bg-white rounded-lg border border-bark/5 flex flex-col"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
       custom={index + 2}
     >
-      {/* Group label */}
-      <div className="flex items-center gap-3 mb-8">
-        <div
-          className={`w-2 h-2 rounded-full ${
-            group.accent === "forest"
-              ? "bg-forest-dark/40"
-              : group.accent === "gold"
-                ? "bg-gold/50"
-                : "bg-moss/50"
-          }`}
-        />
-        <p className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
-          {group.label}
-        </p>
-        <div className="flex-1 h-px bg-bark/8" />
+      {/* Top: Pain */}
+      <div className="p-6 lg:p-8 flex-1">
+        <div className="flex items-center gap-2.5 mb-5">
+          <div className={`w-2 h-2 rounded-full ${styles.dot}`} />
+          <p
+            className={`font-mono text-xs uppercase tracking-[0.15em] ${styles.label}`}
+          >
+            {group.label}
+          </p>
+        </div>
+
+        <h3 className="font-serif text-lg lg:text-xl text-bark leading-snug">
+          {group.headline}
+        </h3>
+
+        <div className="mt-5 space-y-3">
+          {group.pains.map((pain, i) => (
+            <div key={i} className="flex items-start gap-2.5">
+              <span className="mt-1.5 block w-1 h-1 rounded-full bg-bark/30 shrink-0" />
+              <p className="text-stone text-sm leading-relaxed">{pain}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Content card */}
-      <div className="bg-white rounded-lg border border-bark/5 overflow-hidden">
-        <div className="grid md:grid-cols-2">
-          {/* Left: Problem */}
-          <div className="p-8 md:p-10">
-            <h3
-              className={`font-serif text-xl md:text-2xl text-bark leading-snug`}
-            >
-              {group.headline}
-            </h3>
-            <p className="text-stone text-sm leading-relaxed mt-4">
-              {group.description}
-            </p>
-
-            <div className="mt-6 space-y-3">
-              {group.pains.map((pain, i) => (
-                <PainItem key={i} pain={pain} index={i} />
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Outcome */}
-          <div
-            className={`p-8 md:p-10 flex flex-col justify-center ${
-              group.accent === "forest"
-                ? "bg-forest-dark/[0.03] border-t md:border-t-0 md:border-l border-forest-dark/10"
-                : group.accent === "gold"
-                  ? "bg-gold/[0.03] border-t md:border-t-0 md:border-l border-gold/10"
-                  : "bg-moss/[0.06] border-t md:border-t-0 md:border-l border-moss/15"
-            }`}
-          >
-            <p
-              className={`font-mono text-[10px] uppercase tracking-[0.2em] ${
-                group.accent === "forest"
-                  ? "text-forest-dark/60"
-                  : group.accent === "gold"
-                    ? "text-gold/70"
-                    : "text-moss/70"
-              }`}
-            >
-              The Outcome
-            </p>
-            <p className="font-serif text-xl md:text-2xl text-bark leading-snug mt-3">
-              {group.outcome}
-            </p>
-            <div
-              className={`h-px w-12 mt-6 ${
-                group.accent === "forest"
-                  ? "bg-forest-dark/20"
-                  : group.accent === "gold"
-                    ? "bg-gold/20"
-                    : "bg-moss/25"
-              }`}
-            />
-          </div>
-        </div>
+      {/* Bottom: Outcome */}
+      <div className={`p-6 lg:p-8 border-t ${styles.outcomeBg} rounded-b-lg`}>
+        <p
+          className={`font-mono text-[10px] uppercase tracking-[0.2em] ${styles.outcomeLabel}`}
+        >
+          The Outcome
+        </p>
+        <p className="font-serif text-base lg:text-lg text-bark leading-snug mt-2">
+          {group.outcome}
+        </p>
+        <div className={`h-px w-10 mt-4 ${styles.line}`} />
       </div>
     </motion.div>
   );
@@ -223,13 +161,15 @@ export default function WhoItsFor() {
           viewport={{ once: true }}
           custom={1}
         >
-          Three things we build. Over and&nbsp;over.
+          Three things we fix. Over and&nbsp;over.
         </motion.h2>
 
-        {/* Groups */}
-        {groups.map((group, i) => (
-          <GroupSection key={group.label} group={group} index={i} />
-        ))}
+        {/* 3-column grid */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {groups.map((group, i) => (
+            <GroupCard key={group.label} group={group} index={i} />
+          ))}
+        </div>
 
         {/* Bottom CTA */}
         <motion.div
@@ -250,7 +190,7 @@ export default function WhoItsFor() {
             rel="noopener noreferrer"
             className="shrink-0 bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest px-6 py-3 rounded transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
           >
-            Book a Call
+            Book a Discovery Call
           </a>
         </motion.div>
       </div>

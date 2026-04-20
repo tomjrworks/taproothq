@@ -27,11 +27,11 @@ const stats = [
     source: "CPA Practice Advisor",
   },
   {
-    number: "42hrs",
-    label: "Average Response Time",
+    number: "70%",
+    label: "Of Knowledge Is Undocumented",
     description:
-      "The typical business takes nearly two days to respond to an incoming lead. By then, the customer has already moved on.",
-    source: "HubSpot / MIT",
+      "Most of what your team knows lives in their heads, not in any system. When someone leaves, that knowledge walks out the door.",
+    source: "Panopto Workplace Knowledge Report",
   },
   {
     number: "200hrs",

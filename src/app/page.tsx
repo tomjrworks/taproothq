@@ -1,10 +1,7 @@
-import KnowledgeGraph from "@/components/brain/KnowledgeGraph";
 import Hero from "@/components/brain/Hero";
 import Problem from "@/components/brain/Problem";
 import WhoItsFor from "@/components/brain/WhoItsFor";
 import HowItWorks from "@/components/brain/HowItWorks";
-import Product from "@/components/brain/Product";
-import Features from "@/components/brain/Features";
 import Expansion from "@/components/brain/Expansion";
 import Stats from "@/components/brain/Stats";
 import About from "@/components/brain/About";
@@ -15,19 +12,14 @@ import Footer from "@/components/brain/Footer";
 export default function Home() {
   return (
     <div className="min-h-screen">
-      {/* Hero with knowledge graph background */}
-      <section className="relative min-h-screen overflow-hidden bg-cream">
-        <KnowledgeGraph className="absolute inset-0 z-0" />
-        <div className="relative z-10">
-          <Hero />
-        </div>
+      {/* Hero */}
+      <section className="relative min-h-screen bg-cream">
+        <Hero />
       </section>
 
       <Problem />
       <WhoItsFor />
       <HowItWorks />
-      <Product />
-      <Features />
       <Expansion />
       <Stats />
       <About />

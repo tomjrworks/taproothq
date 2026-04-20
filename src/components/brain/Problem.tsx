@@ -16,13 +16,13 @@ const STATS = [
     value: "1.8hrs",
     label: "Per Day",
     description:
-      "spent searching for information that already exists somewhere in the firm",
+      "spent searching for information that already exists somewhere in the business",
   },
   {
-    value: "42%",
-    label: "Of Knowledge",
+    value: "23%",
+    label: "Of Work Time",
     description:
-      "is scattered across drives, inboxes, and tools that don\u2019t talk to each other",
+      "is spent on repetitive tasks that follow predictable logic and could be automated",
   },
   {
     value: "6mo",
@@ -55,7 +55,8 @@ export default function Problem() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          Your firm&rsquo;s knowledge is everywhere. And&nbsp;nowhere.
+          Your knowledge is scattered. Your operations run on memory. Your team
+          is guessing.
         </motion.h2>
 
         {/* Body */}
@@ -66,10 +67,11 @@ export default function Problem() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          Client histories buried in email. Procedures scattered across shared
-          drives. Decisions lost in Slack threads nobody can find. When a new
-          hire starts, they dig through folders for months&nbsp;&mdash; because
-          there&rsquo;s no single place to find what they need.
+          Answers buried in email. Procedures scattered across shared drives.
+          Follow-ups that depend on someone remembering. Reporting that means
+          pulling numbers from five different places. The knowledge exists, the
+          work gets done, but nothing is connected&nbsp;&mdash; and nothing runs
+          without someone pushing it.
         </motion.p>
 
         {/* Stats grid */}
@@ -101,7 +103,7 @@ export default function Problem() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          Sources: McKinsey Global Institute, Deloitte Human Capital Trends,
+          Sources: McKinsey Global Institute, Smartsheet Work Management Report,
           Society for Human Resource Management
         </motion.p>
       </div>

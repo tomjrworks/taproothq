@@ -16,27 +16,27 @@ const faqs = [
   {
     question: "What exactly do you build?",
     answer:
-      "Three things. A brain \u2014 your firm\u2019s knowledge, searchable through Slack, Teams, or web chat. Workflows \u2014 automated follow-ups, onboarding, lead response, and anything else that\u2019s repetitive. And a dashboard \u2014 so you can see what\u2019s running, what it\u2019s doing, and what it\u2019s worth. The brain is built from your existing context, and the workflows work because they\u2019re connected to it.",
+      "We capture your firm\u2019s knowledge \u2014 documents, procedures, client history, how your team actually works \u2014 and make it accessible through the AI tools you already use, like Claude or ChatGPT. Your AI stops giving generic answers and starts giving answers grounded in your business. Then we build workflows on top: automated follow-ups, onboarding, reporting, and anything else that\u2019s repetitive.",
   },
   {
     question: "How long does setup take?",
     answer:
-      "Most firms are up and running in one week. We handle everything \u2014 organizing your documentation, building the system, and onboarding your team. Your team starts querying the brain on day four or five.",
+      "It depends on the scope, but most firms see their first results within a few weeks. We handle everything \u2014 organizing your documentation, building the system, and onboarding your team. We\u2019ll give you a clear timeline on our discovery call.",
   },
   {
-    question: "What if we don\u2019t use Slack?",
+    question: "How does the AI access our knowledge?",
     answer:
-      "No problem. The brain works through Microsoft Teams, a web chat interface, or any platform your team already uses. We meet you where you work.",
+      "We organize your existing context \u2014 documents, SOPs, client files \u2014 and connect it to AI systems so they have your business context when answering questions. Your team uses the AI tools they\u2019re already familiar with, but now the answers are specific to your firm, cited, and accurate.",
   },
   {
     question: "Is our data safe?",
     answer:
-      "Yes. Your data is never used to train AI models \u2014 that\u2019s the API provider\u2019s flat policy, not an opt-out. Data is auto-deleted after processing. Each client\u2019s knowledge is completely isolated. We can provide a data processing agreement for firms with compliance requirements.",
+      "Yes. Your data stays in your own storage \u2014 Google Drive, SharePoint, or wherever you keep it. It\u2019s never used to train AI models. Each client\u2019s knowledge is completely isolated. We can provide a data processing agreement for firms with compliance requirements.",
   },
   {
     question: "What does the monthly retainer include?",
     answer:
-      "Weekly monitoring to catch and fix issues before your team notices. Monthly updates as new context and processes feed into the brain. Dashboard reporting so you can see what\u2019s working. And a new workflow or capability added every quarter.",
+      "Ongoing maintenance as your business evolves. New knowledge gets captured and organized. Workflows get tuned based on what\u2019s working. Reporting so you can see the impact. And new capabilities added as your needs grow.",
   },
   {
     question: "What if it doesn\u2019t work?",
@@ -44,9 +44,14 @@ const faqs = [
       "If we can\u2019t demonstrate clear value in the first 90 days, we refund the build fee. But honestly \u2014 once your team gets used to instant cited answers instead of interrupting the busiest person in the room, they don\u2019t go back.",
   },
   {
+    question: "What if my team doesn\u2019t use AI yet?",
+    answer:
+      "That\u2019s actually the most common starting point. Most of our clients come to us because they know AI could help but don\u2019t know where to start. We handle everything \u2014 setup, onboarding, and training. By the time we launch, your team will be using AI as part of their normal workflow without thinking about it.",
+  },
+  {
     question: "Do I need to be technical?",
     answer:
-      "Not at all. You talk, we build. The most technical thing your team does is type a question in Slack.",
+      "Not at all. You talk, we build. We set up everything and train your team as part of the process. No technical skill required on your end.",
   },
 ];
 

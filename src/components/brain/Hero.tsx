@@ -76,7 +76,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest px-8 py-4 rounded transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg text-center"
           >
-            Book a Demo
+            Book a Discovery Call
           </a>
           <a
             href="#how-it-works"

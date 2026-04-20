@@ -6,15 +6,17 @@ import "./globals.css";
 import Nav from "@/components/brain/Nav";
 
 export const metadata: Metadata = {
-  title: "Main Loop Systems | Knowledge Intelligence for Professional Services",
+  title:
+    "Main Loop Systems | Your Knowledge, Connected. Your Operations, Automated.",
   description:
-    "We build your firm a brain. Every answer your team needs — instant, cited, always learning. Knowledge intelligence for professional services firms.",
+    "We capture your firm\u2019s knowledge and connect it to AI, then automate the operations that run on memory. Discovery call \u2014 free, 30 minutes.",
   keywords:
-    "knowledge management, AI knowledge base, institutional knowledge, professional services, law firm AI, insurance agency AI",
+    "AI implementation, knowledge management, business automation, AI for small business, operational efficiency, AI consulting",
   openGraph: {
-    title: "Main Loop Systems | Knowledge Intelligence for Professional Services",
+    title:
+      "Main Loop Systems | Your Knowledge, Connected. Your Operations, Automated.",
     description:
-      "We build your firm a brain. Every answer your team needs — instant, cited, always learning.",
+      "We capture your firm\u2019s knowledge and connect it to AI, then automate the operations that run on memory.",
     url: "https://mainloopsystems.com",
     siteName: "Main Loop Systems",
     type: "website",

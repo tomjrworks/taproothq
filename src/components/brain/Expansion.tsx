@@ -13,28 +13,28 @@ const fadeUp = {
 
 const capabilities = [
   {
-    title: "Lead capture & instant response",
-    desc: "Someone fills out a form or calls after hours. They get an intelligent response in seconds \u2014 not a generic autoresponder. Leads get qualified and booked before they move on.",
+    title: "Sales & response",
+    desc: "Someone reaches out \u2014 by form, email, or referral. They get an intelligent response in minutes, not hours. Follow-ups after proposals and meetings go out on schedule. Nothing sits unanswered.",
   },
   {
-    title: "Automated follow-ups",
-    desc: "After a quote, a job, or an inquiry \u2014 follow-ups go out on schedule without anyone remembering to send them. No leads slip through the cracks.",
+    title: "Client onboarding & management",
+    desc: "New client signs on? Welcome sequences, intake forms, and kickoff materials go out in the right order. Check-ins and milestone updates happen automatically. Same professional experience every time.",
   },
   {
-    title: "Review requests",
-    desc: "Job finished? A review request goes out automatically. Consistent five-star reviews without chasing clients for them.",
+    title: "Team knowledge & training",
+    desc: "New team member starts? They get structured access to everything they need \u2014 procedures, client context, how your firm actually works. Weeks to productive, not months.",
   },
   {
-    title: "Client onboarding",
-    desc: "New client signs on? Welcome emails, intake forms, and checklists go out in the right order. Same professional experience every time, zero manual work.",
+    title: "Documents & deliverables",
+    desc: "Proposals, reports, summaries, and client deliverables generated from templates that pull in the right context. A 45-minute task becomes a 2-minute review.",
   },
   {
-    title: "Proposals & document generation",
-    desc: "Quotes, proposals, and reports generated from templates that pull in the right data. A 45-minute task becomes a 2-minute review.",
+    title: "Scheduling & coordination",
+    desc: "Meetings, deadlines, handoffs, and reminders handled automatically. No more back-and-forth to find a time or chasing someone to hand off a project.",
   },
   {
-    title: "Scheduling & reminders",
-    desc: "Booking links, confirmations, and reminders handled automatically. No more back-and-forth over email or phone to find a time.",
+    title: "Reporting & visibility",
+    desc: "Weekly summaries, project status, and operational metrics pulled together automatically. When someone asks \u201Chow are we doing?\u201D \u2014 you have the answer.",
   },
 ];
 

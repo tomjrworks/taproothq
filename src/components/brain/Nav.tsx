@@ -7,7 +7,6 @@ import { CALENDLY_URL } from "@/lib/constants";
 
 const NAV_LINKS = [
   { label: "How It Works", href: "#how-it-works" },
-  { label: "Product", href: "#product" },
   { label: "About", href: "#about" },
   { label: "Blog", href: "/blog" },
 ] as const;
@@ -62,7 +61,7 @@ export default function Nav() {
               >
                 {link.label}
               </a>
-            )
+            ),
           )}
         </div>
 
@@ -71,9 +70,10 @@ export default function Nav() {
           href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded bg-forest-dark px-6 py-2.5 font-mono text-xs uppercase tracking-widest text-cream transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+          className="rounded bg-forest-dark px-4 sm:px-6 py-2.5 font-mono text-xs uppercase tracking-widest text-cream transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
         >
-          Book a Demo
+          <span className="sm:hidden">Let&apos;s Talk</span>
+          <span className="hidden sm:inline">Book a Discovery Call</span>
         </a>
       </div>
     </motion.nav>

@@ -14,30 +14,20 @@ const fadeUp = {
 
 export default function FinalCTA() {
   return (
-    <section className="relative bg-night py-24 md:py-32 lg:py-40 overflow-hidden">
-      {/* Subtle radial glow */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, rgba(46, 204, 113, 0.06) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
+    <section className="bg-white py-24 md:py-32 lg:py-40">
+      <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
         <motion.h2
-          className="font-serif text-3xl md:text-4xl lg:text-5xl text-ivory max-w-3xl mx-auto"
+          className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark max-w-3xl mx-auto"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           custom={0}
         >
-          Stop being your firm&apos;s Google.
+          Stop running your business from memory.
           <br />
-          <span className="italic text-forest">
-            Start building your firm&apos;s brain &mdash; and the workflows that
-            run it.
+          <span className="italic text-forest-dark">
+            Let&apos;s build the systems that run it for you.
           </span>
         </motion.h2>
 
@@ -53,9 +43,9 @@ export default function FinalCTA() {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-forest hover:bg-forest-dark text-night font-sans font-medium px-8 py-3 rounded-lg transition-colors duration-200"
+            className="inline-block bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest px-8 py-4 rounded transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
           >
-            Book a Demo &rarr;
+            Book a Discovery Call &rarr;
           </a>
         </motion.div>
 
@@ -67,7 +57,8 @@ export default function FinalCTA() {
           viewport={{ once: true }}
           custom={2}
         >
-          Free 30-minute call. No pitch deck. Just a live demo.
+          Free 30-minute call. We learn your business, you see what&apos;s
+          possible.
         </motion.p>
       </div>
     </section>
