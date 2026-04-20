@@ -88,7 +88,7 @@ function GroupCard({ group, index }: { group: GroupData; index: number }) {
 
   return (
     <motion.div
-      className="bg-white rounded-lg border border-bark/5 flex flex-col"
+      className="bg-white rounded-lg border border-bark/5 flex flex-col min-w-[85vw] sm:min-w-[70vw] md:min-w-0 snap-start"
       variants={fadeUp}
       initial="hidden"
       whileInView="visible"
@@ -164,8 +164,8 @@ export default function WhoItsFor() {
           Three things we fix. Over and&nbsp;over.
         </motion.h2>
 
-        {/* 3-column grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Horizontal scroll on mobile, 3-column grid on desktop */}
+        <div className="mt-12 flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:snap-none pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide">
           {groups.map((group, i) => (
             <GroupCard key={group.label} group={group} index={i} />
           ))}
