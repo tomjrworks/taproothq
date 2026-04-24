@@ -13,34 +13,6 @@ const fade = {
   }),
 };
 
-function HorizonRule({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 1200 24"
-      preserveAspectRatio="none"
-      className={`h-6 text-bark ${className}`}
-      aria-hidden
-    >
-      <path
-        d="M 0 14 Q 150 10, 320 13 T 640 14 T 960 12 T 1200 13"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-        fill="none"
-        opacity="0.55"
-      />
-      <path
-        d="M 0 18 Q 180 16, 360 17 T 720 18 T 1080 16 T 1200 17"
-        stroke="currentColor"
-        strokeWidth="0.6"
-        strokeLinecap="round"
-        fill="none"
-        opacity="0.22"
-      />
-    </svg>
-  );
-}
-
 export default function Problem() {
   return (
     <section className="relative bg-cream pt-28 md:pt-36 lg:pt-44 pb-14 md:pb-16 lg:pb-20 overflow-hidden film-grain">
