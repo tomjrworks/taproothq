@@ -12,7 +12,7 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   const post = getPostBySlug(params.slug);
   if (!post) return { title: "Not Found" };
   return {
-    title: `${post.title} | Main Loop Systems`,
+    title: `${post.title} | Taproot`,
     description: post.description,
     openGraph: {
       title: post.title,
@@ -32,12 +32,21 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     <div className="min-h-screen">
       <article className="pt-32 pb-20 px-6">
         <div className="max-w-3xl mx-auto">
-          <Link href="/blog" className="text-sm text-forest hover:text-forest-dark transition-colors mb-8 inline-block">
+          <Link
+            href="/blog"
+            className="text-sm text-forest hover:text-forest-dark transition-colors mb-8 inline-block"
+          >
             &larr; Back to blog
           </Link>
 
           <div className="flex items-center gap-3 text-sm text-stone mb-4">
-            <time>{new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
+            <time>
+              {new Date(post.date).toLocaleDateString("en-US", {
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+              })}
+            </time>
             <span>&middot;</span>
             <span>{post.readingTime}</span>
           </div>
@@ -49,7 +58,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
           <div className="flex gap-2 mb-12">
             {post.tags.map((tag) => (
-              <span key={tag} className="text-xs bg-forest/5 text-forest px-2 py-1 rounded-full">
+              <span
+                key={tag}
+                className="text-xs bg-forest/5 text-forest px-2 py-1 rounded-full"
+              >
                 {tag}
               </span>
             ))}
@@ -65,7 +77,8 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
               Ready to stop doing everything manually?
             </h3>
             <p className="text-cream/80 mb-6">
-              Take our free 5-minute audit and see exactly where your business is losing time.
+              Take our free 5-minute audit and see exactly where your business
+              is losing time.
             </p>
             <a
               href="https://audit.mainloopsystems.com"

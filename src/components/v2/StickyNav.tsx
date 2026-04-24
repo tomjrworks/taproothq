@@ -19,17 +19,26 @@ export default function StickyNav() {
           href="/"
           className="font-sans font-bold text-lg tracking-tight text-bark"
         >
-          Main Loop Systems
+          Taproot
         </Link>
 
         <div className="hidden sm:flex items-center gap-6">
-          <a href="#services" className="text-sm text-stone hover:text-forest transition-colors">
+          <a
+            href="#services"
+            className="text-sm text-stone hover:text-forest transition-colors"
+          >
             What We Do
           </a>
-          <a href="#about" className="text-sm text-stone hover:text-forest transition-colors">
+          <a
+            href="#about"
+            className="text-sm text-stone hover:text-forest transition-colors"
+          >
             About
           </a>
-          <Link href="/blog" className="text-sm text-stone hover:text-forest transition-colors">
+          <Link
+            href="/blog"
+            className="text-sm text-stone hover:text-forest transition-colors"
+          >
             Blog
           </Link>
           <a

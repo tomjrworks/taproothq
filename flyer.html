@@ -1,380 +1,394 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mainloop Systems — Free AI Audit</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --green: #166534;
-      --cream: #faf9f6;
-      --bark: #3d3529;
-      --green-light: #dcfce7;
-      --green-mid: #22863a;
-    }
-
-    html, body {
-      font-family: 'DM Sans', sans-serif;
-      background: #fff;
-      color: var(--bark);
-    }
-
-    .page {
-      width: 8.5in;
-      height: 11in;
-      margin: 0 auto;
-      background: var(--cream);
-      display: flex;
-      flex-direction: column;
-      padding: 0.6in 0.7in 0.5in;
-      position: relative;
-      overflow: hidden;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    /* Decorative top bar */
-    .top-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 18px;
-      background: var(--green);
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    /* Logo / brand area */
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 0.35in;
-    }
-
-    .brand-icon {
-      width: 36px;
-      height: 36px;
-      background: var(--green);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .brand-icon span {
-      color: #fff;
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    .brand-name {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--green);
-      letter-spacing: 0.5px;
-    }
-
-    /* Headline */
-    .headline {
-      font-size: 52px;
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1.1;
-      margin-bottom: 0.15in;
-    }
-
-    .subhead {
-      font-size: 20px;
-      font-weight: 400;
-      font-style: italic;
-      color: var(--bark);
-      line-height: 1.4;
-      margin-bottom: 0.45in;
-      max-width: 5.5in;
-    }
-
-    /* Bullet points */
-    .benefits {
-      display: flex;
-      flex-direction: column;
-      gap: 0.28in;
-      margin-bottom: 0.5in;
-    }
-
-    .benefit {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-
-    .benefit-icon {
-      width: 44px;
-      height: 44px;
-      min-width: 44px;
-      background: var(--green);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .benefit-icon span {
-      color: #fff;
-      font-size: 20px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .benefit-text h3 {
-      font-size: 19px;
-      font-weight: 700;
-      color: var(--bark);
-      margin-bottom: 2px;
-    }
-
-    .benefit-text p {
-      font-size: 15px;
-      font-weight: 300;
-      color: #5a5245;
-      line-height: 1.4;
-    }
-
-    /* Spacer to push CTA down */
-    .spacer {
-      flex: 1;
-    }
-
-    /* CTA + QR bottom section */
-    .bottom-section {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 0.4in;
-    }
-
-    .cta-area {
-      flex: 1;
-    }
-
-    .cta-box {
-      background: var(--green);
-      color: #fff;
-      border-radius: 12px;
-      padding: 22px 28px;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .cta-label {
-      font-size: 13px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      opacity: 0.85;
-      margin-bottom: 4px;
-    }
-
-    .cta-title {
-      font-size: 26px;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-
-    .cta-subtitle {
-      font-size: 14px;
-      font-weight: 300;
-      opacity: 0.9;
-    }
-
-    /* QR code placeholder */
-    .qr-area {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .qr-box {
-      width: 200px;
-      height: 200px;
-      border: 3px solid var(--green);
-      border-radius: 12px;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .qr-placeholder-icon {
-      width: 120px;
-      height: 120px;
-      background: var(--green-light);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .qr-placeholder-icon span {
-      font-size: 40px;
-      color: var(--green);
-    }
-
-    .qr-scan-text {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--green);
-    }
-
-    .qr-url {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--green);
-    }
-
-    /* Footer */
-    .footer {
-      margin-top: 0.3in;
-      padding-top: 0.15in;
-      border-top: 1px solid #d4d0c8;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .footer-left {
-      font-size: 13px;
-      color: #5a5245;
-      font-weight: 400;
-    }
-
-    .footer-left strong {
-      font-weight: 700;
-      color: var(--bark);
-    }
-
-    .footer-right {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--green);
-    }
-
-    /* Print styles */
-    @media print {
-      html, body {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mainloop Systems — Free AI Audit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
         margin: 0;
         padding: 0;
-        background: none;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --green: #166534;
+        --cream: #faf9f6;
+        --bark: #3d3529;
+        --green-light: #dcfce7;
+        --green-mid: #22863a;
+      }
+
+      html,
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: #fff;
+        color: var(--bark);
       }
 
       .page {
-        margin: 0;
-        padding: 0.5in 0.6in 0.4in;
-        width: 100%;
-        height: 100%;
+        width: 8.5in;
+        height: 11in;
+        margin: 0 auto;
+        background: var(--cream);
+        display: flex;
+        flex-direction: column;
+        padding: 0.6in 0.7in 0.5in;
+        position: relative;
+        overflow: hidden;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
 
-      @page {
-        size: letter;
-        margin: 0;
+      /* Decorative top bar */
+      .top-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 18px;
+        background: var(--green);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
       }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <div class="top-bar"></div>
 
-    <div class="brand">
-      <div class="brand-icon"><span>M</span></div>
-      <div class="brand-name">MAINLOOP SYSTEMS</div>
-    </div>
+      /* Logo / brand area */
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 0.35in;
+      }
 
-    <h1 class="headline">Drowning in<br>admin work?</h1>
+      .brand-icon {
+        width: 36px;
+        height: 36px;
+        background: var(--green);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
 
-    <p class="subhead">You didn't start a business to spend all day on paperwork.</p>
+      .brand-icon span {
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1;
+      }
 
-    <div class="benefits">
-      <div class="benefit">
-        <div class="benefit-icon"><span>1</span></div>
-        <div class="benefit-text">
-          <h3>Automate your lead follow-up</h3>
-          <p>Stop losing customers to slow replies.</p>
-        </div>
+      .brand-name {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--green);
+        letter-spacing: 0.5px;
+      }
+
+      /* Headline */
+      .headline {
+        font-size: 52px;
+        font-weight: 700;
+        color: var(--green);
+        line-height: 1.1;
+        margin-bottom: 0.15in;
+      }
+
+      .subhead {
+        font-size: 20px;
+        font-weight: 400;
+        font-style: italic;
+        color: var(--bark);
+        line-height: 1.4;
+        margin-bottom: 0.45in;
+        max-width: 5.5in;
+      }
+
+      /* Bullet points */
+      .benefits {
+        display: flex;
+        flex-direction: column;
+        gap: 0.28in;
+        margin-bottom: 0.5in;
+      }
+
+      .benefit {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .benefit-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        background: var(--green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .benefit-icon span {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 1;
+      }
+
+      .benefit-text h3 {
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--bark);
+        margin-bottom: 2px;
+      }
+
+      .benefit-text p {
+        font-size: 15px;
+        font-weight: 300;
+        color: #5a5245;
+        line-height: 1.4;
+      }
+
+      /* Spacer to push CTA down */
+      .spacer {
+        flex: 1;
+      }
+
+      /* CTA + QR bottom section */
+      .bottom-section {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 0.4in;
+      }
+
+      .cta-area {
+        flex: 1;
+      }
+
+      .cta-box {
+        background: var(--green);
+        color: #fff;
+        border-radius: 12px;
+        padding: 22px 28px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .cta-label {
+        font-size: 13px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        opacity: 0.85;
+        margin-bottom: 4px;
+      }
+
+      .cta-title {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 6px;
+      }
+
+      .cta-subtitle {
+        font-size: 14px;
+        font-weight: 300;
+        opacity: 0.9;
+      }
+
+      /* QR code placeholder */
+      .qr-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .qr-box {
+        width: 200px;
+        height: 200px;
+        border: 3px solid var(--green);
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .qr-placeholder-icon {
+        width: 120px;
+        height: 120px;
+        background: var(--green-light);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .qr-placeholder-icon span {
+        font-size: 40px;
+        color: var(--green);
+      }
+
+      .qr-scan-text {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--green);
+      }
+
+      .qr-url {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--green);
+      }
+
+      /* Footer */
+      .footer {
+        margin-top: 0.3in;
+        padding-top: 0.15in;
+        border-top: 1px solid #d4d0c8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .footer-left {
+        font-size: 13px;
+        color: #5a5245;
+        font-weight: 400;
+      }
+
+      .footer-left strong {
+        font-weight: 700;
+        color: var(--bark);
+      }
+
+      .footer-right {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--green);
+      }
+
+      /* Print styles */
+      @media print {
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          background: none;
+        }
+
+        .page {
+          margin: 0;
+          padding: 0.5in 0.6in 0.4in;
+          width: 100%;
+          height: 100%;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        @page {
+          size: letter;
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="top-bar"></div>
+
+      <div class="brand">
+        <div class="brand-icon"><span>M</span></div>
+        <div class="brand-name">MAINLOOP SYSTEMS</div>
       </div>
 
-      <div class="benefit">
-        <div class="benefit-icon"><span>2</span></div>
-        <div class="benefit-text">
-          <h3>Connect the tools you already use</h3>
-          <p>QuickBooks, CRMs, calendars &mdash; talking to each other.</p>
-        </div>
-      </div>
+      <h1 class="headline">Drowning in<br />admin work?</h1>
 
-      <div class="benefit">
-        <div class="benefit-icon"><span>3</span></div>
-        <div class="benefit-text">
-          <h3>Get a custom AI assistant</h3>
-          <p>Handle intake forms, scheduling, invoicing while you sleep.</p>
-        </div>
-      </div>
-    </div>
+      <p class="subhead">
+        You didn't start a business to spend all day on paperwork.
+      </p>
 
-    <div class="spacer"></div>
-
-    <div class="bottom-section">
-      <div class="cta-area">
-        <div class="cta-box">
-          <div class="cta-label">Free &mdash; No Obligation</div>
-          <div class="cta-title">Take the 5-minute<br>AI Audit</div>
-          <div class="cta-subtitle">Find out exactly where AI can save you time &amp; money.</div>
-        </div>
-      </div>
-
-      <div class="qr-area">
-        <div class="qr-box">
-          <div class="qr-placeholder-icon">
-            <!-- Replace this div with an <img> tag pointing to your QR code image -->
-            <span>&#9633;</span>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon"><span>1</span></div>
+          <div class="benefit-text">
+            <h3>Automate your lead follow-up</h3>
+            <p>Stop losing customers to slow replies.</p>
           </div>
-          <div class="qr-scan-text">Scan for Free Audit</div>
         </div>
-        <div class="qr-url">audit.mainloopsystems.com</div>
+
+        <div class="benefit">
+          <div class="benefit-icon"><span>2</span></div>
+          <div class="benefit-text">
+            <h3>Connect the tools you already use</h3>
+            <p>QuickBooks, CRMs, calendars &mdash; talking to each other.</p>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon"><span>3</span></div>
+          <div class="benefit-text">
+            <h3>Get a custom AI assistant</h3>
+            <p>Handle intake forms, scheduling, invoicing while you sleep.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="bottom-section">
+        <div class="cta-area">
+          <div class="cta-box">
+            <div class="cta-label">Free &mdash; No Obligation</div>
+            <div class="cta-title">Take the 5-minute<br />AI Audit</div>
+            <div class="cta-subtitle">
+              Find out exactly where AI can save you time &amp; money.
+            </div>
+          </div>
+        </div>
+
+        <div class="qr-area">
+          <div class="qr-box">
+            <div class="qr-placeholder-icon">
+              <!-- Replace this div with an <img> tag pointing to your QR code image -->
+              <span>&#9633;</span>
+            </div>
+            <div class="qr-scan-text">Scan for Free Audit</div>
+          </div>
+          <div class="qr-url">audit.mainloopsystems.com</div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-left">
+          <strong>Tom Girgash</strong> &nbsp;|&nbsp; Taproot &nbsp;|&nbsp;
+          Cleveland, OH
+        </div>
+        <div class="footer-right">taproothq.com</div>
       </div>
     </div>
-
-    <div class="footer">
-      <div class="footer-left"><strong>Tom Girgash</strong> &nbsp;|&nbsp; Main Loop Systems &nbsp;|&nbsp; Cleveland, OH</div>
-      <div class="footer-right">mainloopsystems.com</div>
-    </div>
-  </div>
-</body>
+  </body>
 </html>

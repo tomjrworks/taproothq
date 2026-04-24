@@ -26,7 +26,7 @@ export default function Navbar() {
             href="/"
             className="font-display font-bold text-lg tracking-tight text-bark"
           >
-            Main Loop Systems
+            Taproot
           </Link>
 
           {/* Desktop */}

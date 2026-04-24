@@ -28,7 +28,7 @@ export default function About() {
           >
             <Image
               src="/images/tom.jpg"
-              alt="Tom Girgash, founder of Main Loop Systems"
+              alt="Tom Girgash, founder of Taproot"
               width={500}
               height={600}
               className="rounded-lg object-cover w-full"
@@ -68,9 +68,9 @@ export default function About() {
                 viewport={{ once: true }}
                 custom={3}
               >
-                I&apos;m Tom Girgash. I run Main Loop Systems out of Cleveland,
-                OH. Before building these systems for other firms, I built one
-                for myself&nbsp;&mdash; and it changed how I work.
+                I&apos;m Tom Girgash. I run Taproot out of Cleveland, OH. Before
+                building these systems for other firms, I built one for
+                myself&nbsp;&mdash; and it changed how I work.
               </motion.p>
 
               <motion.p

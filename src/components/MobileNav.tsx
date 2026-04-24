@@ -37,7 +37,7 @@ export default function MobileNav({
           {/* Header with close button */}
           <div className="px-6 h-16 flex items-center justify-between border-b border-bark/5">
             <span className="font-display font-bold text-lg tracking-tight text-bark">
-              Main Loop Systems
+              Taproot
             </span>
             <button
               onClick={onClose}

@@ -39,7 +39,7 @@ export default function Nav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="font-sans text-lg font-bold text-bark">
-          Main Loop
+          Taproot
         </Link>
 
         {/* Nav links */}

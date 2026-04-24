@@ -14,14 +14,78 @@ import {
    Positions are in % offset from center of the container.
    Desktop (x/y) and mobile (mx/my) have separate positions to avoid clipping. */
 const CHAOS_ITEMS = [
-  { label: "Missed calls", icon: PhoneIcon, x: -38, y: -35, mx: -30, my: -32, rotate: -18 },
-  { label: "Spreadsheets", icon: SheetIcon, x: 35, y: -30, mx: 28, my: -28, rotate: 14 },
-  { label: "Sticky notes", icon: StickyIcon, x: -28, y: 30, mx: -25, my: 28, rotate: 22 },
-  { label: "Manual emails", icon: EmailIcon, x: 30, y: 32, mx: 26, my: 30, rotate: -12 },
-  { label: "Calendar chaos", icon: CalendarIcon, x: -10, y: -42, mx: -8, my: -38, rotate: 8 },
-  { label: "Lost invoices", icon: InvoiceIcon, x: 12, y: -40, mx: 10, my: -36, rotate: -20 },
-  { label: "Copy-paste", icon: ClipboardIcon, x: -42, y: 0, mx: -34, my: 0, rotate: 15 },
-  { label: "Re-entering data", icon: EntryIcon, x: 40, y: 2, mx: 32, my: 2, rotate: -10 },
+  {
+    label: "Missed calls",
+    icon: PhoneIcon,
+    x: -38,
+    y: -35,
+    mx: -30,
+    my: -32,
+    rotate: -18,
+  },
+  {
+    label: "Spreadsheets",
+    icon: SheetIcon,
+    x: 35,
+    y: -30,
+    mx: 28,
+    my: -28,
+    rotate: 14,
+  },
+  {
+    label: "Sticky notes",
+    icon: StickyIcon,
+    x: -28,
+    y: 30,
+    mx: -25,
+    my: 28,
+    rotate: 22,
+  },
+  {
+    label: "Manual emails",
+    icon: EmailIcon,
+    x: 30,
+    y: 32,
+    mx: 26,
+    my: 30,
+    rotate: -12,
+  },
+  {
+    label: "Calendar chaos",
+    icon: CalendarIcon,
+    x: -10,
+    y: -42,
+    mx: -8,
+    my: -38,
+    rotate: 8,
+  },
+  {
+    label: "Lost invoices",
+    icon: InvoiceIcon,
+    x: 12,
+    y: -40,
+    mx: 10,
+    my: -36,
+    rotate: -20,
+  },
+  {
+    label: "Copy-paste",
+    icon: ClipboardIcon,
+    x: -42,
+    y: 0,
+    mx: -34,
+    my: 0,
+    rotate: 15,
+  },
+  {
+    label: "Re-entering data",
+    icon: EntryIcon,
+    x: 40,
+    y: 2,
+    mx: 32,
+    my: 2,
+    rotate: -10,
+  },
 ];
 
 export default function ChaosToCalm() {
@@ -30,7 +94,9 @@ export default function ChaosToCalm() {
 
   // Single progress value driven by a timed animation, not scroll
   const [progress] = useState(() => motionValue(0));
-  const [phase, setPhase] = useState<"idle" | "chaos" | "converging" | "calm">("idle");
+  const [phase, setPhase] = useState<"idle" | "chaos" | "converging" | "calm">(
+    "idle",
+  );
 
   useEffect(() => {
     if (!isInView) return;
@@ -90,11 +156,14 @@ export default function ChaosToCalm() {
               ? { opacity: phase === "calm" ? 1 : 0.6, y: 0 }
               : { opacity: 0, y: 12 }
           }
-          transition={{ duration: 0.8, delay: phase === "converging" ? 1.2 : 0 }}
+          transition={{
+            duration: 0.8,
+            delay: phase === "converging" ? 1.2 : 0,
+          }}
           className="absolute inset-x-0 top-0 px-6"
         >
           <p className="text-forest text-sm tracking-wide uppercase font-medium mb-2">
-            After Main Loop
+            After Taproot
           </p>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-bark tracking-tight">
             Everything talks to everything.
@@ -104,7 +173,9 @@ export default function ChaosToCalm() {
         {/* Invisible spacer to hold height */}
         <div className="invisible">
           <p className="text-sm mb-2">&nbsp;</p>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold">&nbsp;</h2>
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold">
+            &nbsp;
+          </h2>
         </div>
       </div>
 
@@ -161,7 +232,7 @@ function CenterHub({ progress }: { progress: MotionValue<number> }) {
         <LogoIcon />
       </div>
       <p className="text-center text-forest font-display font-semibold text-[11px] sm:text-xs mt-2 whitespace-nowrap">
-        Main Loop
+        Taproot
       </p>
     </motion.div>
   );
@@ -259,7 +330,11 @@ function FloatingIcon({
   const targetY = Math.sin(angle) * orbitR;
 
   // Drive position from progress MotionValue
-  const [pos, setPos] = useState({ left: `${50 + startX}%`, top: `${50 + startY}%`, rotate: item.rotate });
+  const [pos, setPos] = useState({
+    left: `${50 + startX}%`,
+    top: `${50 + startY}%`,
+    rotate: item.rotate,
+  });
 
   useEffect(() => {
     const unsub = progress.on("change", (v) => {
@@ -327,89 +402,161 @@ function FloatingIcon({
 /* ── SVG Icons ── */
 function PhoneIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-      <line x1="17" y1="1" x2="22" y2="6" stroke="#c9a84c" strokeWidth="2"/>
-      <line x1="22" y1="1" x2="17" y2="6" stroke="#c9a84c" strokeWidth="2"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+      <line x1="17" y1="1" x2="22" y2="6" stroke="#c9a84c" strokeWidth="2" />
+      <line x1="22" y1="1" x2="17" y2="6" stroke="#c9a84c" strokeWidth="2" />
     </svg>
   );
 }
 
 function SheetIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="3" width="18" height="18" rx="2"/>
-      <line x1="3" y1="9" x2="21" y2="9"/>
-      <line x1="3" y1="15" x2="21" y2="15"/>
-      <line x1="9" y1="3" x2="9" y2="21"/>
-      <line x1="15" y1="3" x2="15" y2="21"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <line x1="3" y1="9" x2="21" y2="9" />
+      <line x1="3" y1="15" x2="21" y2="15" />
+      <line x1="9" y1="3" x2="9" y2="21" />
+      <line x1="15" y1="3" x2="15" y2="21" />
     </svg>
   );
 }
 
 function StickyIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z"/>
-      <polyline points="14 3 14 9 21 9"/>
-      <line x1="7" y1="13" x2="13" y2="13" stroke="#c9a84c" strokeWidth="1.5"/>
-      <line x1="7" y1="17" x2="11" y2="17" stroke="#c9a84c" strokeWidth="1.5"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3z" />
+      <polyline points="14 3 14 9 21 9" />
+      <line x1="7" y1="13" x2="13" y2="13" stroke="#c9a84c" strokeWidth="1.5" />
+      <line x1="7" y1="17" x2="11" y2="17" stroke="#c9a84c" strokeWidth="1.5" />
     </svg>
   );
 }
 
 function EmailIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="4" width="20" height="16" rx="2"/>
-      <polyline points="22,4 12,13 2,4"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <polyline points="22,4 12,13 2,4" />
     </svg>
   );
 }
 
 function CalendarIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="18" rx="2"/>
-      <line x1="16" y1="2" x2="16" y2="6"/>
-      <line x1="8" y1="2" x2="8" y2="6"/>
-      <line x1="3" y1="10" x2="21" y2="10"/>
-      <circle cx="8.5" cy="15.5" r="1.5" fill="#c9a84c" stroke="none"/>
-      <circle cx="15.5" cy="15.5" r="1.5" fill="#c9a84c" stroke="none"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+      <circle cx="8.5" cy="15.5" r="1.5" fill="#c9a84c" stroke="none" />
+      <circle cx="15.5" cy="15.5" r="1.5" fill="#c9a84c" stroke="none" />
     </svg>
   );
 }
 
 function InvoiceIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-      <polyline points="14 2 14 8 20 8"/>
-      <line x1="8" y1="13" x2="16" y2="13"/>
-      <line x1="8" y1="17" x2="12" y2="17"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <polyline points="14 2 14 8 20 8" />
+      <line x1="8" y1="13" x2="16" y2="13" />
+      <line x1="8" y1="17" x2="12" y2="17" />
     </svg>
   );
 }
 
 function ClipboardIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-      <rect x="8" y="2" width="8" height="4" rx="1"/>
-      <line x1="8" y1="12" x2="16" y2="12"/>
-      <line x1="8" y1="16" x2="13" y2="16"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+      <rect x="8" y="2" width="8" height="4" rx="1" />
+      <line x1="8" y1="12" x2="16" y2="12" />
+      <line x1="8" y1="16" x2="13" y2="16" />
     </svg>
   );
 }
 
 function EntryIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#57534e" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="3" width="20" height="18" rx="2"/>
-      <line x1="2" y1="9" x2="22" y2="9"/>
-      <line x1="10" y1="3" x2="10" y2="21"/>
-      <path d="M14 13l2 2-2 2" stroke="#c9a84c" strokeWidth="1.5"/>
-      <path d="M6 15h10" stroke="#c9a84c" strokeWidth="1.5"/>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#57534e"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="3" width="20" height="18" rx="2" />
+      <line x1="2" y1="9" x2="22" y2="9" />
+      <line x1="10" y1="3" x2="10" y2="21" />
+      <path d="M14 13l2 2-2 2" stroke="#c9a84c" strokeWidth="1.5" />
+      <path d="M6 15h10" stroke="#c9a84c" strokeWidth="1.5" />
     </svg>
   );
 }

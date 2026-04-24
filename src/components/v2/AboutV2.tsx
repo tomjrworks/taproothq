@@ -19,7 +19,7 @@ export default function AboutV2() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/tom.jpg"
-                alt="Tom Girgash, founder of Main Loop Systems"
+                alt="Tom Girgash, founder of Taproot"
                 className="w-full h-auto"
               />
             </div>
@@ -32,22 +32,21 @@ export default function AboutV2() {
           <RevealOnScroll delay={0.2}>
             <div className="space-y-5 text-stone text-lg leading-relaxed">
               <p>
-                I started Main Loop Systems because small businesses deserve
-                better than what&apos;s out there. Enterprise companies use AI to
-                move faster than ever, while most small businesses are still
-                running on manual processes and disconnected tools.
+                I started Taproot because small businesses deserve better than
+                what&apos;s out there. Enterprise companies use AI to move
+                faster than ever, while most small businesses are still running
+                on manual processes and disconnected tools.
               </p>
               <p>
-                So I built something different. A small, fast team that
-                listens first, builds what you actually need, and gets out
-                of the way.
+                So I built something different. A small, fast team that listens
+                first, builds what you actually need, and gets out of the way.
               </p>
               <p>
                 We&apos;re AI-native — we use the same tools we build for our
                 clients. That&apos;s why we deliver in days to weeks what
                 traditional agencies quote in months. No big overhead, no
-                jargon, no six-month timelines. Just direct work with
-                business owners who want things to actually work.
+                jargon, no six-month timelines. Just direct work with business
+                owners who want things to actually work.
               </p>
             </div>
           </RevealOnScroll>

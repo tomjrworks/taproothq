@@ -19,7 +19,7 @@ export default function AboutSection() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/tom.jpg"
-                alt="Tom Girgash, founder of Main Loop Systems"
+                alt="Tom Girgash, founder of Taproot"
                 className="w-full h-auto"
               />
             </div>
@@ -32,26 +32,25 @@ export default function AboutSection() {
           <RevealOnScroll delay={0.2}>
             <div className="space-y-5 text-stone text-lg leading-relaxed">
               <p>
-                I started Main Loop Systems because small businesses deserve
-                better than what&apos;s out there. Enterprise companies use AI to
-                move faster than ever, while most small businesses are still
-                running on manual processes and disconnected tools. They know
-                things need to change. They just don&apos;t know where to start,
-                and the options aren&apos;t built for them. That gap doesn&apos;t have
-                to exist.
+                I started Taproot because small businesses deserve better than
+                what&apos;s out there. Enterprise companies use AI to move
+                faster than ever, while most small businesses are still running
+                on manual processes and disconnected tools. They know things
+                need to change. They just don&apos;t know where to start, and
+                the options aren&apos;t built for them. That gap doesn&apos;t
+                have to exist.
               </p>
               <p>
-                So I built something different. A small, fast team that
-                listens first, builds what you actually need, and gets out
-                of the way.
+                So I built something different. A small, fast team that listens
+                first, builds what you actually need, and gets out of the way.
               </p>
               <p>
-                I&apos;m deeply plugged into the AI landscape as it evolves,
-                and I spend every day finding ways to put these tools to work
-                for real businesses. Not theoretical, not someday. Right now.
+                I&apos;m deeply plugged into the AI landscape as it evolves, and
+                I spend every day finding ways to put these tools to work for
+                real businesses. Not theoretical, not someday. Right now.
               </p>
               <p>
-                Main Loop is AI-native. We use the same tools we build for our
+                Taproot is AI-native. We use the same tools we build for our
                 clients, which means we move fast and deliver in days to weeks,
                 not months. No big overhead, no jargon, no six-month timelines.
                 Just direct work with business owners to find what&apos;s
