@@ -1,7 +1,22 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "@/components/brain/SectionHeader";
+
+const CATEGORIES = [
+  "Documentation",
+  "Research",
+  "Decisions",
+  "Projects",
+  "Client history",
+  "Proposals",
+  "Playbooks",
+  "Pricing logic",
+  "Brand voice",
+  "Meeting notes",
+];
 
 const fade = {
   hidden: { opacity: 0, y: 16 },
@@ -61,6 +76,15 @@ const ABOVE_GROUND: ScatteredItem[] = [
 ];
 
 export default function Expansion() {
+  const [categoryIndex, setCategoryIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCategoryIndex((prev) => (prev + 1) % CATEGORIES.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative bg-cream pt-14 md:pt-16 lg:pt-20 pb-28 md:pb-40 lg:pb-48 overflow-hidden film-grain">
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
@@ -75,7 +99,7 @@ export default function Expansion() {
           custom={1}
         >
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight">
-            Everything your firm does runs on something.
+            Everything you do runs on something.
           </h2>
         </motion.div>
 
@@ -139,65 +163,85 @@ export default function Expansion() {
         </motion.svg>
 
         <motion.div
-          className="mt-12 md:mt-20 max-w-4xl mx-auto text-center"
+          className="mt-12 md:mt-20"
           variants={fade}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           custom={4}
         >
+          {/* Eyebrow */}
           <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark">
             the root
           </p>
 
-          <p className="font-serif text-2xl md:text-3xl lg:text-4xl text-bark leading-[1.25] tracking-tight mt-10 max-w-3xl mx-auto">
+          {/* Headline */}
+          <p className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark leading-[1.1] tracking-tight mt-6 max-w-3xl">
             Taproot sits below all of it.
           </p>
 
-          <p className="font-serif italic text-base md:text-lg lg:text-xl text-forest-dark leading-[1.5] mt-5 max-w-2xl mx-auto">
-            Captured once. Structured. Connected. Searchable. Kept current.
-            Owned by you.
+          {/* Italic subtitle */}
+          <p className="font-serif italic text-base md:text-lg lg:text-xl text-forest-dark leading-[1.5] mt-5 max-w-2xl">
+            Captured as you work. Structured. Connected. Searchable. Kept
+            current. Owned by you.
           </p>
 
-          {/* AI context argument — sets up the box grid as the answer */}
-          <div className="mt-14 md:mt-20 max-w-2xl mx-auto">
-            <p className="font-serif text-lg md:text-xl lg:text-2xl text-bark leading-[1.35]">
-              Your AI is only as smart as what it knows about you.
-            </p>
-            <p className="font-serif italic text-lg md:text-xl lg:text-2xl text-forest-dark leading-[1.35] mt-2">
-              This is what it should know.
-            </p>
-          </div>
+          {/* Two-column: AI argument (left) + screenshot (right) */}
+          <div className="mt-14 md:mt-20 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10 md:gap-12 lg:gap-16 items-center">
+            <div>
+              <p className="font-serif text-lg md:text-xl lg:text-2xl text-bark leading-[1.3]">
+                Your AI is only as smart as what it knows about you.
+              </p>
+              <p className="font-serif italic text-lg md:text-xl lg:text-2xl text-forest-dark leading-[1.3] mt-2">
+                It should know whatever you need it to.
+              </p>
 
-          {/* What the root holds — box grid */}
-          <div className="mt-10 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 max-w-3xl mx-auto">
-            {[
-              "Documentation",
-              "Data",
-              "Decisions",
-              "Client history",
-              "Proposals",
-              "Playbooks",
-              "Pricing logic",
-              "Meeting notes",
-            ].map((category) => (
+              {/* Rotating category — accessible full list below for SR */}
               <div
-                key={category}
-                className="bg-cream-dark border border-bark/15 px-4 py-5 flex items-center justify-center"
+                className="mt-8 flex items-baseline gap-3 min-h-[2.5rem] md:min-h-[3rem]"
+                aria-hidden="true"
               >
-                <span className="font-serif italic text-base md:text-lg text-forest-dark text-center leading-tight">
-                  {category}
+                <span className="font-serif italic text-xl md:text-2xl text-bark/40">
+                  &mdash;
                 </span>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={CATEGORIES[categoryIndex]}
+                    className="font-serif italic text-xl md:text-2xl lg:text-3xl text-forest-dark leading-tight"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                  >
+                    {CATEGORIES[categoryIndex]}
+                  </motion.span>
+                </AnimatePresence>
               </div>
-            ))}
+              <span className="sr-only">Examples: {CATEGORIES.join(", ")}</span>
+            </div>
+
+            <figure className="w-full">
+              <div className="relative shadow-[0_30px_80px_-20px_rgba(15,18,16,0.35)]">
+                <Image
+                  src="/images/taproot-demo.png"
+                  alt="Claude pulling context from the Taproot vault — vault search and vault read tool calls synthesize relevant files into a response"
+                  width={958}
+                  height={532}
+                  className="w-full h-auto block"
+                  priority={false}
+                />
+              </div>
+            </figure>
           </div>
 
-          <p className="font-serif italic text-lg md:text-xl lg:text-2xl text-bark/80 leading-[1.4] mt-14 md:mt-20 max-w-2xl mx-auto">
-            Everything here connects. Tools come and go. This stays.
+          {/* Closer italic — left-aligned */}
+          <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-bark/80 leading-[1.3] mt-20 md:mt-24 max-w-3xl">
+            Everything here connects. It compounds. Tools come and go &mdash;
+            your knowledge, your decisions, your work. Yours, forever.
           </p>
 
-          <div className="mt-10 flex items-center justify-center gap-3">
-            <span className="block h-px w-10 bg-forest-dark/40" />
+          {/* Marque — left-aligned */}
+          <div className="mt-8 flex items-center gap-3">
             <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark/70">
               the layer that stays
             </span>
