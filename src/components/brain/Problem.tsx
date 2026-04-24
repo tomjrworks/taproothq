@@ -107,12 +107,8 @@ export default function Problem() {
           </h3>
 
           <p className="font-serif text-lg md:text-xl text-bark/80 leading-[1.55] mt-6 max-w-2xl">
-            You run a mental model of your business in your head and re-paste it
-            into Claude, ChatGPT, Gemini, Cursor &mdash; every session. When a
-            chat hits its limit, you prompt the model to summarize itself so you
-            can hand the summary to the next tool. You&rsquo;re the translation
-            layer. It doesn&rsquo;t scale. It doesn&rsquo;t compound. If
-            you&rsquo;re not alone, every person on your team is doing this in
+            You carry the context between Claude, ChatGPT, Gemini, Cursor. Every
+            session, from scratch. Every teammate doing the same &mdash; in
             parallel, with different context.
           </p>
 
@@ -168,13 +164,10 @@ export default function Problem() {
             </h3>
 
             <p className="font-serif text-base md:text-lg text-bark/80 leading-[1.55] mt-6">
-              Your thinking lives across Notion, Google Drive, SharePoint,
-              Claude threads, Slack DMs, email drafts, and Voice Memos &mdash;
-              sometimes the same idea in three places, none current. Finding
-              &ldquo;the one about X&rdquo; takes twenty minutes and a guess
-              about which tool you used that month. If it&rsquo;s a
-              teammate&rsquo;s knowledge you need, the search stretches across
-              everyone&rsquo;s tools.
+              One fact across a dozen tools &mdash; Notion, Google Drive,
+              SharePoint, Slack, Claude, email, Voice Memos. Finding it takes
+              twenty minutes and a guess. On a team, the search spans
+              everyone&rsquo;s.
             </p>
           </motion.div>
 
@@ -198,10 +191,8 @@ export default function Problem() {
             </h3>
 
             <p className="font-serif text-base md:text-lg text-bark/80 leading-[1.55] mt-6">
-              A Claude session ends, and fifty turns of thinking go with it. A
-              teammate leaves, and a decade of threads, decisions, and tacit
-              playbooks walks out the door. Past-you from six months ago is gone
-              too &mdash; you remember figuring something out, but not what.
+              A Claude session ends. A teammate leaves. Past-you from six months
+              ago. Nothing catches any of it.
             </p>
           </motion.div>
         </div>
