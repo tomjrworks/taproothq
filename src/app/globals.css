@@ -21,6 +21,33 @@ body {
   background: #f2f0eb;
 }
 
+/* Tame Fraunces WONK axis — keeps italic but kills the swashy f/g/y descenders */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+em,
+.font-serif {
+  font-variation-settings:
+    "opsz" 36,
+    "SOFT" 50,
+    "WONK" 0;
+}
+
+/* Slightly higher opsz for display-size headlines */
+h1,
+.font-serif.text-6xl,
+.font-serif.text-7xl,
+.font-serif.text-5xl {
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 50,
+    "WONK" 0;
+}
+
 ::selection {
   background: #1a5c32;
   color: #f2f0eb;

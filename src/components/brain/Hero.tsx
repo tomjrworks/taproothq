@@ -8,63 +8,60 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" as const },
+    transition: { delay: i * 0.08, duration: 0.7, ease: "easeOut" as const },
   }),
 };
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center">
-      <div className="relative z-10 max-w-3xl mx-auto text-center pt-40 pb-24 px-6 lg:px-8">
-        {/* Headline */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden film-grain">
+      {/*
+        Botanical illustration backdrop.
+        Tom is producing the real asset separately.
+        Drop the final file into /public/images/ and swap the placeholder below.
+        Recommended: <Image src="/images/taproot-botanical.svg" fill alt="" className="object-cover opacity-25" priority />
+      */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Temporary vibe placeholder — soft forest glow at the base so the hero has visual weight during iteration */}
+        <div
+          className="absolute inset-x-0 bottom-0 top-1/3 opacity-[0.10]"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse 90% 60% at 50% 100%, #1A5C32 0%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto text-center pt-40 pb-32 px-6 lg:px-8">
+        {/* Headline (Fraunces) */}
         <motion.h1
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-tight"
+          className="font-serif text-5xl md:text-6xl lg:text-7xl text-bark leading-[1.05] tracking-tight"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={0}
         >
-          Stop running your business
+          The root beneath
           <br />
-          <em className="text-forest-dark">from memory.</em>
+          <em className="italic text-forest-dark">the work.</em>
         </motion.h1>
 
-        {/* Subheadline */}
+        {/* Subhead (Inter) */}
         <motion.p
-          className="text-lg text-stone max-w-xl mx-auto mt-6"
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          custom={1}
-        >
-          We build your team a brain from the knowledge you already
-          have&nbsp;&mdash; then automate the repetitive work on top.
-        </motion.p>
-
-        {/* Pillars */}
-        <motion.div
-          className="flex items-center justify-center gap-3 mt-8"
+          className="font-sans text-lg md:text-xl text-stone max-w-2xl mx-auto mt-8 leading-relaxed"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
           custom={2}
         >
-          <span className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
-            Brain
-          </span>
-          <span className="block w-1 h-1 rounded-full bg-bark/20" />
-          <span className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
-            Workflows
-          </span>
-          <span className="block w-1 h-1 rounded-full bg-bark/20" />
-          <span className="font-mono text-xs uppercase tracking-[0.15em] text-bark/70">
-            Dashboard
-          </span>
-        </motion.div>
+          A single knowledge layer every AI tool plugs into. Captured once, kept
+          current, owned by you.
+        </motion.p>
 
         {/* CTA row */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
+          className="flex flex-col sm:flex-row items-center gap-6 justify-center mt-12"
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -74,15 +71,21 @@ export default function Hero() {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest px-8 py-4 rounded transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg text-center"
+            className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-[15px] font-medium px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-forest-dark/20"
           >
-            Book a Discovery Call
+            Book a discovery call
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+              &rarr;
+            </span>
           </a>
           <a
             href="#how-it-works"
-            className="border border-bark/20 text-bark font-mono text-xs uppercase tracking-widest px-8 py-4 rounded transition-all duration-200 hover:border-forest-dark/40 hover:text-forest-dark text-center"
+            className="group inline-flex items-center gap-2 text-bark font-sans text-[15px] font-medium transition-colors duration-200 hover:text-forest-dark"
           >
-            See How It Works
+            See how it works
+            <span className="transition-transform duration-200 group-hover:translate-y-0.5">
+              &darr;
+            </span>
           </a>
         </motion.div>
 

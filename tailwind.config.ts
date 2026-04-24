@@ -34,7 +34,7 @@ const config: Config = {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
@@ -45,13 +45,19 @@ const config: Config = {
       },
       animation: {
         "gradient-shift": "gradient-shift 12s ease infinite",
-        "float": "float 6s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
         "pulse-soft": "pulse-soft 4s ease-in-out infinite",
       },
       fontFamily: {
-        serif: ["Georgia", "'Times New Roman'", "serif"],
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        serif: [
+          "var(--font-fraunces)",
+          "Georgia",
+          "'Times New Roman'",
+          "serif",
+        ],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        display: ["var(--font-fraunces)", "Georgia", "serif"],
       },
     },
   },

@@ -38,7 +38,10 @@ export default function Nav() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="font-sans text-lg font-bold text-bark">
+        <Link
+          href="/"
+          className="font-serif text-2xl text-bark tracking-tight leading-none"
+        >
           Taproot
         </Link>
 

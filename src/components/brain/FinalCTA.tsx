@@ -4,32 +4,42 @@ import { motion } from "framer-motion";
 import { CALENDLY_URL } from "@/lib/constants";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" as const },
+    transition: { delay: i * 0.08, duration: 0.6, ease: "easeOut" as const },
   }),
 };
 
 export default function FinalCTA() {
   return (
-    <section className="bg-white py-24 md:py-32 lg:py-40">
-      <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+    <section className="bg-cream-dark py-28 md:py-36 lg:py-44 film-grain relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
         <motion.h2
-          className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark max-w-3xl mx-auto"
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.1] tracking-tight"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           custom={0}
         >
-          Stop running your business from memory.
+          Plant the root once.
           <br />
-          <span className="italic text-forest-dark">
-            Let&apos;s build the systems that run it for you.
-          </span>
+          <em className="italic text-forest-dark">Keep growing on it.</em>
         </motion.h2>
+
+        <motion.p
+          className="font-sans text-lg md:text-xl text-stone mt-8 max-w-2xl mx-auto leading-relaxed"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          custom={1}
+        >
+          Every decision, playbook, and client note — rooted, current, portable.
+          Let&rsquo;s talk about what your firm&rsquo;s brain would look like.
+        </motion.p>
 
         <motion.div
           className="mt-10"
@@ -37,27 +47,27 @@ export default function FinalCTA() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          custom={1}
+          custom={2}
         >
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest px-8 py-4 rounded transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
+            className="inline-block bg-forest-dark text-cream font-mono text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
           >
-            Book a Discovery Call &rarr;
+            Book a Discovery Call
           </a>
         </motion.div>
 
         <motion.p
-          className="text-xs text-stone mt-4"
+          className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone mt-6"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          custom={2}
+          custom={3}
         >
-          Free call. We learn your business, you see what&apos;s possible.
+          Free &middot; 30 minutes &middot; No deck
         </motion.p>
       </div>
     </section>
