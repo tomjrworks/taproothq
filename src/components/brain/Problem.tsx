@@ -54,14 +54,14 @@ export default function Problem() {
           viewport={{ once: true, margin: "-80px" }}
           custom={3}
         >
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark/80">
-              01 / portability
-            </span>
-            <span className="block h-px w-10 bg-forest-dark/25" />
+          <div className="inline-block mb-6">
+            <p className="font-serif italic text-lg md:text-xl text-forest-dark leading-tight">
+              Portability
+            </p>
+            <span className="block h-px w-full bg-forest-dark mt-1.5" />
           </div>
 
-          <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark leading-[1.1] tracking-tight mt-5 max-w-3xl">
+          <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark leading-[1.1] tracking-tight max-w-3xl">
             Every tool starts you at{" "}
             <em className="italic text-forest-dark">zero.</em>
           </h3>
@@ -91,19 +91,21 @@ export default function Problem() {
         <div className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-16 lg:gap-24">
           {/* 02 / retrieval */}
           <motion.div
+            className="bg-cream-dark rounded-sm shadow-[0_8px_28px_-12px_rgba(61,53,41,0.18)] p-6 md:p-8 lg:p-10"
             variants={fade}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             custom={5}
           >
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark/80">
-                02 / retrieval
-              </span>
-              <span className="block h-px w-10 bg-forest-dark/25" />
+            <div className="inline-block mb-6">
+              <p className="font-serif italic text-lg md:text-xl text-forest-dark leading-tight">
+                Retrieval
+              </p>
+              <span className="block h-px w-full bg-forest-dark mt-1.5" />
             </div>
-            <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-bark leading-[1.1] tracking-tight mt-5">
+
+            <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-bark leading-[1.1] tracking-tight">
               You wrote it down. You just{" "}
               <em className="italic text-forest-dark">can&rsquo;t find it.</em>
             </h3>
@@ -118,19 +120,21 @@ export default function Problem() {
 
           {/* 03 / loss */}
           <motion.div
+            className="bg-cream-dark rounded-sm shadow-[0_8px_28px_-12px_rgba(61,53,41,0.18)] p-6 md:p-8 lg:p-10"
             variants={fade}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
             custom={6}
           >
-            <div className="flex items-center gap-3">
-              <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark/80">
-                03 / loss
-              </span>
-              <span className="block h-px w-10 bg-forest-dark/25" />
+            <div className="inline-block mb-6">
+              <p className="font-serif italic text-lg md:text-xl text-forest-dark leading-tight">
+                Loss
+              </p>
+              <span className="block h-px w-full bg-forest-dark mt-1.5" />
             </div>
-            <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-bark leading-[1.1] tracking-tight mt-5">
+
+            <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-bark leading-[1.1] tracking-tight">
               When it&rsquo;s gone,{" "}
               <em className="italic text-forest-dark">it&rsquo;s gone.</em>
             </h3>

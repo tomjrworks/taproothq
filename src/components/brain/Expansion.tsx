@@ -31,23 +31,30 @@ const ABOVE_GROUND: ScatteredItem[] = [
   },
   {
     text: "The calls you make.",
-    top: "28%",
+    top: "22%",
     right: "4%",
     size: "text-2xl md:text-4xl lg:text-5xl",
     tone: "text-forest-dark",
     italic: true,
   },
   {
-    text: "The way you say things.",
-    top: "54%",
+    text: "The decisions you make.",
+    top: "42%",
     left: "10%",
     size: "text-2xl md:text-4xl lg:text-5xl",
     tone: "text-bark/85",
   },
   {
+    text: "The context you rely on.",
+    top: "62%",
+    right: "6%",
+    size: "text-2xl md:text-4xl lg:text-5xl",
+    tone: "text-bark/90",
+  },
+  {
     text: "The tools you use.",
-    top: "80%",
-    right: "8%",
+    top: "82%",
+    left: "4%",
     size: "text-2xl md:text-4xl lg:text-5xl",
     tone: "text-bark/70",
   },
@@ -59,19 +66,21 @@ export default function Expansion() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
         <SectionHeader title="The Data Layer" />
 
-        <motion.h2
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight max-w-3xl"
+        <motion.div
+          className="bg-cream-dark rounded-sm shadow-[0_8px_28px_-12px_rgba(61,53,41,0.18)] p-8 md:p-10 lg:p-12 max-w-3xl"
           variants={fade}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           custom={1}
         >
-          Everything your firm does runs on something.
-        </motion.h2>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight">
+            Everything your firm does runs on something.
+          </h2>
+        </motion.div>
 
         <motion.div
-          className="relative mt-14 md:mt-20 h-[320px] md:h-[400px] lg:h-[460px]"
+          className="relative mt-14 md:mt-20 h-[380px] md:h-[480px] lg:h-[540px]"
           variants={fade}
           initial="hidden"
           whileInView="visible"
