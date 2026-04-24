@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SectionHeader from "@/components/brain/SectionHeader";
 
 interface Step {
   number: string;
@@ -69,22 +70,10 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="bg-cream py-24 md:py-32 lg:py-40">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Numbered eyebrow */}
-        <motion.div
-          className="flex items-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-forest-dark">
-            04 &mdash; How It Works
-          </span>
-          <span className="block h-px w-12 bg-forest-dark/30" />
-        </motion.div>
+        <SectionHeader title="How It Works" />
 
         <motion.h2
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.1] tracking-tight max-w-3xl mt-8"
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.1] tracking-tight max-w-3xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}

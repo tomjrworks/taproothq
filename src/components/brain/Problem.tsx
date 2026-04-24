@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import SectionHeader from "@/components/brain/SectionHeader";
 
 const fade = {
   hidden: { opacity: 0, y: 16 },
@@ -42,26 +43,13 @@ function HorizonRule({ className = "" }: { className?: string }) {
 
 export default function Problem() {
   return (
-    <section className="relative bg-cream py-28 md:py-36 lg:py-44 overflow-hidden film-grain">
+    <section className="relative bg-cream pt-28 md:pt-36 lg:pt-44 pb-14 md:pb-16 lg:pb-20 overflow-hidden film-grain">
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-        {/* Eyebrow */}
-        <motion.div
-          className="flex items-center gap-4"
-          variants={fade}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          custom={0}
-        >
-          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark">
-            02 &mdash; the problem
-          </span>
-          <span className="block h-px w-10 bg-forest-dark/30" />
-        </motion.div>
+        <SectionHeader title="The Problem" />
 
         {/* Headline */}
         <motion.h2
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight mt-10 max-w-4xl"
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight max-w-4xl"
           variants={fade}
           initial="hidden"
           whileInView="visible"
@@ -124,26 +112,11 @@ export default function Problem() {
                 priority={false}
               />
             </div>
-            <figcaption className="font-serif italic text-base md:text-lg text-bark/65 leading-[1.4] text-center mt-6">
-              &mdash; you, last Tuesday.
-            </figcaption>
           </figure>
         </motion.div>
 
-        {/* Horizon rule */}
-        <motion.div
-          className="mt-24 md:mt-32"
-          variants={fade}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-60px" }}
-          custom={4}
-        >
-          <HorizonRule className="w-full" />
-        </motion.div>
-
         {/* === 02 / RETRIEVAL + 03 / LOSS — side-by-side === */}
-        <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-16 lg:gap-24">
+        <div className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-16 lg:gap-24">
           {/* 02 / retrieval */}
           <motion.div
             variants={fade}
@@ -199,22 +172,25 @@ export default function Problem() {
 
         {/* Closer bridge to Expansion */}
         <motion.div
-          className="mt-24 md:mt-32 max-w-3xl"
+          className="mt-6 md:mt-10"
           variants={fade}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           custom={7}
         >
-          <div className="mb-10">
-            <HorizonRule className="w-full" />
+          {/* Short centered rule */}
+          <div className="flex justify-center mb-8 md:mb-10">
+            <span className="block h-px w-12 bg-bark/30" />
           </div>
-          <p className="font-serif text-xl md:text-2xl lg:text-3xl text-bark leading-[1.35]">
-            This doesn&rsquo;t get better by writing it down harder.
-          </p>
-          <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-forest-dark leading-[1.35] mt-2">
-            It gets better by laying it down once.
-          </p>
+          <div className="max-w-3xl">
+            <p className="font-serif text-xl md:text-2xl lg:text-3xl text-bark leading-[1.35]">
+              This doesn&rsquo;t get better by writing it down harder.
+            </p>
+            <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-forest-dark leading-[1.35] mt-2">
+              It gets better by laying it down once.
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>

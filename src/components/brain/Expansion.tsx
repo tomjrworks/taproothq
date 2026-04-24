@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import SectionHeader from "@/components/brain/SectionHeader";
 
 const fade = {
   hidden: { opacity: 0, y: 16 },
@@ -54,24 +55,12 @@ const ABOVE_GROUND: ScatteredItem[] = [
 
 export default function Expansion() {
   return (
-    <section className="relative bg-cream py-28 md:py-40 lg:py-48 overflow-hidden film-grain">
+    <section className="relative bg-cream pt-14 md:pt-16 lg:pt-20 pb-28 md:pb-40 lg:pb-48 overflow-hidden film-grain">
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-        <motion.div
-          className="flex items-center gap-4"
-          variants={fade}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          custom={0}
-        >
-          <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark">
-            03 &mdash; the data layer
-          </span>
-          <span className="block h-px w-10 bg-forest-dark/30" />
-        </motion.div>
+        <SectionHeader title="The Data Layer" />
 
         <motion.h2
-          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight max-w-3xl mt-10"
+          className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight max-w-3xl"
           variants={fade}
           initial="hidden"
           whileInView="visible"
