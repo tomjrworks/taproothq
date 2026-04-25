@@ -67,6 +67,23 @@ h1,
   display: none;
 }
 
+/* Logo marquee — slow, continuous horizontal scroll */
+@keyframes logo-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-logo-marquee {
+  animation: logo-marquee 60s linear infinite;
+  will-change: transform;
+}
+.animate-logo-marquee:hover {
+  animation-play-state: paused;
+}
+
 /* Film grain overlay */
 .film-grain {
   position: relative;
