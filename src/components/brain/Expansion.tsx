@@ -239,14 +239,6 @@ export default function Expansion() {
             Everything here connects. It compounds. Tools come and go &mdash;
             your knowledge, your decisions, your work. Yours, forever.
           </p>
-
-          {/* Marque — left-aligned */}
-          <div className="mt-8 flex items-center gap-3">
-            <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-forest-dark/70">
-              the layer that stays
-            </span>
-            <span className="block h-px w-10 bg-forest-dark/40" />
-          </div>
         </motion.div>
       </div>
     </section>
