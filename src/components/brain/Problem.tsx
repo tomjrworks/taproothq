@@ -161,10 +161,10 @@ export default function Problem() {
           </div>
           <div className="max-w-3xl">
             <p className="font-serif text-xl md:text-2xl lg:text-3xl text-bark leading-[1.35]">
-              This doesn&rsquo;t get better by writing it down harder.
+              More notes won&rsquo;t fix this.
             </p>
             <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-forest-dark leading-[1.35] mt-2">
-              It gets better by laying it down once.
+              A layer beneath them will.
             </p>
           </div>
         </motion.div>

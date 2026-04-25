@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "@/components/brain/SectionHeader";
 
 const fade = {
@@ -48,6 +49,13 @@ const TAPROOT_TOOLS = [
 ];
 
 export default function HowItWorks() {
+  const [activeRoot, setActiveRoot] = useState<"garden" | "taproot">("garden");
+  const activeTools = activeRoot === "garden" ? GARDEN_TOOLS : TAPROOT_TOOLS;
+  const activeCaption =
+    activeRoot === "garden"
+      ? "vault ops — 6 tools"
+      : "knowledge + system — 9 tools";
+
   return (
     <section
       id="how-it-works"
@@ -171,88 +179,88 @@ export default function HowItWorks() {
             &mdash; the verbs of a working knowledge layer.
           </p>
 
-          {/* Verb spread — two roots delivered as typography */}
+          {/* Verb spread — tabbed two roots */}
           <div className="mt-16 md:mt-24">
-            {/* Garden subsection — 6 verbs, 2x3 grid on desktop */}
-            <div className="mb-10 md:mb-14 flex items-baseline gap-4">
-              <div className="inline-block">
-                <p className="font-serif italic text-xl md:text-2xl text-forest-dark leading-tight">
+            {/* Tab row */}
+            <div className="mb-10 md:mb-14 flex flex-wrap items-baseline gap-x-10 md:gap-x-14 gap-y-4">
+              <button
+                type="button"
+                onClick={() => setActiveRoot("garden")}
+                aria-pressed={activeRoot === "garden"}
+                className="group inline-block focus:outline-none"
+              >
+                <p
+                  className={`font-serif italic text-xl md:text-2xl leading-tight transition-colors ${
+                    activeRoot === "garden"
+                      ? "text-forest-dark"
+                      : "text-bark/40 group-hover:text-bark/65"
+                  }`}
+                >
                   Garden
                 </p>
-                <span className="block h-px w-full bg-forest-dark mt-1.5" />
-              </div>
-              <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.22em] text-bark/45">
-                vault ops &nbsp;·&nbsp; 6
-              </p>
-            </div>
+                <span
+                  className={`block h-px w-full mt-1.5 transition-colors ${
+                    activeRoot === "garden"
+                      ? "bg-forest-dark"
+                      : "bg-bark/20 group-hover:bg-bark/35"
+                  }`}
+                />
+              </button>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 md:gap-x-14 gap-y-12 md:gap-y-14">
-              {GARDEN_TOOLS.map((tool, i) => (
-                <motion.div
-                  key={tool.name}
-                  variants={fade}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-40px" }}
-                  custom={i + 2}
+              <button
+                type="button"
+                onClick={() => setActiveRoot("taproot")}
+                aria-pressed={activeRoot === "taproot"}
+                className="group inline-block focus:outline-none"
+              >
+                <p
+                  className={`font-serif italic text-xl md:text-2xl leading-tight transition-colors ${
+                    activeRoot === "taproot"
+                      ? "text-forest-dark"
+                      : "text-bark/40 group-hover:text-bark/65"
+                  }`}
                 >
-                  <h4 className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark leading-[1.05] tracking-tight">
-                    {tool.verb}.
-                  </h4>
-                  <p className="font-mono text-[11px] md:text-xs text-bark/55 mt-3 tracking-tight">
-                    {tool.name}
-                  </p>
-                  <p className="font-serif italic text-sm md:text-base text-bark/70 mt-1 leading-snug">
-                    {tool.purpose}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Divider — thin rule between the two roots */}
-            <div className="my-16 md:my-24 flex items-center gap-6">
-              <span className="block h-px flex-1 bg-bark/15" />
-              <span className="font-mono text-[10px] md:text-xs uppercase tracking-[0.3em] text-bark/40">
-                two roots
-              </span>
-              <span className="block h-px flex-1 bg-bark/15" />
-            </div>
-
-            {/* Taproot subsection — 9 verbs, 3x3 grid on desktop */}
-            <div className="mb-10 md:mb-14 flex items-baseline gap-4">
-              <div className="inline-block">
-                <p className="font-serif italic text-xl md:text-2xl text-forest-dark leading-tight">
                   Taproot
                 </p>
-                <span className="block h-px w-full bg-forest-dark mt-1.5" />
-              </div>
-              <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.22em] text-bark/45">
-                knowledge + system &nbsp;·&nbsp; 9
+                <span
+                  className={`block h-px w-full mt-1.5 transition-colors ${
+                    activeRoot === "taproot"
+                      ? "bg-forest-dark"
+                      : "bg-bark/20 group-hover:bg-bark/35"
+                  }`}
+                />
+              </button>
+
+              <p className="font-serif italic text-sm md:text-base text-bark/50 ml-auto">
+                {activeCaption}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 md:gap-x-14 gap-y-12 md:gap-y-14">
-              {TAPROOT_TOOLS.map((tool, i) => (
-                <motion.div
-                  key={tool.name}
-                  variants={fade}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: "-40px" }}
-                  custom={i + 2}
-                >
-                  <h4 className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark leading-[1.05] tracking-tight">
-                    {tool.verb}.
-                  </h4>
-                  <p className="font-mono text-[11px] md:text-xs text-bark/55 mt-3 tracking-tight">
-                    {tool.name}
-                  </p>
-                  <p className="font-serif italic text-sm md:text-base text-bark/70 mt-1 leading-snug">
-                    {tool.purpose}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+            {/* Active grid with crossfade swap */}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={activeRoot}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="grid grid-cols-2 sm:grid-cols-3 gap-x-8 md:gap-x-14 gap-y-12 md:gap-y-14"
+              >
+                {activeTools.map((tool) => (
+                  <div key={tool.name}>
+                    <h4 className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark leading-[1.05] tracking-tight">
+                      {tool.verb}.
+                    </h4>
+                    <p className="font-mono text-[11px] md:text-xs text-bark/55 mt-3 tracking-tight">
+                      {tool.name}
+                    </p>
+                    <p className="font-serif italic text-sm md:text-base text-bark/70 mt-1 leading-snug">
+                      {tool.purpose}
+                    </p>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>

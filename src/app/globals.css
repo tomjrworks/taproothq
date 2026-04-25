@@ -18,7 +18,7 @@ html {
 
 body {
   color: #3d3529;
-  background: #f2f0eb;
+  background: #eae5d6;
 }
 
 /* Tame Fraunces WONK axis — keeps italic but kills the swashy f/g/y descenders */
@@ -50,7 +50,7 @@ h1,
 
 ::selection {
   background: #1a5c32;
-  color: #f2f0eb;
+  color: #eae5d6;
 }
 
 @media (prefers-reduced-motion: reduce) {

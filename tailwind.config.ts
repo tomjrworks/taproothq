@@ -14,8 +14,8 @@ const config: Config = {
           light: "#161B18",
           lighter: "#1C2420",
         },
-        cream: "#F2F0EB",
-        "cream-dark": "#E8E6E0",
+        cream: "#EAE5D6",
+        "cream-dark": "#DDD7C5",
         forest: {
           DEFAULT: "#2ECC71",
           dark: "#1A5C32",
