@@ -21,7 +21,7 @@ const faqs = [
   {
     question: "How is this different from Notion, Glean, or NotebookLM?",
     answer:
-      "Glean is enterprise search at a $60K+ floor — wrong shape for a firm your size. Notion and NotebookLM are fine tools, but they depend on discipline: they work until life happens and the folder goes stale. Taproot's Managed tier includes monthly capture sessions that keep the brain current without putting it on your plate. And your knowledge lives in portable formats you own — not locked to one vendor.",
+      "Glean is enterprise search at a $60K+ floor — wrong shape for a firm your size. Notion and NotebookLM are fine tools, but they depend on discipline: they work until life happens and the folder goes stale. Taproot's Managed tier includes monthly capture sessions that keep the layer current without putting it on your plate. And your knowledge lives in portable formats you own — not locked to one vendor.",
   },
   {
     question: "How does it work with the AI tools I already use?",
@@ -46,17 +46,17 @@ const faqs = [
   {
     question: "What if my team never writes anything down?",
     answer:
-      "That's the normal starting point. For the Managed tier, our kickoff is a 90-minute capture session where we pull knowledge OUT of your senior people — recorded, transcribed, and structured. You don't have to document anything. The brain compounds from sessions, not from people suddenly being disciplined about notes.",
+      "That's the normal starting point. For the Managed tier, our kickoff is a 90-minute capture session where we pull knowledge OUT of your senior people — recorded, transcribed, and structured. You don't have to document anything. The layer compounds from sessions, not from people suddenly being disciplined about notes.",
   },
   {
     question: "What do I get every month on the Managed tier?",
     answer:
-      "A Firm Brain Update: a named monthly deliverable showing what the brain learned this cycle, what's newly documented, and what questions still have no good answer. It's how you see the value compounding — and it's how the retainer stays honest about what it's doing.",
+      "A Taproot Update: a named monthly deliverable showing what was added this cycle, what's newly documented, and what questions still have no good answer. It's how you see the value compounding — and it's how the retainer stays honest about what it's doing.",
   },
   {
-    question: "Can I own the brain if I ever leave Taproot?",
+    question: "Can I keep my memory layer if I ever leave Taproot?",
     answer:
-      "Yes. The brain lives in your storage, in your formats. You can export, fork, or keep running it without us. We'd rather build a product that holds up to that scrutiny than one that locks you in.",
+      "Yes. The layer lives in your storage, in your formats. You can export, fork, or keep running it without us. We'd rather build a product that holds up to that scrutiny than one that locks you in.",
   },
 ];
 

@@ -76,8 +76,8 @@ export default function FinalCTA() {
           custom={2}
         >
           Every decision, idea, and playbook &mdash; captured once, kept
-          current, and owned by you. An AI brain that lives in your files, not
-          someone else&rsquo;s cloud.
+          current, and owned by you. A memory layer that lives in your files,
+          not someone else&rsquo;s cloud.
         </motion.p>
 
         {/* Beta email capture */}

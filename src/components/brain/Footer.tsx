@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const FOOTER_LINKS = [
   { label: "Pricing", href: "/pricing" },
@@ -20,8 +21,15 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between md:gap-12">
           {/* Wordmark */}
-          <p className="font-serif text-3xl md:text-4xl text-cream leading-none tracking-tight">
+          <p className="flex items-center gap-2.5 font-serif text-3xl md:text-4xl text-cream leading-none tracking-tight">
             Taproot
+            <Image
+              src="/images/taproot-logo.png"
+              alt=""
+              width={401}
+              height={477}
+              className="h-8 md:h-10 w-auto"
+            />
           </p>
 
           {/* Links + copy */}

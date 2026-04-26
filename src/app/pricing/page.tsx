@@ -143,14 +143,14 @@ export default function PricingPage() {
             animate="visible"
             custom={2}
           >
-            Taproot is an AI brain that lives in your files. Three ways in.
+            Taproot is a memory layer that lives in your files. Three ways in.
           </motion.p>
         </div>
       </section>
 
       {/* Tiers — three-column side-by-side */}
       <section className="relative px-6 lg:px-8 pb-20 md:pb-24 film-grain">
-        <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-x-8 md:gap-y-2 lg:gap-x-12 md:grid-rows-[auto_auto_auto_auto_auto_auto_auto_auto_1fr_auto]">
             {TIERS.map((tier, i) => (
               <motion.div
@@ -182,14 +182,14 @@ export default function PricingPage() {
                   {tier.priceNote}
                 </p>
 
-                {/* Bullets — each in its own cream sub-box, aligned across columns via subgrid */}
+                {/* Bullets — typography on the cream-dark card with hairline dividers, aligned across columns via subgrid */}
                 {tier.bullets.map((b) => (
-                  <div
+                  <p
                     key={b}
-                    className="bg-cream rounded-xl px-3.5 py-2.5 font-sans text-sm md:text-[15px] text-bark/85 leading-[1.45]"
+                    className="font-serif font-semibold text-base md:text-lg text-[#7a6655] leading-[1.4] py-3 border-t border-bark/10"
                   >
                     {b}
-                  </div>
+                  </p>
                 ))}
 
                 {/* CTA — explicitly placed in the last row so the 1fr row above pushes it to the bottom */}

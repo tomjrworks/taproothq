@@ -24,18 +24,22 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Taproot | Your Knowledge, Connected. Your Operations, Automated.",
+  title: "Taproot \u2014 The root beneath the work",
   description:
-    "We capture your firm\u2019s knowledge and connect it to AI, then automate the operations that run on memory. Free discovery call.",
-  keywords:
-    "AI implementation, knowledge management, business automation, AI for small business, operational efficiency, AI consulting",
+    "A private memory layer for the work you do \u2014 captured once, kept current, owned by you.",
   openGraph: {
-    title: "Taproot | Your Knowledge, Connected. Your Operations, Automated.",
+    title: "Taproot \u2014 The root beneath the work",
     description:
-      "We capture your firm\u2019s knowledge and connect it to AI, then automate the operations that run on memory.",
+      "A private memory layer for the work you do \u2014 captured once, kept current, owned by you.",
     url: "https://taproothq.com",
     siteName: "Taproot",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Taproot \u2014 The root beneath the work",
+    description:
+      "A private memory layer for the work you do \u2014 captured once, kept current, owned by you.",
   },
 };
 

@@ -55,7 +55,7 @@ const CARDS: PainCard[] = [
       "The tool didn't actually change how anyone works — it just added another place to forget about",
     ],
     outcome:
-      "The brain stays current automatically — monthly capture sessions, no manual upkeep from you or your team.",
+      "The layer stays current automatically — monthly capture sessions, no manual upkeep from you or your team.",
   },
 ];
 

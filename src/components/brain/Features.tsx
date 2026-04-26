@@ -13,44 +13,113 @@ const fadeUp = {
 
 function IconCited() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9 5h6M9 9h6M9 13h4M5 5h.01M5 9h.01M5 13h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 5h6M9 9h6M9 13h4M5 5h.01M5 9h.01M5 13h.01"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 function IconVoice() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 2v12M6 6v4M14 6v4M3 8v0M17 8v0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10 2v12M6 6v4M14 6v4M3 8v0M17 8v0"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 function IconLearn() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 4v8m0 0l-3-3m3 3l3-3M4 16h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10 4v8m0 0l-3-3m3 3l3-3M4 16h12"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 function IconGap() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5"/>
-      <path d="M10 7v4M10 13h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M10 7v4M10 13h.01"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
 function IconDigest() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M4 4h12v12H4zM4 8h12M8 8v8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 4h12v12H4zM4 8h12M8 8v8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
 function IconOnboard() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M13 7l-6 6M7 7h6v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 7l-6 6M7 7h6v6"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -66,19 +135,19 @@ const features = [
     icon: <IconVoice />,
     title: "Voice Capture",
     description:
-      "Record a voice memo from your phone. The brain transcribes, structures, and files it automatically.",
+      "Record a voice memo from your phone. Taproot transcribes, structures, and files it automatically.",
   },
   {
     icon: <IconLearn />,
     title: "/learn Command",
     description:
-      "Paste something into Slack, type /learn. The brain captures it instantly. Zero friction.",
+      "Paste something into Slack, type /learn. Taproot captures it instantly. Zero friction.",
   },
   {
     icon: <IconGap />,
     title: "Weekly Gap Reports",
     description:
-      "The brain tells you what it doesn't know. You see exactly which knowledge to capture next.",
+      "Taproot tells you what it doesn't know. You see exactly which knowledge to capture next.",
   },
   {
     icon: <IconDigest />,
@@ -90,7 +159,7 @@ const features = [
     icon: <IconOnboard />,
     title: "Onboarding Autopilot",
     description:
-      "New hire starts? The brain sends them a structured training sequence. Weeks, not months, to productive.",
+      "New hire starts? Taproot sends them a structured training sequence. Weeks, not months, to productive.",
   },
 ];
 

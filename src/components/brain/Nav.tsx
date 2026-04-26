@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll } from "framer-motion";
 
 const NAV_LINKS = [
@@ -39,9 +40,17 @@ export default function Nav() {
         {/* Wordmark */}
         <Link
           href="/"
-          className="font-serif text-2xl text-bark tracking-tight leading-none"
+          className="flex items-center gap-2 font-serif text-2xl text-bark tracking-tight leading-none"
         >
           Taproot
+          <Image
+            src="/images/taproot-logo.png"
+            alt=""
+            width={401}
+            height={477}
+            priority
+            className="h-7 w-auto"
+          />
         </Link>
 
         {/* Nav links */}

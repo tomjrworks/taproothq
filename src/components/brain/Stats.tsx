@@ -29,7 +29,7 @@ const TIERS: Tier[] = [
     description: [
       "Connect Google Drive or your filesystem",
       "Query from Claude.ai or any MCP client",
-      "Keep the brain current yourself",
+      "Keep the layer current yourself",
     ],
     cta: { text: "Start solo", href: "#solo-waitlist", style: "secondary" },
     accent: "moss",
@@ -55,11 +55,11 @@ const TIERS: Tier[] = [
     label: "Managed",
     title: "Done for you, kept current.",
     forWhom:
-      "We capture, structure, and run monthly sessions. You receive a Firm Brain Update every month.",
+      "We capture, structure, and run monthly sessions. You receive a Taproot Update every month.",
     description: [
       "90-minute capture session to kick off",
       "Ingest, structure, connect to Claude",
-      "Monthly capture + Firm Brain Update deliverable",
+      "Monthly capture + Taproot Update deliverable",
     ],
     cta: {
       text: "Book a discovery call",

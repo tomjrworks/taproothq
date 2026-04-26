@@ -102,10 +102,10 @@ export default function About() {
                 viewport={{ once: true }}
                 custom={5}
               >
-                One principle: your firm&rsquo;s brain should outlive whichever
-                AI vendor is winning this year. Taproot builds on open formats,
-                your storage, your rules. Walk away with the whole thing any
-                time.
+                One principle: your firm&rsquo;s knowledge should outlive
+                whichever AI vendor is winning this year. Taproot builds on open
+                formats, your storage, your rules. Walk away with the whole
+                thing any time.
               </motion.p>
             </div>
 
@@ -122,9 +122,9 @@ export default function About() {
                 The promise
               </p>
               <p className="font-serif text-lg text-bark mt-3 leading-snug">
-                If the first Firm Brain Update doesn&rsquo;t earn its keep in
-                the first 90 days, we refund the build fee. Your brain stays
-                &mdash; in your storage, in your formats &mdash; regardless.
+                If the first Taproot Update doesn&rsquo;t earn its keep in the
+                first 90 days, we refund the build fee. Your layer stays &mdash;
+                in your storage, in your formats &mdash; regardless.
               </p>
             </motion.div>
           </div>
