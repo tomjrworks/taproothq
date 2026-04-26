@@ -44,18 +44,23 @@ export async function POST(req: Request) {
     }
   }
 
-  // Fire-and-forget Discord ping; never block the user response on it.
+  // Block briefly on the Discord ping so Vercel's serverless runtime doesn't
+  // tear the function down before the fetch resolves. Cap at 3s; a webhook
+  // failure must never break the user signup.
   const webhook = process.env.DISCORD_WEBHOOK_URL;
   if (webhook) {
-    fetch(webhook, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        content: `New Taproot beta signup: \`${email}\``,
-      }),
-    }).catch((err) => {
+    try {
+      await fetch(webhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `New Taproot beta signup: \`${email}\``,
+        }),
+        signal: AbortSignal.timeout(3000),
+      });
+    } catch (err) {
       console.error("[beta-signup] discord webhook error:", err);
-    });
+    }
   }
 
   return Response.json({ ok: true });
