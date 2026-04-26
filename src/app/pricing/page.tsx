@@ -30,10 +30,10 @@ const TIERS: Tier[] = [
     name: "Beta",
     oneliner: "Get early access. Set up your own Taproot.",
     bullets: [
-      "Markdown vault on your machine — Taproot is your files",
+      "Markdown vault on your machine",
       "Plugs into Claude and any MCP-native AI",
-      "Capture, structure, and search across decisions and ideas",
-      "Cancel anytime — your files stay yours",
+      "Capture, structure, and search your knowledge",
+      "Cancel anytime; your files stay yours",
     ],
     priceNote: "Free during beta.",
     cta: { label: "Join the beta", href: "/#join" },
@@ -45,8 +45,8 @@ const TIERS: Tier[] = [
     bullets: [
       "60-min working session, screen share",
       "We ingest your Drive, Notion, or files",
-      "Structured for retrieval — captured, tagged, ready",
-      "Includes everything in Beta",
+      "Structured and ready to query",
+      "Everything in Beta included",
     ],
     priceNote: "Founding-member rate locked at signup.",
     cta: { label: "Book a setup session", href: CALENDLY_URL, external: true },
@@ -54,12 +54,12 @@ const TIERS: Tier[] = [
   {
     number: "03",
     name: "Teams",
-    oneliner: "Set this up across your firm — shared and personal vaults.",
+    oneliner: "Set this up across your firm with shared and personal vaults.",
     bullets: [
-      "Managed migration of firm + personal knowledge",
-      "Shared vault + per-employee personal vaults",
+      "Managed migration of firm knowledge",
+      "Shared vault and per-employee personal vaults",
       "Role-based access and audit trail",
-      "Monthly Taproot Update — what changed, what it knows",
+      "Monthly Taproot Update",
     ],
     priceNote: "Custom pricing per firm.",
     cta: { label: "Book a call for teams", href: CALENDLY_URL, external: true },
@@ -183,20 +183,14 @@ export default function PricingPage() {
                   {tier.priceNote}
                 </p>
 
-                {/* Bullets */}
+                {/* Bullets — each in its own cream sub-box */}
                 <ul className="mt-5 space-y-2">
                   {tier.bullets.map((b) => (
                     <li
                       key={b}
-                      className="flex gap-2.5 font-sans text-sm md:text-[15px] text-bark/80 leading-[1.55]"
+                      className="bg-cream rounded-sm px-3.5 py-2.5 font-sans text-sm md:text-[15px] text-bark/85 leading-[1.45]"
                     >
-                      <span
-                        aria-hidden
-                        className="text-forest-dark mt-1.5 flex-shrink-0"
-                      >
-                        —
-                      </span>
-                      <span>{b}</span>
+                      {b}
                     </li>
                   ))}
                 </ul>
