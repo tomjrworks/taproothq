@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import { CALENDLY_URL } from "@/lib/constants";
 import SectionHeader from "@/components/brain/SectionHeader";
@@ -14,10 +15,26 @@ const fade = {
 };
 
 export default function FinalCTA() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">(
+    "idle",
+  );
+
+  function onSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setStatus("submitting");
+    // Frontend-only for now. Wire to Resend / ConvertKit / Supabase later.
+    setTimeout(() => setStatus("success"), 400);
+  }
+
   return (
-    <section className="relative bg-cream-dark pt-24 md:pt-32 lg:pt-40 pb-24 md:pb-32 lg:pb-40 overflow-hidden film-grain">
+    <section
+      id="join"
+      className="relative bg-cream-dark pt-24 md:pt-32 lg:pt-40 pb-24 md:pb-32 lg:pb-40 overflow-hidden film-grain"
+    >
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-        <SectionHeader title="Get started" />
+        <SectionHeader title="Join the beta" />
 
         {/* Headline */}
         <motion.h2
@@ -41,40 +58,79 @@ export default function FinalCTA() {
           viewport={{ once: true, margin: "-80px" }}
           custom={2}
         >
-          Every decision, idea, playbook, and client note &mdash; rooted,
-          current, portable. See what yours could look like &mdash; for you or
-          your firm.
+          Every decision, idea, and playbook &mdash; captured once, kept
+          current, and owned by you. An AI brain that lives in your files, not
+          someone else&rsquo;s cloud.
         </motion.p>
 
-        {/* CTA row — soft pill + text link */}
+        {/* Beta email capture */}
         <motion.div
-          className="mt-12 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8"
+          className="mt-12 md:mt-14 max-w-xl"
           variants={fade}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           custom={3}
         >
+          {status === "success" ? (
+            <p className="font-serif italic text-lg md:text-xl text-forest-dark leading-[1.5]">
+              You&rsquo;re on the list. We&rsquo;ll email you when access opens.
+            </p>
+          ) : (
+            <form
+              onSubmit={onSubmit}
+              className="flex flex-col sm:flex-row items-stretch gap-3"
+            >
+              <label htmlFor="beta-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="beta-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@work.com"
+                className="flex-1 bg-cream border border-bark/15 rounded-full px-5 py-3.5 font-sans text-base text-bark placeholder:text-bark/40 focus:outline-none focus:border-forest-dark/40 transition-colors"
+              />
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="group inline-flex items-center justify-center gap-2 bg-forest-dark text-cream font-sans text-base px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0 whitespace-nowrap"
+              >
+                <span>
+                  {status === "submitting" ? "Adding..." : "Join the beta"}
+                </span>
+                <span
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </button>
+            </form>
+          )}
+        </motion.div>
+
+        {/* Secondary — firm tail per Option B */}
+        <motion.div
+          className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
+          variants={fade}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          custom={4}
+        >
+          <p className="font-serif italic text-base text-bark/55">
+            Setting this up across a team?
+          </p>
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-base md:text-lg px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-1.5 font-serif italic text-base md:text-lg text-forest-dark hover:text-forest-dark/75 transition-colors"
           >
-            <span>Book a discovery call</span>
-            <span
-              aria-hidden
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
-            >
-              →
-            </span>
-          </a>
-
-          <a
-            href="/faq"
-            className="group inline-flex items-center gap-2 font-serif italic text-base md:text-lg text-forest-dark hover:text-forest-dark/75 transition-colors"
-          >
-            <span>Read the FAQ</span>
+            <span>Book a call for teams</span>
             <span
               aria-hidden
               className="transition-transform duration-200 group-hover:translate-x-0.5"
@@ -86,14 +142,15 @@ export default function FinalCTA() {
 
         {/* Meta caption */}
         <motion.p
-          className="font-serif italic text-sm md:text-base text-bark/55 mt-8"
+          className="font-serif italic text-sm md:text-base text-bark/55 mt-10"
           variants={fade}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          custom={4}
+          custom={5}
         >
-          Free &nbsp;·&nbsp; 30 minutes &nbsp;·&nbsp; No deck
+          Free during beta &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe
+          anytime
         </motion.p>
       </div>
     </section>

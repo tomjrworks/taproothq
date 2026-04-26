@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CALENDLY_URL } from "@/lib/constants";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -68,12 +67,10 @@ export default function Hero() {
           custom={3}
         >
           <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#join"
             className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-[15px] font-medium px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-forest-dark/20"
           >
-            Book a discovery call
+            Join the beta
             <span className="transition-transform duration-200 group-hover:translate-x-0.5">
               &rarr;
             </span>

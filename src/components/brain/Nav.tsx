@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, useScroll } from "framer-motion";
-import { CALENDLY_URL } from "@/lib/constants";
 
 const NAV_LINKS = [
   { label: "Pricing", href: "/pricing" },
@@ -60,13 +59,11 @@ export default function Nav() {
 
         {/* CTA — soft pill matching FinalCTA */}
         <a
-          href={CALENDLY_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#join"
           className="group inline-flex items-center gap-1.5 bg-forest-dark text-cream font-sans text-sm px-5 py-2 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5"
         >
-          <span className="sm:hidden">Book a call</span>
-          <span className="hidden sm:inline">Book a discovery call</span>
+          <span className="sm:hidden">Join beta</span>
+          <span className="hidden sm:inline">Join the beta</span>
           <span
             aria-hidden
             className="transition-transform duration-200 group-hover:translate-x-0.5"
