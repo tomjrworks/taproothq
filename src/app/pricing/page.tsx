@@ -152,11 +152,11 @@ export default function PricingPage() {
       {/* Tiers — three-column side-by-side */}
       <section className="relative px-6 lg:px-8 pb-20 md:pb-24 film-grain">
         <div className="relative z-10 max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-x-8 md:gap-y-2 lg:gap-x-12 md:grid-rows-[auto_auto_auto_auto_auto_auto_auto_auto_1fr_auto]">
             {TIERS.map((tier, i) => (
               <motion.div
                 key={tier.number}
-                className="flex flex-col bg-cream-dark rounded-2xl shadow-md shadow-bark/5 p-6 md:p-7 lg:p-8"
+                className="flex flex-col gap-y-3 bg-cream-dark rounded-2xl shadow-md shadow-bark/5 p-6 md:p-7 lg:p-8 md:grid md:grid-rows-subgrid md:row-span-10 md:gap-y-2"
                 variants={fade}
                 initial="hidden"
                 whileInView="visible"
@@ -169,34 +169,32 @@ export default function PricingPage() {
                 </p>
 
                 {/* Name */}
-                <h2 className="font-serif text-2xl md:text-3xl text-bark leading-[1.15] tracking-tight mt-2">
+                <h2 className="font-serif text-2xl md:text-3xl text-bark leading-[1.15] tracking-tight">
                   {tier.name}
                 </h2>
 
                 {/* Oneliner */}
-                <p className="font-serif italic text-base md:text-lg text-bark/75 leading-[1.4] mt-2">
+                <p className="font-serif italic text-base md:text-lg text-bark/75 leading-[1.4]">
                   {tier.oneliner}
                 </p>
 
                 {/* Price note */}
-                <p className="font-serif italic text-sm md:text-base text-bark/55 mt-3">
+                <p className="font-serif italic text-sm md:text-base text-bark/55">
                   {tier.priceNote}
                 </p>
 
-                {/* Bullets — each in its own cream sub-box */}
-                <ul className="mt-5 space-y-2">
-                  {tier.bullets.map((b) => (
-                    <li
-                      key={b}
-                      className="bg-cream rounded-xl px-3.5 py-2.5 font-sans text-sm md:text-[15px] text-bark/85 leading-[1.45]"
-                    >
-                      {b}
-                    </li>
-                  ))}
-                </ul>
+                {/* Bullets — each in its own cream sub-box, aligned across columns via subgrid */}
+                {tier.bullets.map((b) => (
+                  <div
+                    key={b}
+                    className="bg-cream rounded-xl px-3.5 py-2.5 font-sans text-sm md:text-[15px] text-bark/85 leading-[1.45]"
+                  >
+                    {b}
+                  </div>
+                ))}
 
-                {/* CTA pinned to bottom */}
-                <div className="mt-auto pt-6">
+                {/* CTA — explicitly placed in the last row so the 1fr row above pushes it to the bottom */}
+                <div className="md:row-start-[10]">
                   <CtaPill
                     label={tier.cta.label}
                     href={tier.cta.href}
