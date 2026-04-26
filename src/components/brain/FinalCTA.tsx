@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { CALENDLY_URL } from "@/lib/constants";
 import SectionHeader from "@/components/brain/SectionHeader";
 
 const fade = {
@@ -112,34 +111,6 @@ export default function FinalCTA() {
           )}
         </motion.div>
 
-        {/* Secondary — firm tail per Option B */}
-        <motion.div
-          className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
-          variants={fade}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          custom={4}
-        >
-          <p className="font-serif italic text-base text-bark/55">
-            Setting this up across a team?
-          </p>
-          <a
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-1.5 font-serif italic text-base md:text-lg text-forest-dark hover:text-forest-dark/75 transition-colors"
-          >
-            <span>Book a call for teams</span>
-            <span
-              aria-hidden
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
-            >
-              →
-            </span>
-          </a>
-        </motion.div>
-
         {/* Meta caption */}
         <motion.p
           className="font-serif italic text-sm md:text-base text-bark/55 mt-10"
@@ -147,7 +118,7 @@ export default function FinalCTA() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
-          custom={5}
+          custom={4}
         >
           Free during beta &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe
           anytime

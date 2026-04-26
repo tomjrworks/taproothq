@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CALENDLY_URL } from "@/lib/constants";
 import SectionHeader from "@/components/brain/SectionHeader";
 import Footer from "@/components/brain/Footer";
 
@@ -49,7 +48,7 @@ const TIERS: Tier[] = [
       "Everything in Beta included",
     ],
     priceNote: "Founding-member rate locked at signup.",
-    cta: { label: "Book a setup session", href: CALENDLY_URL, external: true },
+    cta: { label: "Join the waitlist", href: "/#join" },
   },
   {
     number: "03",
@@ -62,7 +61,7 @@ const TIERS: Tier[] = [
       "Direct access to the Taproot team",
     ],
     priceNote: "Custom pricing per firm.",
-    cta: { label: "Book a call for teams", href: CALENDLY_URL, external: true },
+    cta: { label: "Join the waitlist", href: "/#join" },
   },
 ];
 
