@@ -33,16 +33,16 @@ const SCENARIOS: Scenario[] = [
     recall: {
       question: "What were the top options we narrowed down to?",
       without:
-        "Your AI remembers this chat — but not the spreadsheet, the saved articles, or the tradeoffs you weighed last week. You’d dig them up — or accept a guess.",
+        "Your AI remembers this chat. But not the spreadsheet, the saved articles, or the tradeoffs you weighed last week. You’d dig them up, or accept a guess.",
       withTaproot:
-        "Your AI reaches into your research notes. The shortlist you actually built — already there, already sorted.",
+        "Your AI reaches into your research notes. The shortlist you actually built. Already there, already sorted.",
     },
     resume: {
       question: "Where did we leave off in the research?",
       without:
-        "Yesterday’s deep-dive lives in a closed tab. Your AI has no memory of it. You’d scroll the old chat — or start over.",
+        "Yesterday’s deep-dive lives in a closed tab. Your AI has no memory of it. You’d scroll the old chat, or start over.",
       withTaproot:
-        "Your AI reads yesterday’s session. What you’ve already covered, what’s still open — picks up exactly there.",
+        "Your AI reads yesterday’s session. What you’ve already covered, what’s still open. Picks up exactly there.",
     },
   },
   {
@@ -51,16 +51,16 @@ const SCENARIOS: Scenario[] = [
     recall: {
       question: "What was the angle we landed on for the pitch?",
       without:
-        "Your AI remembers this chat — but not your strategy doc, your past pitches, or the call notes. You’d repaste them — or get a generic angle.",
+        "Your AI remembers this chat. But not your strategy doc, your past pitches, or the call notes. You’d repaste them, or get a generic angle.",
       withTaproot:
-        "Your AI reaches into your sales docs. The angle you actually landed on — already written, ready to send.",
+        "Your AI reaches into your sales docs. The angle you actually landed on. Already written, ready to send.",
     },
     resume: {
       question: "Where did we leave off on the deck?",
       without:
-        "Yesterday’s deck-building session is in a closed tab. Your AI doesn’t remember it. You’d dig up the chat — or restart from a blank slide.",
+        "Yesterday’s deck-building session is in a closed tab. Your AI doesn’t remember it. You’d dig up the chat, or restart from a blank slide.",
       withTaproot:
-        "Your AI reads yesterday’s session. Same narrative, same flow, same closing line — picks up where you left it.",
+        "Your AI reads yesterday’s session. Same narrative, same flow, same closing line. Picks up where you left it.",
     },
   },
   {
@@ -69,16 +69,16 @@ const SCENARIOS: Scenario[] = [
     recall: {
       question: "What was the angle we landed on for the story?",
       without:
-        "Your AI remembers this chat — but not the brainstorm, the character notes, or the outline drafts. You’d dig them up — or workshop a new angle from scratch.",
+        "Your AI remembers this chat. But not the brainstorm, the character notes, or the outline drafts. You’d dig them up, or workshop a new angle from scratch.",
       withTaproot:
-        "Your AI reaches into your project notes. The angle you locked in — already there, in the voice you built.",
+        "Your AI reaches into your project notes. The angle you locked in. Already there, in the voice you built.",
     },
     resume: {
       question: "Where did we leave off on chapter 3?",
       without:
-        "Yesterday’s writing session is in a closed tab. Your AI has no memory of it. You’d reopen the chat — or write a different chapter 3.",
+        "Yesterday’s writing session is in a closed tab. Your AI has no memory of it. You’d reopen the chat, or write a different chapter 3.",
       withTaproot:
-        "Your AI reads yesterday’s session. Picks up mid-paragraph — same voice, same arc, same momentum.",
+        "Your AI reads yesterday’s session. Picks up mid-paragraph. Same voice, same arc, same momentum.",
     },
   },
   {
@@ -87,16 +87,16 @@ const SCENARIOS: Scenario[] = [
     recall: {
       question: "Which restaurants did we shortlist for the trip?",
       without:
-        "Your AI remembers this chat — but not your saved spots, your travel notes, or the neighborhoods you compared. You’d repaste them — or accept a generic rec.",
+        "Your AI remembers this chat. But not your saved spots, your travel notes, or the neighborhoods you compared. You’d repaste them, or accept a generic rec.",
       withTaproot:
-        "Your AI reaches into your trip notes. The shortlist you actually built — already saved, already sorted.",
+        "Your AI reaches into your trip notes. The shortlist you actually built. Already saved, already sorted.",
     },
     resume: {
       question: "Where did we leave off on the itinerary?",
       without:
-        "Yesterday’s planning session is in a closed tab. Your AI doesn’t remember it. You’d dig up the chat — or rebuild the itinerary.",
+        "Yesterday’s planning session is in a closed tab. Your AI doesn’t remember it. You’d dig up the chat, or rebuild the itinerary.",
       withTaproot:
-        "Your AI reads yesterday’s session. Day-by-day — the spots you locked in, the reservations you made.",
+        "Your AI reads yesterday’s session. Day-by-day. The spots you locked in, the reservations you made.",
     },
   },
 ];
