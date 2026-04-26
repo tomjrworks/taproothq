@@ -197,7 +197,7 @@ export default function PlainEnglish() {
           viewport={{ once: true, margin: "-80px" }}
           custom={2}
         >
-          You open the AI you use.
+          You open Claude, ChatGPT, or whatever AI you use.
         </motion.p>
 
         {/* Scenario tabs — italic Fraunces with word-width underline on active */}
