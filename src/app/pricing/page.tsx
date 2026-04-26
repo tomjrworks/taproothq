@@ -188,7 +188,7 @@ export default function PricingPage() {
                   {tier.bullets.map((b) => (
                     <li
                       key={b}
-                      className="bg-cream rounded-sm px-3.5 py-2.5 font-sans text-sm md:text-[15px] text-bark/85 leading-[1.45]"
+                      className="bg-cream rounded-xl px-3.5 py-2.5 font-sans text-sm md:text-[15px] text-bark/85 leading-[1.45]"
                     >
                       {b}
                     </li>
