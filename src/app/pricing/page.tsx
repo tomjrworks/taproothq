@@ -58,8 +58,8 @@ const TIERS: Tier[] = [
     bullets: [
       "Managed migration of firm knowledge",
       "Shared vault and per-employee personal vaults",
-      "Role-based access and audit trail",
-      "Monthly Taproot Update",
+      "Custom tooling built for your workflow",
+      "Direct access to the Taproot team",
     ],
     priceNote: "Custom pricing per firm.",
     cta: { label: "Book a call for teams", href: CALENDLY_URL, external: true },
