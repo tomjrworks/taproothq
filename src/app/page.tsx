@@ -1,4 +1,5 @@
 import Hero from "@/components/brain/Hero";
+import PlainEnglish from "@/components/brain/PlainEnglish";
 import Problem from "@/components/brain/Problem";
 import Expansion from "@/components/brain/Expansion";
 import HowItWorks from "@/components/brain/HowItWorks";
@@ -13,6 +14,7 @@ export default function Home() {
         <Hero />
       </section>
 
+      <PlainEnglish />
       <Problem />
       <Expansion />
       <HowItWorks />

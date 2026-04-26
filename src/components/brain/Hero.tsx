@@ -54,7 +54,7 @@ export default function Hero() {
           animate="visible"
           custom={2}
         >
-          A single knowledge layer every AI tool plugs into. Captured once, kept
+          A single memory layer every AI tool plugs into. Captured once, kept
           current, owned by you.
         </motion.p>
 
