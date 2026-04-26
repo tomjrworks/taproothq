@@ -156,7 +156,7 @@ export default function PricingPage() {
             {TIERS.map((tier, i) => (
               <motion.div
                 key={tier.number}
-                className="flex flex-col"
+                className="flex flex-col bg-cream-dark rounded-sm shadow-sm p-6 md:p-7 lg:p-8"
                 variants={fade}
                 initial="hidden"
                 whileInView="visible"
@@ -216,7 +216,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ-lite */}
-      <section className="relative bg-cream-dark px-6 lg:px-8 py-16 md:py-20 film-grain">
+      <section className="relative bg-cream px-6 lg:px-8 py-16 md:py-20 film-grain">
         <div className="relative z-10 max-w-4xl mx-auto">
           <SectionHeader title="A few common questions" />
 
