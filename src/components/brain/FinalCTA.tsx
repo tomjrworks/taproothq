@@ -13,18 +13,36 @@ const fade = {
   }),
 };
 
+type Status = "idle" | "submitting" | "success" | "error";
+
 export default function FinalCTA() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">(
-    "idle",
-  );
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (!email.trim()) return;
+    const trimmed = email.trim();
+    if (!trimmed) return;
     setStatus("submitting");
-    // Frontend-only for now. Wire to Resend / ConvertKit / Supabase later.
-    setTimeout(() => setStatus("success"), 400);
+    setErrorMessage("");
+    try {
+      const res = await fetch("/api/beta-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: trimmed }),
+      });
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
+        throw new Error(data.error ?? "Signup failed");
+      }
+      setStatus("success");
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(
+        err instanceof Error ? err.message : "Something went wrong",
+      );
+    }
   }
 
   return (
@@ -108,6 +126,11 @@ export default function FinalCTA() {
                 </span>
               </button>
             </form>
+          )}
+          {status === "error" && errorMessage && (
+            <p className="font-serif italic text-sm md:text-base text-bark/70 mt-3">
+              {errorMessage}. Mind trying again?
+            </p>
           )}
         </motion.div>
 
