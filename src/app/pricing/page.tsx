@@ -28,9 +28,9 @@ const TIERS: Tier[] = [
   {
     number: "01",
     name: "Beta",
-    oneliner: "Get early access. Set up your own brain. Use it forever.",
+    oneliner: "Get early access. Set up your own Taproot. Use it forever.",
     bullets: [
-      "Markdown vault on your machine — the brain is your files",
+      "Markdown vault on your machine — Taproot is your files",
       "Plugs into Claude and any MCP-native AI",
       "Capture, structure, and search across decisions, ideas, and notes",
       "Founding-member pricing locked when access opens",
@@ -42,7 +42,7 @@ const TIERS: Tier[] = [
     number: "02",
     name: "Private setup",
     oneliner:
-      "We migrate your existing files into your brain in a single session.",
+      "We migrate your existing files into your Taproot in a single session.",
     bullets: [
       "60-minute working session, screen share",
       "We ingest your Drive, Notion, or files into your vault",
@@ -62,7 +62,7 @@ const TIERS: Tier[] = [
       "Managed migration of firm + personal knowledge",
       "Shared vault plus per-employee personal vaults",
       "Role-based access and audit trail",
-      "Monthly Firm Brain Update — what was captured, what changed, what it knows now",
+      "Monthly Taproot Update — what was captured, what changed, what it knows now",
       "Custom pricing per firm",
     ],
     cta: {
@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: "Will I get charged automatically when beta ends?",
-    a: "No. We'll email founding-member pricing first and you opt in. If you don't, the brain still works on your machine — your files don't disappear.",
+    a: "No. We'll email founding-member pricing first and you opt in. If you don't, your Taproot still works on your machine — your files don't disappear.",
   },
   {
     q: "Can I bring my existing notes?",
@@ -121,8 +121,9 @@ export default function PricingPage() {
             animate="visible"
             custom={2}
           >
-            Three ways in below &mdash; solo on your own, solo with a private
-            setup session, or teams.
+            Taproot is an AI brain that lives in your files. Three ways in below
+            &mdash; solo on your own, solo with a private setup session, or
+            teams.
           </motion.p>
         </div>
       </section>
