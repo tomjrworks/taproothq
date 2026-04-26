@@ -156,7 +156,7 @@ export default function PricingPage() {
             {TIERS.map((tier, i) => (
               <motion.div
                 key={tier.number}
-                className="flex flex-col bg-cream-dark rounded-sm shadow-sm p-6 md:p-7 lg:p-8"
+                className="flex flex-col bg-cream-dark rounded-2xl shadow-md shadow-bark/5 p-6 md:p-7 lg:p-8"
                 variants={fade}
                 initial="hidden"
                 whileInView="visible"
