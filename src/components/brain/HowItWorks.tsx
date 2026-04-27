@@ -24,28 +24,63 @@ const AI_CLIENTS = [
 ];
 
 const GARDEN_TOOLS = [
-  { name: "garden_read", verb: "Read", purpose: "open a note" },
-  { name: "garden_plant", verb: "Plant", purpose: "write a new note" },
-  { name: "garden_survey", verb: "Survey", purpose: "list a directory" },
-  { name: "garden_forage", verb: "Forage", purpose: "search across the vault" },
-  { name: "garden_measure", verb: "Measure", purpose: "vault stats" },
-  { name: "garden_tag", verb: "Tag", purpose: "tag + categorize" },
+  { name: "garden_read", verb: "Read", purpose: "open a known note" },
+  { name: "garden_plant", verb: "Plant", purpose: "write or overwrite a note" },
+  { name: "garden_find", verb: "Find", purpose: "ranked title or topic match" },
+  {
+    name: "garden_forage",
+    verb: "Forage",
+    purpose: "phrase search inside notes",
+  },
+  {
+    name: "garden_recent",
+    verb: "Recall",
+    purpose: "what you touched recently",
+  },
+  { name: "garden_survey", verb: "Survey", purpose: "list a folder" },
+  { name: "garden_tag", verb: "Tag", purpose: "peek at note metadata" },
+  {
+    name: "garden_measure",
+    verb: "Measure",
+    purpose: "vault counts at a glance",
+  },
 ];
 
 const TAPROOT_TOOLS = [
-  { name: "taproot_seed", verb: "Seed", purpose: "ingest a source" },
-  { name: "taproot_status", verb: "Status", purpose: "system health" },
-  { name: "taproot_water", verb: "Water", purpose: "compile context" },
+  {
+    name: "taproot_save_url",
+    verb: "Pluck",
+    purpose: "save an article in one call",
+  },
+  {
+    name: "taproot_harvest",
+    verb: "Harvest",
+    purpose: "research across your notes",
+  },
+  {
+    name: "taproot_status",
+    verb: "Status",
+    purpose: "what's set up, what's pending",
+  },
+  {
+    name: "taproot_prune",
+    verb: "Prune",
+    purpose: "lint broken links and orphans",
+  },
   {
     name: "taproot_cultivate",
     verb: "Cultivate",
-    purpose: "structure raw input",
+    purpose: "find sources still to process",
   },
-  { name: "taproot_harvest", verb: "Harvest", purpose: "pull working set" },
-  { name: "taproot_prune", verb: "Prune", purpose: "remove stale notes" },
-  { name: "taproot_till", verb: "Till", purpose: "scaffold a new vault" },
-  { name: "taproot_plant", verb: "Plant", purpose: "create a project" },
-  { name: "taproot_sow", verb: "Sow", purpose: "save a query result" },
+  {
+    name: "taproot_seed",
+    verb: "Seed",
+    purpose: "save pasted text as a source",
+  },
+  { name: "taproot_water", verb: "Water", purpose: "turn a source into notes" },
+  { name: "taproot_plant", verb: "Plant", purpose: "start a new garden" },
+  { name: "taproot_till", verb: "Till", purpose: "lock in your setup choice" },
+  { name: "taproot_sow", verb: "Sow", purpose: "scaffold a knowledge base" },
 ];
 
 export default function HowItWorks() {
@@ -53,8 +88,8 @@ export default function HowItWorks() {
   const activeTools = activeRoot === "garden" ? GARDEN_TOOLS : TAPROOT_TOOLS;
   const activeCaption =
     activeRoot === "garden"
-      ? "vault ops — 6 tools"
-      : "knowledge + system — 9 tools";
+      ? "vault ops — 8 tools"
+      : "knowledge + system — 10 tools";
 
   return (
     <section
@@ -170,7 +205,7 @@ export default function HowItWorks() {
           </div>
 
           <h3 className="font-serif text-3xl md:text-4xl lg:text-5xl text-bark leading-[1.1] tracking-tight max-w-3xl">
-            Fifteen tools.{" "}
+            Eighteen tools.{" "}
             <em className="italic text-forest-dark">Two roots.</em>
           </h3>
 

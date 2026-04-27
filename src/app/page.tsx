@@ -3,6 +3,7 @@ import PlainEnglish from "@/components/brain/PlainEnglish";
 import Problem from "@/components/brain/Problem";
 import Expansion from "@/components/brain/Expansion";
 import HowItWorks from "@/components/brain/HowItWorks";
+import VsMemoryCallout from "@/components/brain/VsMemoryCallout";
 import FinalCTA from "@/components/brain/FinalCTA";
 import Footer from "@/components/brain/Footer";
 
@@ -15,6 +16,7 @@ export default function Home() {
       </section>
 
       <PlainEnglish />
+      <VsMemoryCallout />
       <Problem />
       <Expansion />
       <HowItWorks />

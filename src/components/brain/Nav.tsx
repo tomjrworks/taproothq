@@ -7,8 +7,16 @@ import { AnimatePresence, motion, useScroll } from "framer-motion";
 
 const NAV_LINKS = [
   { label: "Pricing", href: "/pricing" },
+  { label: "Why Taproot", href: "/vs-memory" },
   { label: "Use cases", href: "/use-cases" },
   { label: "About", href: "/about" },
+] as const;
+
+const USE_CASE_ARCHETYPES = [
+  { label: "Research", href: "/use-cases/research" },
+  { label: "Business", href: "/use-cases/business" },
+  { label: "Creative", href: "/use-cases/creative" },
+  { label: "Personal", href: "/use-cases/personal" },
 ] as const;
 
 export default function Nav() {
@@ -70,15 +78,42 @@ export default function Nav() {
 
           {/* Desktop nav links */}
           <div className="hidden items-center gap-8 sm:flex">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="font-sans text-sm text-bark/70 transition-colors hover:text-forest-dark"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              if (link.label === "Use cases") {
+                return (
+                  <div key={link.label} className="relative group">
+                    <Link
+                      href={link.href}
+                      className="font-sans text-sm text-bark/70 transition-colors group-hover:text-forest-dark"
+                    >
+                      {link.label}
+                    </Link>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="bg-cream rounded-sm shadow-[0_12px_36px_-12px_rgba(61,53,41,0.25)] border border-bark/5 py-2 min-w-[200px]">
+                        {USE_CASE_ARCHETYPES.map((sub) => (
+                          <Link
+                            key={sub.label}
+                            href={sub.href}
+                            className="block px-5 py-2.5 font-serif italic text-base text-bark/80 transition-colors hover:text-forest-dark hover:bg-cream-dark/60"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="font-sans text-sm text-bark/70 transition-colors hover:text-forest-dark"
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right cluster: CTA + mobile hamburger */}

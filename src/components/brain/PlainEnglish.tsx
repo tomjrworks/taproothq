@@ -273,21 +273,6 @@ export default function PlainEnglish() {
             />
           </motion.div>
         </div>
-
-        {/* Closer */}
-        <motion.div
-          className="mt-16 md:mt-20"
-          variants={fade}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-          custom={6}
-        >
-          <span className="block h-px w-12 bg-forest-dark/30 mb-6" />
-          <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-bark leading-[1.35] max-w-3xl">
-            That&rsquo;s the whole product.
-          </p>
-        </motion.div>
       </div>
     </section>
   );

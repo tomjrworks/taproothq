@@ -250,9 +250,9 @@ export default function Expansion() {
             </div>
 
             {/* Closer italic — left-aligned */}
-            <p className="font-serif italic text-xl md:text-2xl lg:text-3xl text-cream/80 leading-[1.3] mt-20 md:mt-24 max-w-3xl">
-              Everything here connects. It compounds. Tools come and go &mdash;
-              your knowledge, your decisions, your work. Yours, forever.
+            <p className="font-serif text-xl md:text-2xl lg:text-3xl text-cream/85 leading-[1.3] mt-20 md:mt-24 max-w-3xl">
+              Apps come and go.{" "}
+              <em className="italic text-cream">Your work goes with you.</em>
             </p>
           </motion.div>
         </div>
