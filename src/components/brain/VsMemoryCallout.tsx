@@ -14,7 +14,7 @@ const fade = {
 
 const POINTS = [
   "Vendor memory remembers small facts about you. Taproot remembers the work.",
-  "Vendor memory is locked to one product. Taproot plugs into every AI that speaks MCP.",
+  "Vendor memory is locked to one product. Taproot plugs into every AI you use.",
   "Vendor memory disappears when you switch tools. Your files stay where you put them.",
 ];
 
@@ -30,7 +30,7 @@ export default function VsMemoryCallout() {
           viewport={{ once: true, margin: "-80px" }}
           custom={0}
         >
-          Already use ChatGPT or Claude memory?
+          How is this different from ChatGPT or Claude memory?
         </motion.p>
 
         <motion.h2

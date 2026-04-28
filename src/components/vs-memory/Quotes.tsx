@@ -12,7 +12,7 @@ export default function Quotes() {
   return (
     <section className="relative bg-cream-dark pt-20 md:pt-24 lg:pt-28 pb-20 md:pb-24 lg:pb-28 px-6 lg:px-8 film-grain">
       <div className="relative z-10 max-w-5xl mx-auto">
-        <SectionHeader title="Why this page exists" />
+        <SectionHeader title="Why Taproot exists" />
 
         <p className="font-serif text-2xl md:text-3xl lg:text-[2.25rem] text-bark leading-[1.25] tracking-tight max-w-3xl">
           Buyers tell us the same five things.

@@ -75,9 +75,9 @@ export default function FinalCTA() {
           viewport={{ once: true, margin: "-80px" }}
           custom={2}
         >
-          Every decision, idea, and playbook &mdash; captured once, kept
-          current, and owned by you. A memory layer that lives in your files,
-          not someone else&rsquo;s cloud.
+          Every decision, idea, and playbook &mdash; captured, kept current, and
+          owned by you. A memory layer that lives in your files, not someone
+          else&rsquo;s cloud.
         </motion.p>
 
         {/* Beta email capture */}

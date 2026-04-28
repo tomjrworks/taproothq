@@ -26,11 +26,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Taproot \u2014 The root beneath the work",
   description:
-    "A private memory layer for the work you do \u2014 captured once, kept current, owned by you.",
+    "A private memory layer for the work you do \u2014 captured, kept current, owned by you.",
   openGraph: {
     title: "Taproot \u2014 The root beneath the work",
     description:
-      "A private memory layer for the work you do \u2014 captured once, kept current, owned by you.",
+      "A private memory layer for the work you do \u2014 captured, kept current, owned by you.",
     url: "https://taproothq.com",
     siteName: "Taproot",
     type: "website",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Taproot \u2014 The root beneath the work",
     description:
-      "A private memory layer for the work you do \u2014 captured once, kept current, owned by you.",
+      "A private memory layer for the work you do \u2014 captured, kept current, owned by you.",
   },
 };
 

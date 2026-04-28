@@ -154,7 +154,7 @@ export default function HowItWorks() {
               WebkitMaskImage:
                 "linear-gradient(to right, transparent 0, black 8%, black 92%, transparent 100%)",
             }}
-            aria-label="Native MCP clients"
+            aria-label="AI clients that connect to Taproot"
           >
             <div className="flex w-max animate-logo-marquee">
               {[...AI_CLIENTS, ...AI_CLIENTS].map((client, i) => (
@@ -184,7 +184,7 @@ export default function HowItWorks() {
 
           {/* Footnote — honest about MCP rollout */}
           <p className="mt-8 font-serif italic text-sm md:text-base text-bark/55 leading-[1.55] max-w-2xl">
-            Plus anything else that speaks MCP.
+            Plus most other AI tools you use.
           </p>
         </motion.div>
 

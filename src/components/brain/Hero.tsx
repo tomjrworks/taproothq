@@ -54,8 +54,9 @@ export default function Hero() {
           animate="visible"
           custom={2}
         >
-          A single memory layer every AI tool plugs into. Captured once, kept
-          current, owned by you.
+          Stop re-explaining your work to your AI. A memory layer ChatGPT,
+          Claude, and any AI you use can read from. Captured, kept current,
+          owned by you.
         </motion.p>
 
         {/* CTA row */}

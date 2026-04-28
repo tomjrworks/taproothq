@@ -31,7 +31,7 @@ export default function Demo1() {
 
         <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-bark leading-[1.05] tracking-tight max-w-4xl">
           We saved Paul Graham&rsquo;s essay.{" "}
-          <em className="italic text-forest-dark">Then asked both.</em>
+          <em className="italic text-forest-dark">Then asked both AIs.</em>
         </h2>
 
         <p className="font-serif italic text-lg md:text-xl lg:text-2xl text-bark/75 leading-[1.45] mt-8 max-w-3xl">

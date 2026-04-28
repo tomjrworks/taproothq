@@ -27,7 +27,7 @@ const DIFFERENCES: Difference[] = [
       "Taproot plugs into every AI that speaks MCP — Claude, Cursor, Windsurf, Copilot. One memory layer, many tools.",
   },
   {
-    title: "How you can see it",
+    title: "What you can see",
     vendor:
       "You can see what they wrote down about you. You can’t see how, when, or why the AI reaches for it.",
     taproot:

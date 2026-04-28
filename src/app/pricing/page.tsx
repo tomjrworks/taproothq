@@ -29,8 +29,8 @@ const TIERS: Tier[] = [
     name: "Early access",
     oneliner: "Set up your own Taproot.",
     bullets: [
-      "Markdown vault on your machine",
-      "Plugs into Claude and any MCP-native AI",
+      "A vault of plain text files on your machine",
+      "Works with Claude, ChatGPT, and any AI you use",
       "Capture, structure, and search your knowledge",
       "Cancel anytime; your files stay yours",
     ],
@@ -43,8 +43,8 @@ const TIERS: Tier[] = [
     oneliner: "We migrate your existing files into your Taproot.",
     bullets: [
       "60-min working session, screen share",
-      "We ingest your Drive, Notion, or files",
-      "Structured and ready to query",
+      "We pull in your Drive, Notion, or files",
+      "Structured and ready to search",
       "Everything in Early access included",
     ],
     priceNote: "Founding-member rate locked at signup.",
