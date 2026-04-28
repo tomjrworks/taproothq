@@ -72,11 +72,12 @@ export default function About() {
                 viewport={{ once: true }}
                 custom={3}
               >
-                I&rsquo;m Tom Girgash. I run Taproot out of Cleveland, OH.
-                Before I built this for other firms, I built one for myself.
-                It&rsquo;s how my cold-email system knows what niche I&rsquo;m
-                in this week and why. It&rsquo;s how my Claude sessions start
-                already knowing last quarter&rsquo;s pricing conversation.
+                I&rsquo;m Tom Girgash. I run Taproot out of Cleveland, OH. I
+                built this for myself first &mdash; then built it so anyone
+                could have one. Solo, with a team, or running a firm. It&rsquo;s
+                how my cold-email system knows what niche I&rsquo;m in this week
+                and why. It&rsquo;s how my Claude sessions start already knowing
+                last quarter&rsquo;s pricing conversation.
               </motion.p>
 
               <motion.p
@@ -87,11 +88,12 @@ export default function About() {
                 viewport={{ once: true }}
                 custom={4}
               >
-                The reason it exists: every firm has years of context scattered
-                across drives, notebooks, and two people&rsquo;s heads. AI tools
-                are finally useful enough to act on that context &mdash; but
-                only if it lives somewhere they can reach. Most firms
-                don&rsquo;t have that somewhere. Taproot is that somewhere.
+                Whether you work solo, with a team, or with a firm of fifty, you
+                build years of context &mdash; drives, notebooks, tabs, the
+                people doing the work. AI tools are finally useful enough to act
+                on that context &mdash; but only if it lives somewhere they can
+                reach. Most of us don&rsquo;t have that somewhere. Taproot is
+                that somewhere.
               </motion.p>
 
               <motion.p
@@ -102,10 +104,9 @@ export default function About() {
                 viewport={{ once: true }}
                 custom={5}
               >
-                One principle: your firm&rsquo;s knowledge should outlive
-                whichever AI vendor is winning this year. Taproot builds on open
-                formats, your storage, your rules. Walk away with the whole
-                thing any time.
+                One principle: your knowledge should outlive whichever AI vendor
+                is winning this year. Taproot builds on open formats, your
+                storage, your rules. Walk away with the whole thing any time.
               </motion.p>
             </div>
 
@@ -119,12 +120,12 @@ export default function About() {
               custom={6}
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-forest-dark">
-                The promise
+                If we disappear
               </p>
               <p className="font-serif text-lg text-bark mt-3 leading-snug">
-                If the first Taproot Update doesn&rsquo;t earn its keep in the
-                first 90 days, we refund the build fee. Your layer stays &mdash;
-                in your storage, in your formats &mdash; regardless.
+                If Taproot shuts down tomorrow, your vault stays. Plain text in
+                your storage, in formats anyone can read. The product can fail.
+                Your work can&rsquo;t be taken with it.
               </p>
             </motion.div>
           </div>
