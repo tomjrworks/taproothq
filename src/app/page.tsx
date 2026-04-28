@@ -1,4 +1,5 @@
 import Hero from "@/components/brain/Hero";
+import ImagineBridge from "@/components/brain/ImagineBridge";
 import PlainEnglish from "@/components/brain/PlainEnglish";
 import Problem from "@/components/brain/Problem";
 import Expansion from "@/components/brain/Expansion";
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
       </section>
 
+      <ImagineBridge />
       <PlainEnglish />
       <VsMemoryCallout />
       <Problem />
