@@ -26,16 +26,16 @@ type Tier = {
 const TIERS: Tier[] = [
   {
     number: "01",
-    name: "Beta",
-    oneliner: "Get early access. Set up your own Taproot.",
+    name: "Early access",
+    oneliner: "Set up your own Taproot.",
     bullets: [
       "Markdown vault on your machine",
       "Plugs into Claude and any MCP-native AI",
       "Capture, structure, and search your knowledge",
       "Cancel anytime; your files stay yours",
     ],
-    priceNote: "Free during beta.",
-    cta: { label: "Join the beta", href: "/#join" },
+    priceNote: "Free for early users.",
+    cta: { label: "Get early access", href: "/#join" },
   },
   {
     number: "02",
@@ -45,7 +45,7 @@ const TIERS: Tier[] = [
       "60-min working session, screen share",
       "We ingest your Drive, Notion, or files",
       "Structured and ready to query",
-      "Everything in Beta included",
+      "Everything in Early access included",
     ],
     priceNote: "Founding-member rate locked at signup.",
     cta: { label: "Join the waitlist", href: "/#join" },
@@ -68,10 +68,10 @@ const TIERS: Tier[] = [
 const FAQ = [
   {
     q: "Why no public price yet?",
-    a: "Beta is free, and we want the first cohort to inform what founding-member pricing should be. You'll see the number before you're ever charged.",
+    a: "Early access is free, and we want the first cohort to inform what founding-member pricing should be. You'll see the number before you're ever charged.",
   },
   {
-    q: "Will I get charged automatically when beta ends?",
+    q: "Will I get charged automatically when early access ends?",
     a: "No. We'll email founding-member pricing first and you opt in. If you don't, your Taproot still works on your machine — your files don't disappear.",
   },
 ];
@@ -129,7 +129,7 @@ export default function PricingPage() {
             animate="visible"
             custom={1}
           >
-            Free while we&rsquo;re in beta.{" "}
+            Free during early access.{" "}
             <em className="italic text-forest-dark">
               Founding-member pricing locked
             </em>{" "}

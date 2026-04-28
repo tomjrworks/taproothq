@@ -51,7 +51,7 @@ export default function FinalCTA() {
       className="relative bg-cream-dark pt-24 md:pt-32 lg:pt-40 pb-24 md:pb-32 lg:pb-40 overflow-hidden film-grain"
     >
       <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-        <SectionHeader title="Join the beta" />
+        <SectionHeader title="Get early access" />
 
         {/* Headline */}
         <motion.h2
@@ -116,7 +116,7 @@ export default function FinalCTA() {
                 className="group inline-flex items-center justify-center gap-2 bg-forest-dark text-cream font-sans text-base px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0 whitespace-nowrap"
               >
                 <span>
-                  {status === "submitting" ? "Adding..." : "Join the beta"}
+                  {status === "submitting" ? "Adding..." : "Get early access"}
                 </span>
                 <span
                   aria-hidden
@@ -143,7 +143,7 @@ export default function FinalCTA() {
           viewport={{ once: true, margin: "-80px" }}
           custom={4}
         >
-          Free during beta &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe
+          Free for early users &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe
           anytime
         </motion.p>
       </div>

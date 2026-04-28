@@ -29,7 +29,7 @@ export default function Close({
             href="/#join"
             className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-[15px] font-medium px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-forest-dark/20"
           >
-            Join the beta
+            Get early access
             <span className="transition-transform duration-200 group-hover:translate-x-0.5">
               →
             </span>

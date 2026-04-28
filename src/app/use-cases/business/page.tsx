@@ -93,7 +93,7 @@ export default function BusinessUseCasesPage() {
             <em className="italic text-forest-dark">this is what holds it.</em>
           </>
         }
-        subtitle="Free during beta. Three minutes to set up. Bring whichever AI you already use."
+        subtitle="Free for early users. Three minutes to set up. Bring whichever AI you already use."
       />
       <Footer />
     </main>
