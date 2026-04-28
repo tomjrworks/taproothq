@@ -12,8 +12,8 @@ export default function GraphPayoff() {
         </h2>
 
         <p className="font-serif italic text-lg md:text-xl text-bark/75 leading-[1.5] mt-6 max-w-3xl">
-          Every save adds a node. Every link strengthens the network. Yours
-          starts simple — and compounds.
+          Notes connect to notes. Decisions connect to past decisions. Your AI
+          reads the threads between them — not just the words.
         </p>
 
         <div className="mt-12 md:mt-16">
