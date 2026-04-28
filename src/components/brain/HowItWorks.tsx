@@ -217,56 +217,58 @@ export default function HowItWorks() {
           {/* Verb spread — tabbed two roots */}
           <div className="mt-16 md:mt-24">
             {/* Tab row */}
-            <div className="mb-10 md:mb-14 flex flex-wrap items-baseline gap-x-10 md:gap-x-14 gap-y-4">
-              <button
-                type="button"
-                onClick={() => setActiveRoot("garden")}
-                aria-pressed={activeRoot === "garden"}
-                className="group inline-block focus:outline-none"
-              >
-                <p
-                  className={`font-serif italic text-xl md:text-2xl leading-tight transition-colors ${
-                    activeRoot === "garden"
-                      ? "text-forest-dark"
-                      : "text-bark/40 group-hover:text-bark/65"
-                  }`}
+            <div className="mb-10 md:mb-14">
+              <div className="flex items-baseline gap-x-10 md:gap-x-14">
+                <button
+                  type="button"
+                  onClick={() => setActiveRoot("garden")}
+                  aria-pressed={activeRoot === "garden"}
+                  className="group inline-block focus:outline-none"
                 >
-                  Garden
-                </p>
-                <span
-                  className={`block h-px w-full mt-1.5 transition-colors ${
-                    activeRoot === "garden"
-                      ? "bg-forest-dark"
-                      : "bg-bark/20 group-hover:bg-bark/35"
-                  }`}
-                />
-              </button>
+                  <p
+                    className={`font-serif italic text-xl md:text-2xl leading-tight transition-colors ${
+                      activeRoot === "garden"
+                        ? "text-forest-dark"
+                        : "text-bark/40 group-hover:text-bark/65"
+                    }`}
+                  >
+                    Garden
+                  </p>
+                  <span
+                    className={`block h-px w-full mt-1.5 transition-colors ${
+                      activeRoot === "garden"
+                        ? "bg-forest-dark"
+                        : "bg-bark/20 group-hover:bg-bark/35"
+                    }`}
+                  />
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setActiveRoot("taproot")}
-                aria-pressed={activeRoot === "taproot"}
-                className="group inline-block focus:outline-none"
-              >
-                <p
-                  className={`font-serif italic text-xl md:text-2xl leading-tight transition-colors ${
-                    activeRoot === "taproot"
-                      ? "text-forest-dark"
-                      : "text-bark/40 group-hover:text-bark/65"
-                  }`}
+                <button
+                  type="button"
+                  onClick={() => setActiveRoot("taproot")}
+                  aria-pressed={activeRoot === "taproot"}
+                  className="group inline-block focus:outline-none"
                 >
-                  Taproot
-                </p>
-                <span
-                  className={`block h-px w-full mt-1.5 transition-colors ${
-                    activeRoot === "taproot"
-                      ? "bg-forest-dark"
-                      : "bg-bark/20 group-hover:bg-bark/35"
-                  }`}
-                />
-              </button>
+                  <p
+                    className={`font-serif italic text-xl md:text-2xl leading-tight transition-colors ${
+                      activeRoot === "taproot"
+                        ? "text-forest-dark"
+                        : "text-bark/40 group-hover:text-bark/65"
+                    }`}
+                  >
+                    Taproot
+                  </p>
+                  <span
+                    className={`block h-px w-full mt-1.5 transition-colors ${
+                      activeRoot === "taproot"
+                        ? "bg-forest-dark"
+                        : "bg-bark/20 group-hover:bg-bark/35"
+                    }`}
+                  />
+                </button>
+              </div>
 
-              <p className="font-serif italic text-sm md:text-base text-bark/50 ml-auto">
+              <p className="mt-3 font-serif italic text-sm md:text-base text-bark/50">
                 {activeCaption}
               </p>
             </div>
