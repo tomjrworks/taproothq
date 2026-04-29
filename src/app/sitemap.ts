@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { getAllPosts } from "@/lib/blog";
 
 const BASE = "https://taproothq.com";
 
@@ -28,30 +27,10 @@ const STATIC_ROUTES: Array<{
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticEntries: Entry[] = STATIC_ROUTES.map((r) => ({
+  return STATIC_ROUTES.map((r) => ({
     url: `${BASE}${r.path}`,
     lastModified: now,
     changeFrequency: r.changeFrequency,
     priority: r.priority,
   }));
-
-  const posts = getAllPosts();
-  const blogEntries: Entry[] = posts.length
-    ? [
-        {
-          url: `${BASE}/blog`,
-          lastModified: now,
-          changeFrequency: "weekly" as const,
-          priority: 0.6,
-        },
-        ...posts.map((post) => ({
-          url: `${BASE}/blog/${post.slug}`,
-          lastModified: new Date(post.date),
-          changeFrequency: "monthly" as const,
-          priority: 0.5,
-        })),
-      ]
-    : [];
-
-  return [...staticEntries, ...blogEntries];
 }
