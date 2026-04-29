@@ -38,6 +38,12 @@ export default function Demo1() {
           Same article. Same question. Two different outcomes.
         </p>
 
+        <p className="font-sans text-sm md:text-base text-bark/65 leading-[1.6] mt-5 max-w-3xl">
+          Taproot works in any AI you use: Claude, ChatGPT, Cursor, Copilot. We
+          swapped tools here to show the difference is the memory layer, not the
+          model.
+        </p>
+
         {/* Step 1 — Save */}
         <div className="mt-20 md:mt-28">
           <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-bark/55">
@@ -67,7 +73,7 @@ export default function Demo1() {
           </div>
 
           <div>
-            <TaprootEyebrow label="Claude + Taproot" />
+            <TaprootEyebrow label="With Taproot" />
             <figure className="mt-5 bg-cream-dark rounded-sm shadow-[0_8px_28px_-12px_rgba(61,53,41,0.18)] overflow-hidden relative aspect-[16/9]">
               <Image
                 src="/images/vs-memory-demo1-pg-save.png"
@@ -114,7 +120,7 @@ export default function Demo1() {
           </div>
 
           <div>
-            <TaprootEyebrow label="Claude + Taproot" />
+            <TaprootEyebrow label="With Taproot" />
             <figure className="mt-5 bg-cream-dark rounded-sm shadow-[0_8px_28px_-12px_rgba(61,53,41,0.18)] overflow-hidden relative aspect-[16/9]">
               <Image
                 src="/images/vs-memory-demo1-pg-claude-2.png"
