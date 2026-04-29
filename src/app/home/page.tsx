@@ -23,12 +23,28 @@ export const metadata: Metadata = {
     url: "/home",
     siteName: "Taproot",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Taproot — The root beneath the work",
     description:
       "A private memory layer for the work you do — captured, kept current, owned by you.",
+    images: [
+      {
+        url: "/twitter-image.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+      },
+    ],
   },
 };
 
