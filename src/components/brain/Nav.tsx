@@ -6,6 +6,7 @@ import Image from "next/image";
 import { AnimatePresence, motion, useScroll } from "framer-motion";
 
 const NAV_LINKS = [
+  { label: "Home", href: "/home" },
   { label: "Pricing", href: "/pricing" },
   { label: "Why Taproot", href: "/vs-memory" },
   { label: "Use cases", href: "/use-cases" },
