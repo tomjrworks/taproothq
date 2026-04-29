@@ -1,6 +1,7 @@
 import Hero from "@/components/brain/Hero";
 import ImagineBridge from "@/components/brain/ImagineBridge";
 import PlainEnglish from "@/components/brain/PlainEnglish";
+import AutoFile from "@/components/brain/AutoFile";
 import Problem from "@/components/brain/Problem";
 import Expansion from "@/components/brain/Expansion";
 import GraphPayoff from "@/components/brain/GraphPayoff";
@@ -19,6 +20,7 @@ export default function Home() {
 
       <ImagineBridge />
       <PlainEnglish />
+      <AutoFile />
       <VsMemoryCallout />
       <Problem />
       <Expansion />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import SectionHeader from "@/components/brain/SectionHeader";
 
@@ -273,6 +274,27 @@ export default function PlainEnglish() {
             />
           </motion.div>
         </div>
+
+        <motion.div
+          className="mt-12 md:mt-14"
+          variants={fade}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          custom={6}
+        >
+          <Link
+            href="/use-cases"
+            className="group inline-flex items-center gap-2 text-forest-dark font-sans text-[15px] font-medium transition-colors duration-200 hover:text-bark"
+          >
+            <span className="font-serif italic text-base md:text-lg">
+              See more use cases
+            </span>
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+              →
+            </span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
