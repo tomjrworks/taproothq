@@ -45,6 +45,12 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
+            <a
+              href="mailto:tom@taproothq.com"
+              className="font-sans text-sm text-cream/70 transition-colors hover:text-cream"
+            >
+              tom@taproothq.com
+            </a>
             <p className="font-sans text-xs text-cream/40">
               &copy; 2026 Taproot
             </p>
