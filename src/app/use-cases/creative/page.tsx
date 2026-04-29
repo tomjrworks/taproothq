@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "Taproot for Creative work — the world your work lives in",
   description:
     "Use cases for novelists, screenwriters, designers, filmmakers, composers, game developers, illustrators, podcasters, and anyone who keeps coming back to the same body of work.",
+  alternates: { canonical: "/use-cases/creative" },
+  openGraph: {
+    title: "Taproot for Creative work — the world your work lives in",
+    description:
+      "Use cases for novelists, screenwriters, designers, filmmakers, composers.",
+    url: "/use-cases/creative",
+    type: "website",
+  },
 };
 
 const VIGNETTES: Vignette[] = [

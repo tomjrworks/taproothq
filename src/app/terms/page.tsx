@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Terms — Taproot",
   description:
     "The basic rules of using Taproot during early access. Placeholder, to be replaced with proper terms at public launch.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "Taproot for Personal life — the thread under your continuity",
   description:
     "Use cases for travel planners, home cooks, parents, health trackers, hobbyists, learners, and anyone managing a part of life that runs for years.",
+  alternates: { canonical: "/use-cases/personal" },
+  openGraph: {
+    title: "Taproot for Personal life — the thread under your continuity",
+    description:
+      "Use cases for travel planners, home cooks, parents, hobbyists, learners.",
+    url: "/use-cases/personal",
+    type: "website",
+  },
 };
 
 const VIGNETTES: Vignette[] = [

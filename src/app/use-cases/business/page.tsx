@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "Taproot for Business — the spine across your deals and decks",
   description:
     "Use cases for founders, sales, consultants, PMs, operators, and anyone who lives in a long deal, a deck that keeps shifting, or an account that runs for years.",
+  alternates: { canonical: "/use-cases/business" },
+  openGraph: {
+    title: "Taproot for Business — the spine across your deals and decks",
+    description:
+      "Use cases for founders, sales, consultants, PMs, and operators.",
+    url: "/use-cases/business",
+    type: "website",
+  },
 };
 
 const VIGNETTES: Vignette[] = [

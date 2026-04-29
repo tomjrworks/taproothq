@@ -1,0 +1,24 @@
+# Taproot
+
+> A private memory layer for the work you do — captured, kept current, owned by you. Taproot connects to any AI you use (Claude, ChatGPT, Cursor, Copilot, and any client that speaks MCP) so every session starts with full context of your decisions, projects, and notes instead of from zero.
+
+Taproot is not a chatbot, a vendor-locked memory feature, or a knowledge base. It is a memory layer that sits between you and the AI tools you already use. Your work lives in your own files. Your AI reads from those files. When you switch tools — Claude today, ChatGPT tomorrow — your knowledge stays.
+
+## Pages
+
+- [Home](https://taproothq.com/): What Taproot is, who it is for, how the memory layer works
+- [How it works](https://taproothq.com/how-it-works): The mechanics — files, MCP, retrieval in the open
+- [vs ChatGPT and Claude memory](https://taproothq.com/vs-memory): Side-by-side comparison with vendor memory features, including a save-and-recall demo with Paul Graham's essay
+- [Pricing](https://taproothq.com/pricing): Free during early access
+- [Use cases](https://taproothq.com/use-cases): Research, business, creative, personal — patterns of work that benefit from a memory layer
+- [Use cases — Research](https://taproothq.com/use-cases/research): For researchers, analysts, lawyers, journalists, investors
+- [Use cases — Business](https://taproothq.com/use-cases/business): For founders, sales, consultants, PMs, operators
+- [Use cases — Creative](https://taproothq.com/use-cases/creative): For novelists, screenwriters, designers, filmmakers, composers
+- [Use cases — Personal](https://taproothq.com/use-cases/personal): For travel planners, home cooks, parents, hobbyists, learners
+- [About](https://taproothq.com/about): The team and the thesis
+- [FAQ](https://taproothq.com/faq): Common questions about how Taproot works
+
+## Optional
+
+- [Privacy](https://taproothq.com/privacy): How data is handled
+- [Terms](https://taproothq.com/terms): Early-access terms of use

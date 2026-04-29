@@ -15,6 +15,14 @@ export const metadata: Metadata = {
   title: "ChatGPT memory vs. Taproot — what's actually different",
   description:
     "Vendor memory keeps small persistent facts about you. Taproot keeps the work itself — your notes, decisions, and files, readable by every AI you use.",
+  alternates: { canonical: "/vs-memory" },
+  openGraph: {
+    title: "ChatGPT memory vs. Taproot — what's actually different",
+    description:
+      "Vendor memory keeps small persistent facts about you. Taproot keeps the work itself.",
+    url: "/vs-memory",
+    type: "article",
+  },
 };
 
 export default function VsMemoryPage() {

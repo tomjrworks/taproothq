@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy — Taproot",
   description:
     "How we handle your data. Short version: your vault stays on your machine, we just keep your email so we can tell you when access opens.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

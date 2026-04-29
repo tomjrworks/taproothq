@@ -8,6 +8,14 @@ export const metadata: Metadata = {
   title: "Use cases — Taproot",
   description:
     "Same memory layer. Many kinds of work. Research, business, creative, personal — pick the closest. The roles inside aren’t a list, they’re a starting point.",
+  alternates: { canonical: "/use-cases" },
+  openGraph: {
+    title: "Use cases — Taproot",
+    description:
+      "Same memory layer. Many kinds of work — research, business, creative, personal.",
+    url: "/use-cases",
+    type: "website",
+  },
 };
 
 export default function UseCasesHubPage() {

@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   title: "Taproot for Research — your through-line across sources",
   description:
     "Use cases for researchers, analysts, lawyers, journalists, investors, and anyone who chases a thread across papers, interviews, filings, and notes.",
+  alternates: { canonical: "/use-cases/research" },
+  openGraph: {
+    title: "Taproot for Research — your through-line across sources",
+    description:
+      "Use cases for researchers, analysts, lawyers, journalists, investors.",
+    url: "/use-cases/research",
+    type: "website",
+  },
 };
 
 const VIGNETTES: Vignette[] = [
