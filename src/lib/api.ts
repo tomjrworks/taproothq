@@ -94,8 +94,21 @@ export type ClientSetupInfo = {
   screenshot_url: string;
 };
 
-export function getClientSetupInfo(jwt: string) {
-  return call<ClientSetupInfo[]>("GET", "/api/clients/setup-info", jwt);
+type ClientSetupEnvelope = {
+  workspace_id: string;
+  mcp_url: string;
+  clients: ClientSetupInfo[];
+};
+
+export async function getClientSetupInfo(
+  jwt: string,
+): Promise<ClientSetupInfo[]> {
+  const env = await call<ClientSetupEnvelope>(
+    "GET",
+    "/api/clients/setup-info",
+    jwt,
+  );
+  return env.clients;
 }
 
 export function markClientConnected(jwt: string, clientId: string) {
