@@ -1,17 +1,10 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { advanceStep, ApiError } from "@/lib/api";
+import { withAuthedProxy } from "@/lib/proxy-handler";
+import { advanceStep } from "@/lib/api";
 
-export async function POST() {
+export const POST = withAuthedProxy(async (_req, jwt) => {
   const supabase = createClient();
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const { data: ws } = await supabase
     .from("workspaces")
     .select("settings")
@@ -28,14 +21,6 @@ export async function POST() {
       { status: 400 },
     );
   }
-
-  try {
-    await advanceStep(session.access_token, "complete");
-    return NextResponse.json({ ok: true });
-  } catch (err) {
-    if (err instanceof ApiError) {
-      return NextResponse.json({ error: err.message }, { status: err.status });
-    }
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
-  }
-}
+  await advanceStep(jwt, "complete");
+  return NextResponse.json({ ok: true });
+});
