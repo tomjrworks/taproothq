@@ -7,17 +7,6 @@ import { fadeIn } from "@/lib/motion";
 import { Button } from "@/components/dashboard/ui/button";
 import { toast } from "@/components/dashboard/ui/use-toast";
 
-const CLIENT_LABELS: Record<string, string> = {
-  "claude-ai": "claude.ai (web)",
-  "claude-desktop": "Claude Desktop",
-  "claude-code": "Claude Code",
-  cursor: "Cursor",
-  windsurf: "Windsurf (Cascade)",
-  chatgpt: "ChatGPT",
-  "copilot-vscode": "GitHub Copilot (VS Code)",
-  cowork: "Cowork",
-};
-
 export default function DonePage() {
   const [connectedClients, setConnectedClients] = useState<string[]>([]);
   const [vaultPath, setVaultPath] = useState("~/Documents/Taproot/");
@@ -86,9 +75,9 @@ export default function DonePage() {
               {connectedClients.map((id) => (
                 <span
                   key={id}
-                  className="font-sans text-xs text-bark bg-forest-dark/8 border border-forest-dark/15 rounded-full px-3 py-1"
+                  className="font-mono text-xs text-bark bg-forest-dark/8 border border-forest-dark/15 rounded-full px-3 py-1"
                 >
-                  {CLIENT_LABELS[id] ?? id}
+                  {id}
                 </span>
               ))}
             </div>

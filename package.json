@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "smoke:csrf": "echo 'CSRF block (expect 403):' && curl -s -X POST -H 'Origin: https://evil.com' -H 'Content-Type: application/json' http://localhost:3000/api/onboarding/persona | jq . && echo 'Correct origin, no session (expect 401):' && curl -s -X POST -H 'Origin: http://localhost:3000' -H 'Content-Type: application/json' http://localhost:3000/api/onboarding/persona | jq ."
+    "smoke:csrf": "echo 'CSRF block (expect 403):' && curl -s -X POST -H 'Origin: https://evil.com' -H 'Content-Type: application/json' http://localhost:3000/api/onboarding/persona | jq . && echo 'Correct origin, no session (expect 401):' && curl -s -X POST -H 'Origin: http://localhost:3000' -H 'Content-Type: application/json' http://localhost:3000/api/onboarding/persona | jq .",
+    "smoke:no-fallback": "! grep -rn 'FALLBACK\\|CLIENT_LABELS' src/app/onboarding/ && echo 'no fallback constants remain'",
+    "smoke:connector-contract": "echo 'Manual: visit http://localhost:3000/onboarding/connect with a real session and verify 8 clients render with id, label, path_type, payload, instructions_md, screenshot_url'"
   },
   "dependencies": {
     "@hcaptcha/react-hcaptcha": "^2.0.2",
