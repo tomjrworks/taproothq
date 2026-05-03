@@ -30,6 +30,10 @@ export default async function OnboardingLayout({
     data: { session },
   } = await supabase.auth.getSession();
 
+  if (!session) {
+    redirect("/sign-in");
+  }
+
   const productUrl =
     process.env.PRODUCT_API_URL ?? "https://connect.taproothq.com";
 
