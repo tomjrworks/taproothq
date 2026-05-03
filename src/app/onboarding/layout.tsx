@@ -2,6 +2,8 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { OnboardingShell } from "@/components/dashboard/onboarding-shell";
 
+export const dynamic = "force-dynamic";
+
 export default async function OnboardingLayout({
   children,
 }: {
