@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { Toaster } from "@/components/dashboard/ui/toaster";
+import { TooltipProvider } from "@/components/dashboard/ui/tooltip";
 import "./globals.css";
-import Nav from "@/components/brain/Nav";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -108,8 +109,8 @@ export default function RootLayout({
             __html: JSON.stringify(softwareApplicationSchema),
           }}
         />
-        <Nav />
-        {children}
+        <TooltipProvider>{children}</TooltipProvider>
+        <Toaster />
         <Analytics />
       </body>
     </html>
