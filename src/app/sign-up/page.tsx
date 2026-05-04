@@ -40,7 +40,7 @@ export default function SignUpPage() {
       email,
       password,
       options: {
-        emailRedirectTo: `${location.origin}/api/auth/callback?next=/onboarding/persona`,
+        emailRedirectTo: `${location.origin}/api/auth/callback`,
         captchaToken,
       },
     });
@@ -89,7 +89,7 @@ export default function SignUpPage() {
     const { error: otpError } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${location.origin}/api/auth/callback?next=/onboarding/persona`,
+        emailRedirectTo: `${location.origin}/api/auth/callback`,
         shouldCreateUser: true,
         captchaToken,
       },
