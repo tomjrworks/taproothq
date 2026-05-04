@@ -34,8 +34,8 @@ export default function PersonaPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (selected.length === 0 && freetext.trim() === "") {
-      setError("Pick at least one or tell us a bit about yourself.");
+    if (selected.length === 0) {
+      setError("Pick at least one.");
       return;
     }
     setError(null);

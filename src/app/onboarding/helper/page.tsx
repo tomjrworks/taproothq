@@ -14,8 +14,10 @@ import {
 } from "@/components/dashboard/ui/dialog";
 import { toast } from "@/components/dashboard/ui/use-toast";
 
-const ARM_URL = "https://downloads.taproothq.com/helper-mac-arm64-v0.5.0.zip";
-const INTEL_URL = "https://downloads.taproothq.com/helper-mac-x64-v0.5.0.zip";
+const ARM_URL =
+  "https://downloads.taproothq.com/releases/v0.1.1/TaprootHelper-0.1.1.zip";
+const INTEL_URL =
+  "https://downloads.taproothq.com/releases/v0.1.1/TaprootHelper-0.1.1-x64.zip";
 const POLL_INTERVAL_MS = 2000;
 const TIMEOUT_MS = 5 * 60 * 1000;
 
