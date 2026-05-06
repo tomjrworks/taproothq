@@ -15,9 +15,7 @@ import {
 import { toast } from "@/components/dashboard/ui/use-toast";
 
 const ARM_URL =
-  "https://downloads.taproothq.com/releases/v0.1.1/TaprootHelper-0.1.1.zip";
-const INTEL_URL =
-  "https://downloads.taproothq.com/releases/v0.1.1/TaprootHelper-0.1.1-x64.zip";
+  "https://downloads.taproothq.com/releases/v0.1.3/TaprootHelper-0.1.3.dmg";
 const POLL_INTERVAL_MS = 2000;
 const TIMEOUT_MS = 5 * 60 * 1000;
 
@@ -160,16 +158,17 @@ export default function HelperPage() {
               >
                 Apple Silicon ↓
               </a>
-              <a
-                href={INTEL_URL}
-                download
-                className="flex-1 flex items-center justify-center border border-bark/20 text-bark font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 hover:border-forest-dark/40 hover:text-forest-dark transition-colors"
+              <span
+                aria-disabled="true"
+                title="Intel Mac build coming soon — Apple Silicon only for now."
+                className="flex-1 flex items-center justify-center border border-bark/10 text-bark/30 font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 cursor-not-allowed"
               >
-                Intel Mac ↓
-              </a>
+                Intel Mac — soon
+              </span>
             </div>
             <p className="mt-2 font-sans text-xs text-bark/35">
-              Unzip + double-click Taproot Helper.app to open.
+              Open the .dmg, drag Taproot Helper to Applications, then launch
+              it.
             </p>
           </div>
 
