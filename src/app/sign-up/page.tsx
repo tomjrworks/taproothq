@@ -2,10 +2,9 @@
 
 export const dynamic = "force-dynamic";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
@@ -21,18 +20,10 @@ export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const captchaRef = useRef<HCaptcha>(null);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   async function handlePasswordSignUp(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-
-    if (!captchaToken) {
-      setError("Please complete the captcha.");
-      return;
-    }
-
     setLoading(true);
 
     const supabase = createClient();
@@ -41,13 +32,10 @@ export default function SignUpPage() {
       password,
       options: {
         emailRedirectTo: `${location.origin}/api/auth/callback`,
-        captchaToken,
       },
     });
 
     setLoading(false);
-    captchaRef.current?.resetCaptcha();
-    setCaptchaToken(null);
 
     if (signUpError) {
       const msg = signUpError.message.toLowerCase();
@@ -55,8 +43,6 @@ export default function SignUpPage() {
         setError("account_exists");
       } else if (msg.includes("password")) {
         setError("weak_password");
-      } else if (msg.includes("captcha")) {
-        setError("Captcha verification failed. Please try again.");
       } else {
         setError(signUpError.message);
       }
@@ -77,12 +63,6 @@ export default function SignUpPage() {
   async function handleMagicLink(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-
-    if (!captchaToken) {
-      setError("Please complete the captcha.");
-      return;
-    }
-
     setLoading(true);
 
     const supabase = createClient();
@@ -91,13 +71,10 @@ export default function SignUpPage() {
       options: {
         emailRedirectTo: `${location.origin}/api/auth/callback`,
         shouldCreateUser: true,
-        captchaToken,
       },
     });
 
     setLoading(false);
-    captchaRef.current?.resetCaptcha();
-    setCaptchaToken(null);
 
     if (otpError) {
       setError(otpError.message);
@@ -228,15 +205,6 @@ export default function SignUpPage() {
                   <p className="font-sans text-sm text-red-700">{error}</p>
                 )}
 
-              <HCaptcha
-                ref={captchaRef}
-                sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY!}
-                onVerify={(token) => setCaptchaToken(token)}
-                onExpire={() => setCaptchaToken(null)}
-                onError={() => setCaptchaToken(null)}
-                theme="light"
-              />
-
               <button
                 type="submit"
                 disabled={loading}
@@ -270,15 +238,6 @@ export default function SignUpPage() {
                 <p className="font-sans text-sm text-red-700">{error}</p>
               )}
 
-              <HCaptcha
-                ref={captchaRef}
-                sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY!}
-                onVerify={(token) => setCaptchaToken(token)}
-                onExpire={() => setCaptchaToken(null)}
-                onError={() => setCaptchaToken(null)}
-                theme="light"
-              />
-
               <button
                 type="submit"
                 disabled={loading}
@@ -296,8 +255,6 @@ export default function SignUpPage() {
                 onClick={() => {
                   setMode("magic-link");
                   setError(null);
-                  setCaptchaToken(null);
-                  captchaRef.current?.resetCaptcha();
                 }}
                 className="font-sans text-sm text-bark/50 hover:text-forest-dark transition-colors"
               >
@@ -309,8 +266,6 @@ export default function SignUpPage() {
                 onClick={() => {
                   setMode("password");
                   setError(null);
-                  setCaptchaToken(null);
-                  captchaRef.current?.resetCaptcha();
                 }}
                 className="font-sans text-sm text-bark/50 hover:text-forest-dark transition-colors"
               >
