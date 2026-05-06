@@ -71,7 +71,7 @@ function FolderRow({
   };
 
   return (
-    <li role="treeitem" aria-expanded={open}>
+    <li role="treeitem" aria-expanded={open} aria-selected={false}>
       <button
         type="button"
         onClick={toggle}
@@ -119,7 +119,7 @@ function FileRow({
   const noopHref = href === "#";
 
   return (
-    <li role="treeitem">
+    <li role="treeitem" aria-selected={false}>
       <a
         href={href}
         target="_blank"
