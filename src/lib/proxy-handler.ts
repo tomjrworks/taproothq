@@ -5,7 +5,12 @@ import { ApiError } from "@/lib/api";
 const ALLOWED_ORIGINS = new Set<string>([
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://taproothq.com",
   ...(process.env.NODE_ENV === "development"
-    ? ["http://localhost:3000", "http://localhost:3001"]
+    ? [
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3002",
+        "http://localhost:3003",
+      ]
     : []),
 ]);
 
