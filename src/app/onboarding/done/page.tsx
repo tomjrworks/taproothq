@@ -34,8 +34,24 @@ export default function DonePage() {
     setCompleting(true);
     try {
       const res = await fetch("/api/onboarding/done", { method: "POST" });
-      if (!res.ok) throw new Error("api");
-      setCompleted(true);
+      if (res.ok) {
+        setCompleted(true);
+        return;
+      }
+      // The route returns 400 + reason=not_at_done_step when the workspace
+      // is already at "complete" (e.g. retry click, React 18 strict-mode
+      // double-mount, page reload after a prior success). Treat that case
+      // as success-equivalent: setup is done, just flip the UI.
+      let reason: string | undefined;
+      try {
+        const body = (await res.json()) as { reason?: string };
+        reason = body?.reason;
+      } catch {}
+      if (reason === "not_at_done_step") {
+        setCompleted(true);
+        return;
+      }
+      throw new Error("api");
     } catch {
       toast({
         title: "Couldn't finish setup — try again in a sec.",
