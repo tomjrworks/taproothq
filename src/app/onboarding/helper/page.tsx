@@ -14,8 +14,12 @@ import {
 } from "@/components/dashboard/ui/dialog";
 import { toast } from "@/components/dashboard/ui/use-toast";
 
-const ARM_URL =
-  "https://downloads.taproothq.com/releases/v0.1.3/TaprootHelper-0.1.3.dmg";
+// Universal DMG (Apple Silicon + Intel) since 0.1.4 — single artifact for both
+// architectures per the Workstream G plan (G-D1). Both download buttons point
+// at the same URL; the helper Mach-O is a fat binary that runs natively on
+// either CPU.
+const MAC_DMG_URL =
+  "https://downloads.taproothq.com/releases/v0.1.4/TaprootHelper-0.1.4.dmg";
 const POLL_INTERVAL_MS = 2000;
 const TIMEOUT_MS = 5 * 60 * 1000;
 
@@ -152,19 +156,19 @@ export default function HelperPage() {
             </p>
             <div className="flex gap-3">
               <a
-                href={ARM_URL}
+                href={MAC_DMG_URL}
                 download
                 className="flex-1 flex items-center justify-center bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(26,92,50,0.25)] transition-all duration-200"
               >
                 Apple Silicon ↓
               </a>
-              <span
-                aria-disabled="true"
-                title="Intel Mac build coming soon — Apple Silicon only for now."
-                className="flex-1 flex items-center justify-center border border-bark/10 text-bark/30 font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 cursor-not-allowed"
+              <a
+                href={MAC_DMG_URL}
+                download
+                className="flex-1 flex items-center justify-center bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(26,92,50,0.25)] transition-all duration-200"
               >
-                Intel Mac — soon
-              </span>
+                Intel Mac ↓
+              </a>
             </div>
             <p className="mt-2 font-sans text-xs text-bark/35">
               Open the .dmg, drag Taproot Helper to Applications, then launch
