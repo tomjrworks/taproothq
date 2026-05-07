@@ -68,7 +68,7 @@ export default function FirstWowPage() {
         <div className="mt-8">
           <Button
             type="button"
-            onClick={() => router.push("/onboarding/done")}
+            onClick={() => router.push("/onboarding/rules-review")}
             className="w-full"
           >
             Continue →

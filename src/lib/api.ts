@@ -51,6 +51,7 @@ export type OnboardingStep =
   | "permissions"
   | "connect"
   | "first-wow"
+  | "rules-review"
   | "done"
   | "complete";
 
@@ -129,5 +130,29 @@ export function firstWow(jwt: string, rememberedText: string) {
     {
       remembered_text: rememberedText,
     },
+  );
+}
+
+// ── Rules review (F6) ────────────────────────────────────────────────────────
+
+export type RulesPreview = {
+  markdown: string;
+  existing_claude_md: boolean;
+};
+
+export function getRulesPreview(jwt: string) {
+  return call<RulesPreview>("GET", "/api/onboarding/rules-preview", jwt);
+}
+
+export function acceptRulesReview(
+  jwt: string,
+  accept: boolean,
+  edits?: string,
+) {
+  return call<{ accepted: boolean; onboarding_step: OnboardingStep }>(
+    "POST",
+    "/api/onboarding/rules-review",
+    jwt,
+    edits != null ? { accept, edits } : { accept },
   );
 }

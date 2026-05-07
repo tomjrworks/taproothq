@@ -22,6 +22,8 @@ export const POST = withAuthedProxy(async (req, jwt) => {
     );
   }
   const result = await firstWow(jwt, body.remembered_text.trim());
-  await advanceStep(jwt, "done");
+  // F6: advance to rules-review (was "done"). The new step lets users
+  // review/edit/skip the auto-generated CLAUDE.md before completing.
+  await advanceStep(jwt, "rules-review");
   return NextResponse.json(result);
 });
