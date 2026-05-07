@@ -45,7 +45,6 @@ async function call<T>(
 export type OnboardingStep =
   | "persona"
   | "clients"
-  | "vault"
   | "obsidian"
   | "helper"
   | "permissions"
@@ -54,6 +53,14 @@ export type OnboardingStep =
   | "rules-review"
   | "done"
   | "complete";
+
+// Compat shim: workspaces created before the Obsidian-required pivot
+// (2026-05-06) may have onboarding_step="vault" stuck in settings.
+// Treat as "obsidian" on read; forward-bumps on next /api/onboarding/step.
+// See projects/taproot/build/2026-05-07-workstream-a-onboarding-rewrite-task.md
+export function coerceLegacyStep(step: string): OnboardingStep {
+  return step === "vault" ? "obsidian" : (step as OnboardingStep);
+}
 
 export function advanceStep(jwt: string, step: OnboardingStep) {
   return call<{ ok: boolean }>("POST", "/api/onboarding/step", jwt, { step });

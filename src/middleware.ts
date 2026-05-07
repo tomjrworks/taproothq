@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { coerceLegacyStep } from "@/lib/api";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
@@ -59,9 +60,10 @@ export async function middleware(request: NextRequest) {
     // No workspace yet (race with workspace-create on first signin) — let through;
     // the onboarding layout will retry workspace creation.
     if (!wsErr && ws) {
-      const step =
+      const rawStep =
         (ws.settings as { onboarding_step?: string } | null)?.onboarding_step ??
         "persona";
+      const step = coerceLegacyStep(rawStep);
 
       if (step === "complete") {
         // Completed user wandered into /onboarding — bounce to dashboard.

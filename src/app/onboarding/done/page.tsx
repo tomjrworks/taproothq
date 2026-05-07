@@ -9,7 +9,7 @@ import { toast } from "@/components/dashboard/ui/use-toast";
 
 export default function DonePage() {
   const [connectedClients, setConnectedClients] = useState<string[]>([]);
-  const [vaultPath, setVaultPath] = useState("~/Documents/Taproot/");
+  const [vaultPath, setVaultPath] = useState<string | null>(null);
   const [completing, setCompleting] = useState(false);
   const [completed, setCompleted] = useState(false);
 
@@ -69,7 +69,15 @@ export default function DonePage() {
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
         Everything&apos;s connected. Your notes live at{" "}
-        <span className="font-mono text-sm text-forest-dark">{vaultPath}</span>{" "}
+        {vaultPath ? (
+          <span className="font-mono text-sm text-forest-dark">
+            {vaultPath}
+          </span>
+        ) : (
+          <em className="font-mono text-sm italic text-bark/40">
+            Helper detecting your vault…
+          </em>
+        )}{" "}
         and sync to your encrypted mirror automatically.
       </p>
 
@@ -79,7 +87,13 @@ export default function DonePage() {
           <p className="font-mono text-xs text-bark/40 uppercase tracking-widest mb-1">
             Vault
           </p>
-          <p className="font-mono text-sm text-forest-dark">{vaultPath}</p>
+          {vaultPath ? (
+            <p className="font-mono text-sm text-forest-dark">{vaultPath}</p>
+          ) : (
+            <p className="font-mono text-sm italic text-bark/40">
+              Helper detecting your vault…
+            </p>
+          )}
         </div>
 
         {connectedClients.length > 0 && (
@@ -122,12 +136,14 @@ export default function DonePage() {
           </Button>
         ) : (
           <>
-            <a
-              href={`obsidian://open?vault=${encodeURIComponent(vaultPath)}`}
-              className="flex items-center justify-center w-full bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest rounded px-8 py-4 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(26,92,50,0.25)] transition-all duration-200"
-            >
-              Open my vault ↗
-            </a>
+            {vaultPath && (
+              <a
+                href={`obsidian://open?path=${encodeURIComponent(vaultPath)}`}
+                className="flex items-center justify-center w-full bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest rounded px-8 py-4 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(26,92,50,0.25)] transition-all duration-200"
+              >
+                Open my vault ↗
+              </a>
+            )}
 
             <Link href="/dashboard">
               <Button variant="secondary" className="w-full">

@@ -59,7 +59,7 @@ export default function ClientsPage() {
 
       const res = await fetch("/api/onboarding/clients", { method: "POST" });
       if (!res.ok) throw new Error("api");
-      router.push("/onboarding/vault");
+      router.push("/onboarding/obsidian");
     } catch {
       toast({
         title: "Something went wrong — give it a sec and try again.",

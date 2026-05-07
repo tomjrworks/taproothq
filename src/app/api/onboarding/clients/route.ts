@@ -3,6 +3,6 @@ import { withAuthedProxy } from "@/lib/proxy-handler";
 import { advanceStep } from "@/lib/api";
 
 export const POST = withAuthedProxy(async (_req, jwt) => {
-  await advanceStep(jwt, "vault");
+  await advanceStep(jwt, "obsidian");
   return NextResponse.json({ ok: true });
 });

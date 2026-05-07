@@ -7,12 +7,12 @@ import { usePathname } from "next/navigation";
 const STEP_MAP: Record<string, number> = {
   "/onboarding/persona": 2,
   "/onboarding/clients": 3,
-  "/onboarding/vault": 4,
-  "/onboarding/obsidian": 5,
-  "/onboarding/helper": 6,
-  "/onboarding/permissions": 7,
-  "/onboarding/connect": 8,
-  "/onboarding/first-wow": 9,
+  "/onboarding/obsidian": 4,
+  "/onboarding/helper": 5,
+  "/onboarding/permissions": 6,
+  "/onboarding/connect": 7,
+  "/onboarding/first-wow": 8,
+  "/onboarding/rules-review": 9,
   "/onboarding/done": 10,
 };
 

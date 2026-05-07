@@ -30,17 +30,13 @@ export default function ObsidianPage() {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
       <h1 className="font-serif text-4xl text-bark leading-tight">
-        Install Obsidian{" "}
-        <span className="font-sans text-lg text-bark/40 font-normal">
-          (recommended)
-        </span>
+        Install Obsidian
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
-        Obsidian is a free Markdown editor that pairs well with Taproot. It
-        renders the wikilinks and gives you a graph view of your garden.{" "}
-        <em className="font-serif italic not-italic">
-          You don&apos;t need it — any Markdown editor works — but most users
-          like it.
+        Taproot syncs your Obsidian vault. The helper (next step) will pick up
+        your vaults automatically.{" "}
+        <em className="font-serif italic not-italic text-forest-dark">
+          Required — Taproot doesn&apos;t work without it.
         </em>
       </p>
 
@@ -58,7 +54,7 @@ export default function ObsidianPage() {
           Download it, install it, then come back here.
         </p>
 
-        <div className="pt-2 space-y-3">
+        <div className="pt-2">
           <Button
             type="button"
             variant="secondary"
@@ -66,16 +62,8 @@ export default function ObsidianPage() {
             disabled={loading}
             className="w-full"
           >
-            {loading ? "Saving…" : "I already have it →"}
+            {loading ? "Saving…" : "I have it — continue →"}
           </Button>
-
-          <button
-            type="button"
-            onClick={advance}
-            className="w-full font-sans text-sm text-bark/40 hover:text-bark transition-colors py-2"
-          >
-            Skip — I&apos;ll edit notes another way
-          </button>
         </div>
       </div>
     </motion.div>
