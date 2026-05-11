@@ -6,9 +6,17 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
   let email: string | undefined;
+  let source: string | undefined;
+  let platform: string | undefined;
   try {
-    const body = (await req.json()) as { email?: string };
+    const body = (await req.json()) as {
+      email?: string;
+      source?: string;
+      platform?: string;
+    };
     email = body.email?.trim().toLowerCase();
+    source = body.source?.trim().slice(0, 64);
+    platform = body.platform?.trim().slice(0, 64);
   } catch {
     return Response.json({ error: "Invalid request" }, { status: 400 });
   }
@@ -50,11 +58,16 @@ export async function POST(req: Request) {
   const webhook = process.env.DISCORD_WEBHOOK_URL;
   if (webhook) {
     try {
+      const sourceLabel =
+        source === "windows-waitlist"
+          ? `🪟 **Windows waitlist** signup`
+          : "New Taproot beta signup";
+      const platformLabel = platform ? ` _(platform: ${platform})_` : "";
       await fetch(webhook, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          content: `New Taproot beta signup: \`${email}\``,
+          content: `${sourceLabel}: \`${email}\`${platformLabel}`,
         }),
         signal: AbortSignal.timeout(3000),
       });

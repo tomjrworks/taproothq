@@ -2,7 +2,7 @@
 
 export const dynamic = "force-dynamic";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
@@ -11,6 +11,16 @@ import { Button } from "@/components/dashboard/ui/button";
 
 type Mode = "password" | "magic-link";
 type Stage = "form" | "check-email";
+type Platform = "mac" | "windows" | "linux" | "other";
+
+function detectPlatform(): Platform {
+  if (typeof navigator === "undefined") return "mac";
+  const ua = navigator.userAgent || "";
+  if (/Mac|iPhone|iPad|iPod/i.test(ua)) return "mac";
+  if (/Windows/i.test(ua)) return "windows";
+  if (/Linux|X11/i.test(ua)) return "linux";
+  return "other";
+}
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -22,6 +32,49 @@ export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // OS gate — Taproot is Mac-only for the early phase. Non-Mac users see a
+  // waitlist form instead of the sign-up form. Detection runs once on
+  // mount; before then we render Mac UI to avoid a flash for the common
+  // case. Users can override the gate via the "I'm on a Mac" escape hatch
+  // (catches false-negative UA strings like Firefox/Linux dev setups
+  // running on a real Mac).
+  const [platform, setPlatform] = useState<Platform>("mac");
+  const [overrideToMac, setOverrideToMac] = useState(false);
+  const [waitlistEmail, setWaitlistEmail] = useState("");
+  const [waitlistLoading, setWaitlistLoading] = useState(false);
+  const [waitlistError, setWaitlistError] = useState<string | null>(null);
+  const [waitlistDone, setWaitlistDone] = useState(false);
+
+  useEffect(() => {
+    setPlatform(detectPlatform());
+  }, []);
+
+  const showWaitlist = platform !== "mac" && !overrideToMac;
+
+  async function handleWaitlistSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setWaitlistError(null);
+    if (!waitlistEmail.trim()) return;
+    setWaitlistLoading(true);
+    try {
+      const res = await fetch("/api/beta-signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: waitlistEmail.trim(),
+          source: "windows-waitlist",
+          platform,
+        }),
+      });
+      if (!res.ok) throw new Error("submit_failed");
+      setWaitlistDone(true);
+    } catch {
+      setWaitlistError("Something went wrong — try again in a sec.");
+    } finally {
+      setWaitlistLoading(false);
+    }
+  }
 
   const passwordsMismatch =
     confirmPassword.length > 0 && password !== confirmPassword;
@@ -90,6 +143,108 @@ export default function SignUpPage() {
     }
 
     setStage("check-email");
+  }
+
+  if (showWaitlist) {
+    const platformLabel =
+      platform === "windows"
+        ? "Windows"
+        : platform === "linux"
+          ? "Linux"
+          : "your platform";
+
+    return (
+      <main className="min-h-screen bg-cream flex flex-col items-center justify-center px-6">
+        <div className="w-full max-w-[560px]">
+          <WordmarkLink />
+
+          {waitlistDone ? (
+            <div className="mt-10 text-center">
+              <h1 className="font-serif text-3xl text-bark leading-snug">
+                You&apos;re on the list.
+              </h1>
+              <p className="mt-4 font-sans text-base text-bark/60 leading-relaxed">
+                We&apos;ll email{" "}
+                <span className="text-bark font-medium">{waitlistEmail}</span>{" "}
+                the moment {platformLabel} support ships.
+              </p>
+              <p className="mt-8 font-sans text-sm text-bark/40">
+                <em className="font-serif italic">
+                  rooting for you in the meantime
+                </em>
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="mt-10">
+                <h1 className="font-serif text-4xl text-bark leading-tight">
+                  Taproot is{" "}
+                  <em className="italic text-forest-dark">Mac-only</em> for now.
+                </h1>
+                <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
+                  The helper that keeps your vault synced is built for macOS
+                  while we validate the core experience with the first wave of
+                  users. {platformLabel} support is on the roadmap — drop your
+                  email and we&apos;ll ping you the moment it ships.
+                </p>
+              </div>
+
+              <form
+                onSubmit={handleWaitlistSubmit}
+                className="mt-10 bg-cream-dark/40 rounded-lg border border-bark/8 p-8 space-y-5"
+              >
+                <div>
+                  <label
+                    htmlFor="waitlist-email"
+                    className="block font-sans text-sm text-bark/70 mb-1.5"
+                  >
+                    Email
+                  </label>
+                  <input
+                    id="waitlist-email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    value={waitlistEmail}
+                    onChange={(e) => setWaitlistEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="w-full bg-cream border border-bark/15 rounded px-4 py-3 font-sans text-sm text-bark placeholder-bark/30 focus:outline-none focus:border-forest-dark/60 transition-colors"
+                  />
+                </div>
+
+                {waitlistError && (
+                  <p className="font-sans text-sm text-red-700">
+                    {waitlistError}
+                  </p>
+                )}
+
+                <Button
+                  type="submit"
+                  variant="primary"
+                  disabled={waitlistLoading || !waitlistEmail.trim()}
+                  className="self-stretch w-full"
+                >
+                  {waitlistLoading
+                    ? "Joining…"
+                    : `Join the ${platformLabel} waitlist →`}
+                </Button>
+              </form>
+
+              <p className="mt-6 text-center font-sans text-sm text-bark/40">
+                On a Mac and we got it wrong?{" "}
+                <button
+                  type="button"
+                  className="text-bark/60 underline hover:text-forest-dark transition-colors"
+                  onClick={() => setOverrideToMac(true)}
+                >
+                  Continue to sign-up
+                </button>
+              </p>
+            </>
+          )}
+        </div>
+      </main>
+    );
   }
 
   if (stage === "check-email") {
