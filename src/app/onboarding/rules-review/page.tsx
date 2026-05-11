@@ -60,7 +60,7 @@ export default function RulesReviewPage() {
         body: JSON.stringify(body),
       });
       if (!res.ok) throw new Error("submit_failed");
-      router.push("/onboarding/done");
+      router.push("/onboarding/use-cases");
     } catch {
       toast({
         title: "Couldn't save — try again in a sec.",

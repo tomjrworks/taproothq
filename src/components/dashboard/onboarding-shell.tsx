@@ -12,7 +12,8 @@ const STEP_MAP: Record<string, number> = {
   "/onboarding/connect": 6,
   "/onboarding/first-wow": 7,
   "/onboarding/rules-review": 8,
-  "/onboarding/done": 9,
+  "/onboarding/use-cases": 9,
+  "/onboarding/done": 10,
 };
 
 export function OnboardingShell({ children }: { children: React.ReactNode }) {
@@ -36,7 +37,7 @@ export function OnboardingShell({ children }: { children: React.ReactNode }) {
           />
         </Link>
         <span className="font-mono text-xs text-bark/40 uppercase tracking-widest">
-          Step {step} of 9
+          Step {step} of 10
         </span>
       </header>
 

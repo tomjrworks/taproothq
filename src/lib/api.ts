@@ -50,6 +50,7 @@ export type OnboardingStep =
   | "connect"
   | "first-wow"
   | "rules-review"
+  | "use-cases"
   | "done"
   | "complete";
 
