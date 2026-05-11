@@ -62,7 +62,7 @@ export async function middleware(request: NextRequest) {
     if (!wsErr && ws) {
       const rawStep =
         (ws.settings as { onboarding_step?: string } | null)?.onboarding_step ??
-        "persona";
+        "clients";
       const step = coerceLegacyStep(rawStep);
 
       if (step === "complete") {

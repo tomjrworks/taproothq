@@ -5,15 +5,14 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const STEP_MAP: Record<string, number> = {
-  "/onboarding/persona": 2,
-  "/onboarding/clients": 3,
-  "/onboarding/obsidian": 4,
-  "/onboarding/helper": 5,
-  "/onboarding/permissions": 6,
-  "/onboarding/connect": 7,
-  "/onboarding/first-wow": 8,
-  "/onboarding/rules-review": 9,
-  "/onboarding/done": 10,
+  "/onboarding/clients": 2,
+  "/onboarding/obsidian": 3,
+  "/onboarding/helper": 4,
+  "/onboarding/permissions": 5,
+  "/onboarding/connect": 6,
+  "/onboarding/first-wow": 7,
+  "/onboarding/rules-review": 8,
+  "/onboarding/done": 9,
 };
 
 export function OnboardingShell({ children }: { children: React.ReactNode }) {
@@ -37,7 +36,7 @@ export function OnboardingShell({ children }: { children: React.ReactNode }) {
           />
         </Link>
         <span className="font-mono text-xs text-bark/40 uppercase tracking-widest">
-          Step {step} of 10
+          Step {step} of 9
         </span>
       </header>
 

@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { coerceLegacyStep } from "@/lib/api";
 import DashboardNav from "@/components/dashboard/DashboardNav";
 
 export const dynamic = "force-dynamic";
@@ -22,9 +23,10 @@ export default async function DashboardLayout({
     .from("workspaces")
     .select("settings")
     .single();
-  const step =
+  const rawStep =
     (ws?.settings as { onboarding_step?: string } | null)?.onboarding_step ??
-    "persona";
+    "clients";
+  const step = coerceLegacyStep(rawStep);
   if (step !== "complete") {
     redirect(`/onboarding/${step}`);
   }

@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
+import { coerceLegacyStep } from "@/lib/api";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -77,9 +78,10 @@ export async function GET(request: NextRequest) {
       .from("workspaces")
       .select("settings")
       .single();
-    const step =
+    const rawStep =
       (ws?.settings as { onboarding_step?: string } | null)?.onboarding_step ??
-      "persona";
+      "clients";
+    const step = coerceLegacyStep(rawStep);
     resolvedNext = step === "complete" ? "/dashboard" : `/onboarding/${step}`;
   }
 

@@ -54,7 +54,7 @@ export default function SignUpPage() {
       data: { user },
     } = await supabase.auth.getUser();
     if (user?.confirmed_at) {
-      router.push("/onboarding/persona");
+      router.push("/onboarding/clients");
     } else {
       setStage("check-email");
     }

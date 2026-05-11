@@ -78,7 +78,7 @@ export async function GET(request: NextRequest) {
       .single();
     const rawStep =
       (ws?.settings as { onboarding_step?: string } | null)?.onboarding_step ??
-      "persona";
+      "clients";
     const step = coerceLegacyStep(rawStep);
     resolvedNext = step === "complete" ? "/dashboard" : `/onboarding/${step}`;
   }

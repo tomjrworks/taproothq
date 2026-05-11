@@ -43,7 +43,6 @@ async function call<T>(
 // ── Onboarding ──────────────────────────────────────────────────────────────
 
 export type OnboardingStep =
-  | "persona"
   | "clients"
   | "obsidian"
   | "helper"
@@ -54,23 +53,18 @@ export type OnboardingStep =
   | "done"
   | "complete";
 
-// Compat shim: workspaces created before the Obsidian-required pivot
-// (2026-05-06) may have onboarding_step="vault" stuck in settings.
-// Treat as "obsidian" on read; forward-bumps on next /api/onboarding/step.
-// See projects/taproot/build/2026-05-07-workstream-a-onboarding-rewrite-task.md
+// Compat shim for legacy step names persisted in workspaces.settings.onboarding_step:
+//   - "vault" → "obsidian" (Obsidian-required pivot, 2026-05-06)
+//   - "persona" → "clients" (trait removal + persona step deleted, 2026-05-11)
+// Forward-bumps on next /api/onboarding/step write.
 export function coerceLegacyStep(step: string): OnboardingStep {
-  return step === "vault" ? "obsidian" : (step as OnboardingStep);
+  if (step === "vault") return "obsidian";
+  if (step === "persona") return "clients";
+  return step as OnboardingStep;
 }
 
 export function advanceStep(jwt: string, step: OnboardingStep) {
   return call<{ ok: boolean }>("POST", "/api/onboarding/step", jwt, { step });
-}
-
-export function savePersona(jwt: string, traits: string[], freetext?: string) {
-  return call<{ ok: boolean }>("POST", "/api/persona", jwt, {
-    traits,
-    freetext,
-  });
 }
 
 // ── Helper ───────────────────────────────────────────────────────────────────
