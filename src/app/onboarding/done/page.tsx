@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
@@ -65,7 +66,7 @@ export default function DonePage() {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
       <h1 className="font-serif text-4xl text-bark leading-tight">
-        Your garden is alive.
+        Your memory layer is <em className="italic text-forest-dark">alive</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
         Everything&apos;s connected. Your notes live at{" "}
@@ -124,6 +125,27 @@ export default function DonePage() {
         </div>
       </div>
 
+      {/* Graph closer */}
+      <figure className="mt-10 rounded-lg overflow-hidden border border-bark/8 bg-cream-dark/40">
+        <Image
+          src="/images/graph-poster.jpg"
+          alt="Knowledge graph — nodes and connections growing outward"
+          width={1600}
+          height={900}
+          className="w-full h-auto"
+        />
+        <figcaption className="px-6 py-4">
+          <p className="font-serif text-xl text-bark leading-snug">
+            Your <em className="italic text-forest-dark">knowledge graph</em>{" "}
+            grows from here.
+          </p>
+          <p className="mt-1 font-sans text-sm text-bark/55 leading-relaxed">
+            Every note you save becomes a node. Every AI session adds
+            connections. Taproot keeps it growing.
+          </p>
+        </figcaption>
+      </figure>
+
       {/* CTAs */}
       <div className="mt-8 space-y-4">
         {!completed ? (
@@ -147,7 +169,7 @@ export default function DonePage() {
 
             <Link href="/dashboard">
               <Button variant="secondary" className="w-full">
-                Visit your dashboard →
+                Open your <em className="italic">dashboard</em> →
               </Button>
             </Link>
           </>

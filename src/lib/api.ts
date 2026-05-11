@@ -123,15 +123,19 @@ export function markClientConnected(jwt: string, clientId: string) {
 
 // ── First wow ────────────────────────────────────────────────────────────────
 
+export type FirstWowResult = {
+  status: "verified" | "pending";
+  // Optional retrieval-demo content: PRODUCT may return a Claude-generated
+  // confirmation of what was saved, surfaced inline as the "what Claude saw"
+  // wow moment. Treated as optional — if missing, the wizard falls back to
+  // a plain "Saved." state.
+  claude_verification?: string;
+};
+
 export function firstWow(jwt: string, rememberedText: string) {
-  return call<{ status: "verified" | "pending" }>(
-    "POST",
-    "/api/first-wow",
-    jwt,
-    {
-      remembered_text: rememberedText,
-    },
-  );
+  return call<FirstWowResult>("POST", "/api/first-wow", jwt, {
+    remembered_text: rememberedText,
+  });
 }
 
 // ── Rules review (F6) ────────────────────────────────────────────────────────

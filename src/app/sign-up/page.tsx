@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/dashboard/ui/button";
 
 type Mode = "password" | "magic-link";
 type Stage = "form" | "check-email";
@@ -17,9 +18,16 @@ export default function SignUpPage() {
   const [stage, setStage] = useState<Stage>("form");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const passwordsMismatch =
+    confirmPassword.length > 0 && password !== confirmPassword;
+  const passwordTooShort = password.length > 0 && password.length < 10;
+  const passwordSubmitDisabled =
+    loading || !email || password.length < 10 || password !== confirmPassword;
 
   async function handlePasswordSignUp(e: React.FormEvent) {
     e.preventDefault();
@@ -122,10 +130,11 @@ export default function SignUpPage() {
 
         <div className="mt-10">
           <h1 className="font-serif text-4xl text-bark leading-tight">
-            Let&apos;s get your garden growing.{" "}
+            Create your{" "}
+            <em className="italic text-forest-dark">memory layer</em>.
           </h1>
           <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
-            Setup takes about 10 minutes. We&apos;ll build your garden, install
+            Setup takes about 10 minutes. We&apos;ll build your vault, install
             the helper that keeps it synced, and connect it to the AI tools you
             already use.
           </p>
@@ -181,6 +190,36 @@ export default function SignUpPage() {
                     {showPassword ? "hide" : "show"}
                   </button>
                 </div>
+                {passwordTooShort && (
+                  <p className="mt-1.5 font-sans text-xs text-bark/50">
+                    At least 10 characters.
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label
+                  htmlFor="confirm-password"
+                  className="block font-sans text-sm text-bark/70 mb-1.5"
+                >
+                  Confirm password
+                </label>
+                <input
+                  id="confirm-password"
+                  type={showPassword ? "text" : "password"}
+                  autoComplete="new-password"
+                  required
+                  minLength={10}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="re-enter password"
+                  className="w-full bg-cream border border-bark/15 rounded px-4 py-3 font-sans text-sm text-bark placeholder-bark/30 focus:outline-none focus:border-forest-dark/60 transition-colors"
+                />
+                {passwordsMismatch && (
+                  <p className="mt-1.5 font-sans text-xs text-red-700">
+                    Passwords don&apos;t match.
+                  </p>
+                )}
               </div>
 
               {error === "account_exists" && (
@@ -205,13 +244,14 @@ export default function SignUpPage() {
                   <p className="font-sans text-sm text-red-700">{error}</p>
                 )}
 
-              <button
+              <Button
                 type="submit"
-                disabled={loading}
-                className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                variant="primary"
+                disabled={passwordSubmitDisabled}
+                className="self-stretch w-full"
               >
-                {loading ? "Creating your garden…" : "Create account →"}
-              </button>
+                {loading ? "Creating your account…" : "Create account →"}
+              </Button>
             </form>
           ) : (
             <form onSubmit={handleMagicLink} className="space-y-5">
@@ -238,13 +278,14 @@ export default function SignUpPage() {
                 <p className="font-sans text-sm text-red-700">{error}</p>
               )}
 
-              <button
+              <Button
                 type="submit"
-                disabled={loading}
-                className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                variant="primary"
+                disabled={loading || !email}
+                className="self-stretch w-full"
               >
                 {loading ? "Sending link…" : "Send magic link →"}
-              </button>
+              </Button>
             </form>
           )}
 

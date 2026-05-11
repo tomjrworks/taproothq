@@ -40,22 +40,50 @@ export default function PermissionsPage() {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
       <h1 className="font-serif text-4xl text-bark leading-tight">
-        You may have just been asked for permissions
+        Your vault stays <em className="italic text-forest-dark">local</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
-        When you opened the helper, macOS may have asked if Taproot can access
-        your Documents folder.{" "}
-        <strong className="font-semibold text-bark">Click Allow</strong> — we
-        need it to read and write your notes.
+        Taproot reads and writes notes on your Mac. Your vault never leaves your
+        computer unless you turn on cloud mirror — and when you do, it&apos;s
+        end-to-end encrypted so only your AI clients can read it via you.
       </p>
 
-      <div className="mt-8 bg-cream-dark/40 border border-bark/8 rounded-lg px-6 py-5">
-        <p className="font-sans text-sm text-bark/60 leading-relaxed">
-          If you missed the prompt, you can grant access in:
-        </p>
-        <p className="mt-2 font-mono text-sm text-forest-dark">
-          System Settings → Privacy & Security → Files and Folders
-        </p>
+      <div className="mt-8 space-y-3">
+        <div className="flex items-start gap-3 bg-cream-dark/40 border border-bark/8 rounded-lg px-5 py-4">
+          <span className="font-serif text-xl text-forest-dark mt-0.5">·</span>
+          <p className="font-sans text-sm text-bark/70 leading-relaxed">
+            <strong className="font-medium text-bark">Local first.</strong> Your
+            notes live in a folder on your Mac. Obsidian reads them. The helper
+            syncs them. Nothing moves without you.
+          </p>
+        </div>
+        <div className="flex items-start gap-3 bg-cream-dark/40 border border-bark/8 rounded-lg px-5 py-4">
+          <span className="font-serif text-xl text-forest-dark mt-0.5">·</span>
+          <p className="font-sans text-sm text-bark/70 leading-relaxed">
+            <strong className="font-medium text-bark">
+              Encrypted in the cloud.
+            </strong>{" "}
+            If you turn on cloud mirror, your notes are encrypted end-to-end. We
+            can&apos;t read them; only your AI clients can, on your behalf.
+          </p>
+        </div>
+        <div className="flex items-start gap-3 bg-cream-dark/40 border border-bark/8 rounded-lg px-5 py-4">
+          <span className="font-serif text-xl text-forest-dark mt-0.5">·</span>
+          <p className="font-sans text-sm text-bark/70 leading-relaxed">
+            <strong className="font-medium text-bark">
+              macOS permissions.
+            </strong>{" "}
+            When you opened the helper, macOS may have asked it for access to
+            your Documents folder.{" "}
+            <strong className="font-medium text-bark">Click Allow</strong> —
+            it&apos;s how the helper reads + writes your notes. If you missed
+            the prompt, grant access in{" "}
+            <span className="font-mono text-forest-dark">
+              System Settings → Privacy &amp; Security → Files and Folders
+            </span>
+            .
+          </p>
+        </div>
       </div>
 
       <div className="mt-8 space-y-4">
@@ -65,7 +93,7 @@ export default function PermissionsPage() {
           disabled={loading}
           className="w-full"
         >
-          {loading ? "Saving…" : "I clicked Allow →"}
+          {loading ? "Saving…" : "Continue →"}
         </Button>
 
         <button

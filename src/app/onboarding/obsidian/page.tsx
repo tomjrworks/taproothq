@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
@@ -30,15 +31,31 @@ export default function ObsidianPage() {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
       <h1 className="font-serif text-4xl text-bark leading-tight">
-        Install Obsidian
+        Install <em className="italic text-forest-dark">the editor</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
-        Taproot syncs your Obsidian vault. The helper (next step) will pick up
-        your vaults automatically.{" "}
+        Your vault is a folder on your Mac. Obsidian opens it, Taproot syncs it,
+        and your AI clients read from it.{" "}
         <em className="font-serif italic not-italic text-forest-dark">
           Required — Taproot doesn&apos;t work without it.
         </em>
       </p>
+
+      <figure className="mt-8 rounded-lg overflow-hidden border border-bark/8 bg-cream-dark/40">
+        <Image
+          src="/images/obsidiansidebar.png"
+          alt="An Obsidian vault sidebar — folders and notes"
+          width={1200}
+          height={720}
+          className="w-full h-auto"
+        />
+        <figcaption className="px-4 py-3 font-sans text-xs text-bark/50 text-center">
+          <em className="font-serif italic text-bark/70">
+            a vault is just files
+          </em>{" "}
+          — folders and markdown on your computer.
+        </figcaption>
+      </figure>
 
       <div className="mt-10 space-y-4">
         <a

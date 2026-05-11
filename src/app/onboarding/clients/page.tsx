@@ -73,13 +73,12 @@ export default function ClientsPage() {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
       <h1 className="font-serif text-4xl text-bark leading-tight">
-        Which AI tools do you use?
+        Pick your <em className="italic text-forest-dark">AI clients</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
-        Pick the ones you&apos;d like to connect to your garden.{" "}
-        <em className="font-serif italic not-italic">
-          We&apos;ll walk through setup for each one in a minute.
-        </em>
+        These two cover most people today. We&apos;ll add Claude Desktop,
+        Cursor, and CLI tools once you&apos;re set up — pick what you actually
+        use right now.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-8">
