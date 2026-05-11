@@ -6,7 +6,7 @@ import { getClientSetupInfo } from "@/lib/api";
 // integrations that cover >90% of users today. Other clients still ship via
 // PRODUCT (cursor, claude_desktop, cli, etc.) but are hidden from this step
 // to keep the wizard focused. Plan: calm-prancing-hoare.md D4.
-const ALLOWED_CLIENT_IDS = new Set(["claude_web", "chatgpt"]);
+const ALLOWED_CLIENT_IDS = new Set(["claude-ai", "chatgpt"]);
 
 export const GET = withAuthedProxy(async (_req, jwt) => {
   const data = await getClientSetupInfo(jwt);
