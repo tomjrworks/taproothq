@@ -41,15 +41,15 @@ export default function ObsidianPage() {
         </em>
       </p>
 
-      <figure className="mt-8 rounded-lg overflow-hidden border border-bark/8 bg-cream-dark/40">
+      <figure className="mt-8 rounded-lg border border-bark/8 bg-cream-dark/40 py-6 flex flex-col items-center">
         <Image
           src="/images/obsidiansidebar.png"
           alt="An Obsidian vault sidebar — folders and notes"
-          width={1200}
-          height={720}
-          className="w-full h-auto"
+          width={216}
+          height={362}
+          className="h-auto max-w-[80%] rounded shadow-sm"
         />
-        <figcaption className="px-4 py-3 font-sans text-xs text-bark/50 text-center">
+        <figcaption className="mt-4 px-4 font-sans text-xs text-bark/50 text-center">
           <em className="font-serif italic text-bark/70">
             a vault is just files
           </em>{" "}

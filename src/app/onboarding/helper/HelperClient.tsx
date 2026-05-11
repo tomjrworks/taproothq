@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { fadeIn, fadeInFast } from "@/lib/motion";
@@ -117,18 +116,6 @@ export function HelperClient({ version, dmgUrl }: Props) {
 
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
-      <div className="flex items-center gap-3 mb-4">
-        <Image
-          src="/images/taproot-logo.png"
-          alt=""
-          width={401}
-          height={477}
-          className="h-8 w-auto"
-        />
-        <span className="font-mono text-xs text-bark/40 uppercase tracking-widest">
-          helper · v{version}
-        </span>
-      </div>
       <h1 className="font-serif text-4xl text-bark leading-tight">
         Install the <em className="italic text-forest-dark">helper</em>.
       </h1>
@@ -159,18 +146,24 @@ export function HelperClient({ version, dmgUrl }: Props) {
           {/* Step 1 — Download */}
           <div>
             <p className="font-mono text-xs text-bark/40 uppercase tracking-widest mb-3">
-              1. Download
+              1. Download · v{version}
             </p>
-            <a
-              href={dmgUrl}
-              download
-              className="flex items-center justify-center w-full bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(26,92,50,0.25)] transition-all duration-200"
-            >
-              Download TaprootHelper v{version} ↓
-            </a>
-            <p className="mt-2 font-sans text-xs text-bark/35">
-              Universal binary — runs on Apple Silicon and Intel Macs.
-            </p>
+            <div className="flex gap-3">
+              <a
+                href={dmgUrl}
+                download
+                className="flex-1 flex items-center justify-center bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(26,92,50,0.25)] transition-all duration-200"
+              >
+                Apple Silicon ↓
+              </a>
+              <a
+                href={dmgUrl}
+                download
+                className="flex-1 flex items-center justify-center bg-forest-dark text-cream font-mono text-xs uppercase tracking-widest rounded px-6 py-3.5 hover:-translate-y-px hover:shadow-[0_4px_20px_rgba(26,92,50,0.25)] transition-all duration-200"
+              >
+                Intel Mac ↓
+              </a>
+            </div>
           </div>
 
           {/* Step 2 — Install */}
@@ -187,25 +180,11 @@ export function HelperClient({ version, dmgUrl }: Props) {
               </li>
               <li>Launch it from Applications.</li>
               <li>
-                Look for the <em>leaf</em> in your menubar — that&apos;s the
-                helper running.
+                Look for the small leaf icon in your menubar (top-right of your
+                screen, next to wifi and battery) — that&apos;s the helper
+                running.
               </li>
             </ol>
-            <div className="mt-4 rounded-lg border border-bark/8 bg-cream-dark/40 px-4 py-3 flex items-center gap-3">
-              <Image
-                src="/images/taproot-logo.png"
-                alt="Taproot leaf icon"
-                width={401}
-                height={477}
-                className="h-5 w-auto opacity-70"
-              />
-              <span className="font-sans text-xs text-bark/50">
-                <em className="font-serif italic text-bark/70">
-                  this little leaf
-                </em>{" "}
-                — top-right of your screen, next to wifi + battery.
-              </span>
-            </div>
           </div>
 
           {/* Step 3 — Pair */}

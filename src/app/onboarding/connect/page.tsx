@@ -108,7 +108,7 @@ export default function ConnectPage() {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
       <h1 className="font-serif text-4xl text-bark leading-tight">
-        Connect your AI tools to your garden
+        Connect your <em className="italic text-forest-dark">AI tools</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
         For each tool, follow the steps.{" "}
@@ -116,6 +116,15 @@ export default function ConnectPage() {
           Once connected, your AI can read and write your notes.
         </em>
       </p>
+
+      <div className="mt-6 rounded-lg border border-forest-dark/20 bg-forest-dark/8 px-4 py-3">
+        <p className="font-sans text-sm text-bark/75 leading-relaxed">
+          <strong className="font-medium text-forest-dark">Heads up:</strong>{" "}
+          when you click connect inside your AI tool, it&apos;ll bounce you back
+          to Taproot to sign in once — that&apos;s the OAuth handshake. Sign in
+          with the same account and you&apos;ll come right back here.
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-8">
         {fetchLoading ? (

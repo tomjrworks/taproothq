@@ -43,18 +43,20 @@ export default function PermissionsPage() {
         Your vault stays <em className="italic text-forest-dark">local</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
-        Taproot reads and writes notes on your Mac. Your vault never leaves your
-        computer unless you turn on cloud mirror — and when you do, it&apos;s
-        end-to-end encrypted so only your AI clients can read it via you.
+        Your notes live in a folder on your Mac. Taproot syncs them to an
+        end-to-end encrypted mirror so your AI clients can read them from
+        anywhere — but we can&apos;t.
       </p>
 
       <div className="mt-8 space-y-3">
         <div className="flex items-start gap-3 bg-cream-dark/40 border border-bark/8 rounded-lg px-5 py-4">
           <span className="font-serif text-xl text-forest-dark mt-0.5">·</span>
           <p className="font-sans text-sm text-bark/70 leading-relaxed">
-            <strong className="font-medium text-bark">Local first.</strong> Your
-            notes live in a folder on your Mac. Obsidian reads them. The helper
-            syncs them. Nothing moves without you.
+            <strong className="font-medium text-bark">
+              Your Mac is the source of truth.
+            </strong>{" "}
+            Your notes live in a folder on disk. Obsidian reads them. The helper
+            syncs them. You can open the folder in Finder anytime.
           </p>
         </div>
         <div className="flex items-start gap-3 bg-cream-dark/40 border border-bark/8 rounded-lg px-5 py-4">
@@ -63,8 +65,8 @@ export default function PermissionsPage() {
             <strong className="font-medium text-bark">
               Encrypted in the cloud.
             </strong>{" "}
-            If you turn on cloud mirror, your notes are encrypted end-to-end. We
-            can&apos;t read them; only your AI clients can, on your behalf.
+            The cloud mirror is end-to-end encrypted. We can&apos;t read your
+            notes; only your AI clients can, on your behalf.
           </p>
         </div>
         <div className="flex items-start gap-3 bg-cream-dark/40 border border-bark/8 rounded-lg px-5 py-4">
