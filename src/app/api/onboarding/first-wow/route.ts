@@ -1,29 +1,13 @@
 import { NextResponse } from "next/server";
 import { withAuthedProxy } from "@/lib/proxy-handler";
-import { firstWow, advanceStep } from "@/lib/api";
+import { advanceStep } from "@/lib/api";
 
-export const POST = withAuthedProxy(async (req, jwt) => {
-  let body: { remembered_text?: string };
-  try {
-    body = await req.json();
-  } catch {
-    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
-  }
-  if (!body.remembered_text?.trim()) {
-    return NextResponse.json(
-      { error: "remembered_text required" },
-      { status: 400 },
-    );
-  }
-  if (body.remembered_text.length > 16384) {
-    return NextResponse.json(
-      { error: "remembered_text exceeds 16384 characters" },
-      { status: 400 },
-    );
-  }
-  const result = await firstWow(jwt, body.remembered_text.trim());
-  // F6: advance to rules-review (was "done"). The new step lets users
-  // review/edit/skip the auto-generated CLAUDE.md before completing.
+// First-wow is now an instructional step: the user is told to go save +
+// retrieve a note in their actual AI client, not in this wizard. The proxy
+// just advances the workspace's onboarding_step to rules-review — no note
+// is saved to the user's vault. Avoids polluting inbox/ with placeholder
+// content that would have to be cleaned up post-walk.
+export const POST = withAuthedProxy(async (_req, jwt) => {
   await advanceStep(jwt, "rules-review");
-  return NextResponse.json(result);
+  return NextResponse.json({ ok: true, advanced_to: "rules-review" });
 });

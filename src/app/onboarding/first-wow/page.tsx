@@ -14,14 +14,7 @@ export default function FirstWowPage() {
   async function handleContinue() {
     setAdvancing(true);
     try {
-      // Advance the workspace's onboarding_step server-side without saving
-      // any first-wow content — the real first interaction happens in the
-      // user's AI client of choice, not in this wizard.
-      const res = await fetch("/api/onboarding/first-wow", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ remembered_text: "(skipped via try-it step)" }),
-      });
+      const res = await fetch("/api/onboarding/first-wow", { method: "POST" });
       if (!res.ok) throw new Error("api");
       router.push("/onboarding/rules-review");
     } catch {
