@@ -19,7 +19,7 @@ import { toast } from "@/components/dashboard/ui/use-toast";
 // at the same URL; the helper Mach-O is a fat binary that runs natively on
 // either CPU.
 const MAC_DMG_URL =
-  "https://downloads.taproothq.com/releases/v0.1.6/TaprootHelper-0.1.6.dmg";
+  "https://downloads.taproothq.com/releases/v0.1.9/TaprootHelper-0.1.9.dmg";
 const POLL_INTERVAL_MS = 2000;
 const TIMEOUT_MS = 5 * 60 * 1000;
 
