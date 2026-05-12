@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/lib/motion";
@@ -19,6 +19,10 @@ export default function RulesReviewPage() {
   const [existingClaudeMd, setExistingClaudeMd] = useState(false);
   const [mode, setMode] = useState<Mode>("view");
   const [submitting, setSubmitting] = useState(false);
+  // Synchronous lock — React state updates are async, so a fast
+  // double-click can fire two click handlers before `submitting` flips
+  // to true. The ref blocks the second entry before it can POST.
+  const inFlight = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -47,7 +51,8 @@ export default function RulesReviewPage() {
   }, []);
 
   async function submit(accept: boolean, withEdits?: string) {
-    if (submitting) return;
+    if (inFlight.current) return;
+    inFlight.current = true;
     setSubmitting(true);
     try {
       const body: { accept: boolean; edits?: string } = { accept };
@@ -59,14 +64,29 @@ export default function RulesReviewPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (!res.ok) throw new Error("submit_failed");
-      router.push("/onboarding/use-cases");
+      if (res.ok) {
+        router.push("/onboarding/use-cases");
+        return;
+      }
+      // Server says we're already past this step — treat as success
+      // and navigate forward instead of toasting an error. Covers the
+      // race where a first submit succeeded server-side, advanced the
+      // step, and a queued second submit lands here.
+      const data = (await res.json().catch(() => ({}))) as {
+        reason?: string;
+      };
+      if (data.reason === "not_at_rules_review_step") {
+        router.push("/onboarding/use-cases");
+        return;
+      }
+      throw new Error("submit_failed");
     } catch {
       toast({
         title: "Couldn't save — try again in a sec.",
         variant: "destructive",
       });
     } finally {
+      inFlight.current = false;
       setSubmitting(false);
     }
   }
