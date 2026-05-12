@@ -181,6 +181,10 @@ export default function DonePage() {
         talk to your AI like you normally would — say &ldquo;save this&rdquo; or
         &ldquo;find my note about X&rdquo; and Claude will know what to do.
       </p>
+      <p className="mt-3 font-sans text-sm text-bark/40 leading-relaxed">
+        Your starter folders are ready in Obsidian. They&apos;ll appear in your
+        dashboard once you add notes to them.
+      </p>
     </motion.div>
   );
 }
