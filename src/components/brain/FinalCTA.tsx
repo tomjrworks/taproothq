@@ -143,7 +143,7 @@ export default function FinalCTA() {
           viewport={{ once: true, margin: "-80px" }}
           custom={4}
         >
-          Free for early users &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Unsubscribe
+          30-day free trial &nbsp;·&nbsp; $12/mo after &nbsp;·&nbsp; Cancel
           anytime
         </motion.p>
       </div>

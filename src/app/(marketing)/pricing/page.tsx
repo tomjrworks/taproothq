@@ -14,105 +14,32 @@ const fade = {
   }),
 };
 
-type Tier = {
-  number: string;
-  name: string;
-  oneliner: string;
-  bullets: string[];
-  priceNote: string;
-  cta: { label: string; href: string; external?: boolean };
-};
-
-const TIERS: Tier[] = [
-  {
-    number: "01",
-    name: "Early access",
-    oneliner: "Set up your own Taproot.",
-    bullets: [
-      "A vault of plain text files on your machine",
-      "Works with Claude, ChatGPT, and any AI you use",
-      "Capture, structure, and search your knowledge",
-      "Cancel anytime; your files stay yours",
-    ],
-    priceNote: "Free for early users.",
-    cta: { label: "Get early access", href: "/#join" },
-  },
-  {
-    number: "02",
-    name: "Private setup",
-    oneliner: "We migrate your existing files into your Taproot.",
-    bullets: [
-      "60-min working session, screen share",
-      "We pull in your Drive, Notion, or files",
-      "Structured and ready to search",
-      "Everything in Early access included",
-    ],
-    priceNote: "Founding-member rate locked at signup.",
-    cta: { label: "Join the waitlist", href: "/#join" },
-  },
-  {
-    number: "03",
-    name: "Teams",
-    oneliner: "Set this up across your firm with shared and personal vaults.",
-    bullets: [
-      "Managed migration of firm knowledge",
-      "Shared vault and per-employee personal vaults",
-      "Custom tooling built for your workflow",
-      "Direct access to the Taproot team",
-    ],
-    priceNote: "Custom pricing per firm.",
-    cta: { label: "Join the waitlist", href: "/#join" },
-  },
+const FEATURES = [
+  "MCP server for Claude, ChatGPT, and any AI you use",
+  "Sync your vault across machines",
+  "Auto-filing + smart search",
+  "Your files, your machine — always",
+  "Unlimited notes",
 ];
 
 const FAQ = [
   {
-    q: "Why no public price yet?",
-    a: "Early access is free, and we want the first cohort to inform what founding-member pricing should be. You'll see the number before you're ever charged.",
+    q: "What happens when the trial ends?",
+    a: "After 30 days, Taproot switches to local-only mode. Your files stay on your machine; sync and MCP access pause. You'll get a 7-day nudge window to subscribe before anything changes.",
   },
   {
-    q: "Will I get charged automatically when early access ends?",
-    a: "No. We'll email founding-member pricing first and you opt in. If you don't, your Taproot still works on your machine — your files don't disappear.",
+    q: "Will my files disappear if I don't subscribe?",
+    a: "Never. Your vault lives on your hard drive. Taproot can't take your notes. If you don't subscribe, sync and MCP stop — but the files are yours permanently.",
+  },
+  {
+    q: "What's the difference between monthly and annual?",
+    a: "Annual is $99/year — about $8.25/month. You save roughly two months compared to paying monthly.",
+  },
+  {
+    q: "Can I cancel at any time?",
+    a: "Yes. Cancel from your dashboard and billing stops at the end of the period. Your local vault stays intact.",
   },
 ];
-
-function CtaPill({
-  label,
-  href,
-  external,
-}: {
-  label: string;
-  href: string;
-  external?: boolean;
-}) {
-  const className =
-    "group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-sm md:text-base px-5 py-2.5 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5";
-  const content = (
-    <>
-      <span>{label}</span>
-      <span
-        aria-hidden
-        className="transition-transform duration-200 group-hover:translate-x-0.5"
-      >
-        →
-      </span>
-    </>
-  );
-  return external ? (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={className}
-    >
-      {content}
-    </a>
-  ) : (
-    <Link href={href} className={className}>
-      {content}
-    </Link>
-  );
-}
 
 export default function PricingPage() {
   return (
@@ -129,11 +56,10 @@ export default function PricingPage() {
             animate="visible"
             custom={1}
           >
-            Free during early access.{" "}
+            30 days free.{" "}
             <em className="italic text-forest-dark">
-              Founding-member pricing locked
-            </em>{" "}
-            at signup.
+              Then $12 a month, or $99 a year.
+            </em>
           </motion.h1>
 
           <motion.p
@@ -143,73 +69,91 @@ export default function PricingPage() {
             animate="visible"
             custom={2}
           >
-            Taproot is a memory layer that lives in your files. Three ways in.
+            One plan. Your files stay on your machine either way.
           </motion.p>
         </div>
       </section>
 
-      {/* Tiers — three-column side-by-side */}
+      {/* Single plan card */}
       <section className="relative px-6 lg:px-8 pb-20 md:pb-24 film-grain">
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-x-8 md:gap-y-2 lg:gap-x-12 md:grid-rows-[auto_auto_auto_auto_auto_auto_auto_auto_1fr_auto]">
-            {TIERS.map((tier, i) => (
-              <motion.div
-                key={tier.number}
-                className="flex flex-col gap-y-3 bg-cream-dark rounded-2xl shadow-md shadow-bark/5 p-6 md:p-7 lg:p-8 md:grid md:grid-rows-subgrid md:row-span-10 md:gap-y-2"
-                variants={fade}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-80px" }}
-                custom={i}
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <motion.div
+            className="bg-cream-dark rounded-2xl shadow-md shadow-bark/5 p-8 md:p-10"
+            variants={fade}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            custom={0}
+          >
+            {/* Plan label */}
+            <p className="font-mono text-sm tracking-wide text-bark/55">
+              01 &mdash;
+            </p>
+
+            {/* Plan name */}
+            <h2 className="font-serif text-3xl md:text-4xl text-bark leading-[1.15] tracking-tight mt-2">
+              Taproot Pro
+            </h2>
+
+            {/* Price */}
+            <div className="mt-6 flex flex-col gap-1">
+              <p className="font-serif text-2xl md:text-3xl text-bark leading-[1.2] tracking-tight">
+                $12
+                <span className="font-serif italic text-base md:text-lg text-bark/60 ml-1">
+                  / month
+                </span>
+              </p>
+              <p className="font-serif italic text-base text-bark/55">
+                or $99/year &mdash; two months free
+              </p>
+            </div>
+
+            {/* Trial note */}
+            <p className="mt-4 font-serif italic text-base text-forest-dark/80">
+              30-day free trial included.
+            </p>
+
+            {/* Feature list */}
+            <ul className="mt-8 space-y-0">
+              {FEATURES.map((f) => (
+                <li
+                  key={f}
+                  className="font-serif font-semibold text-base md:text-lg text-[#7a6655] leading-[1.4] py-3 border-t border-bark/10"
+                >
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            {/* CTA */}
+            <div className="mt-10">
+              <Link
+                href="/sign-up"
+                className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-sm md:text-base px-6 py-3 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5"
               >
-                {/* Number */}
-                <p className="font-mono text-sm tracking-wide text-bark/55">
-                  {tier.number} &mdash;
-                </p>
+                <span>Start your free trial</span>
+                <span
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </Link>
+            </div>
 
-                {/* Name */}
-                <h2 className="font-serif text-2xl md:text-3xl text-bark leading-[1.15] tracking-tight">
-                  {tier.name}
-                </h2>
-
-                {/* Oneliner */}
-                <p className="font-serif italic text-base md:text-lg text-bark/75 leading-[1.4]">
-                  {tier.oneliner}
-                </p>
-
-                {/* Price note */}
-                <p className="font-serif italic text-sm md:text-base text-bark/55">
-                  {tier.priceNote}
-                </p>
-
-                {/* Bullets — typography on the cream-dark card with hairline dividers, aligned across columns via subgrid */}
-                {tier.bullets.map((b) => (
-                  <p
-                    key={b}
-                    className="font-serif font-semibold text-base md:text-lg text-[#7a6655] leading-[1.4] py-3 border-t border-bark/10"
-                  >
-                    {b}
-                  </p>
-                ))}
-
-                {/* CTA — explicitly placed in the last row so the 1fr row above pushes it to the bottom */}
-                <div className="md:row-start-[10]">
-                  <CtaPill
-                    label={tier.cta.label}
-                    href={tier.cta.href}
-                    external={tier.cta.external}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            {/* Fine print */}
+            <p className="mt-4 font-serif italic text-sm text-bark/45">
+              After 30 days, Taproot switches to local-only mode if you
+              don&rsquo;t subscribe. Your files stay on your machine.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* FAQ-lite */}
+      {/* FAQ */}
       <section className="relative bg-cream px-6 lg:px-8 py-16 md:py-20 film-grain">
         <div className="relative z-10 max-w-4xl mx-auto">
-          <SectionHeader title="A few common questions" />
+          <SectionHeader title="Common questions" />
 
           <div className="space-y-8 md:space-y-10">
             {FAQ.map((item, i) => (
@@ -230,28 +174,6 @@ export default function PricingPage() {
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            className="mt-10"
-            variants={fade}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-            custom={FAQ.length}
-          >
-            <Link
-              href="/faq"
-              className="group inline-flex items-center gap-1.5 font-serif italic text-base md:text-lg text-forest-dark hover:text-forest-dark/75 transition-colors"
-            >
-              <span>More questions? See the full FAQ</span>
-              <span
-                aria-hidden
-                className="transition-transform duration-200 group-hover:translate-x-0.5"
-              >
-                →
-              </span>
-            </Link>
-          </motion.div>
         </div>
       </section>
 
