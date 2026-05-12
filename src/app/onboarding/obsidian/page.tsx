@@ -43,11 +43,11 @@ export default function ObsidianPage() {
 
       <figure className="mt-8 rounded-lg border border-bark/8 bg-cream-dark/40 py-6 flex flex-col items-center">
         <Image
-          src="/images/obsidiansidebar.png"
-          alt="An Obsidian vault sidebar — folders and notes"
-          width={216}
-          height={362}
-          className="h-auto max-w-[80%] rounded shadow-sm"
+          src="/images/obsidanphoto.png"
+          alt="An Obsidian vault — folders and notes on your Mac"
+          width={1668}
+          height={962}
+          className="h-auto max-w-[90%] rounded shadow-sm"
         />
         <figcaption className="mt-4 px-4 font-sans text-xs text-bark/50 text-center">
           <em className="font-serif italic text-bark/70">
