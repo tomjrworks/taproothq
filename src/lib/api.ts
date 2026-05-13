@@ -162,3 +162,36 @@ export function acceptRulesReview(
     edits != null ? { accept, edits } : { accept },
   );
 }
+
+// ── Billing ───────────────────────────────────────────────────────────────────
+
+export type SubscriptionStatus =
+  | "trialing"
+  | "active"
+  | "past_due"
+  | "canceled"
+  | "paused"
+  | "grandfathered";
+
+export type BillingStatus = {
+  status: SubscriptionStatus;
+  trial_ends_at: string | null;
+  days_remaining: number | null;
+  current_period_end: string | null;
+  stripe_customer_id: string | null;
+  grandfathered: boolean;
+};
+
+export function getBillingStatus(jwt: string) {
+  return call<BillingStatus>("GET", "/api/billing", jwt);
+}
+
+export function createCheckoutSession(jwt: string, interval: "month" | "year") {
+  return call<{ url: string }>("POST", "/api/billing/checkout", jwt, {
+    interval,
+  });
+}
+
+export function createPortalSession(jwt: string) {
+  return call<{ url: string }>("POST", "/api/billing/portal", jwt);
+}

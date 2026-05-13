@@ -1,16 +1,28 @@
 import { createClient } from "@/lib/supabase/server";
 import DigestToggle from "@/components/dashboard/DigestToggle";
 import LeaveTaprootDialog from "@/components/dashboard/LeaveTaprootDialog";
+import BillingCard from "@/components/dashboard/BillingCard";
+import { getBillingStatus, type BillingStatus } from "@/lib/api";
 
 export default async function SettingsPage() {
   const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const [
+    {
+      data: { user },
+    },
+    {
+      data: { session },
+    },
+  ] = await Promise.all([supabase.auth.getUser(), supabase.auth.getSession()]);
   const { data: ws } = await supabase
     .from("workspaces")
     .select("name, settings")
     .single();
+
+  let billing: BillingStatus | null = null;
+  if (session?.access_token) {
+    billing = await getBillingStatus(session.access_token).catch(() => null);
+  }
 
   const workspace = ws?.name ?? "—";
   const email = user?.email ?? "—";
@@ -70,6 +82,18 @@ export default async function SettingsPage() {
       </section>
 
       <div className="mb-8 border-t border-bark/10" />
+
+      {/* Billing */}
+      {billing && (
+        <section className="mb-8">
+          <p className="mb-4 font-mono text-xs uppercase tracking-widest text-bark/30">
+            — billing —
+          </p>
+          <BillingCard billing={billing} />
+        </section>
+      )}
+
+      {billing && <div className="mb-8 border-t border-bark/10" />}
 
       {/* Weekly digest */}
       <section className="mb-8">
