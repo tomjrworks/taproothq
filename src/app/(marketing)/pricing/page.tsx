@@ -108,11 +108,6 @@ export default function PricingPage() {
               </p>
             </div>
 
-            {/* Trial note */}
-            <p className="mt-4 font-serif italic text-base text-forest-dark/80">
-              30-day free trial included.
-            </p>
-
             {/* Feature list */}
             <ul className="mt-8 space-y-0">
               {FEATURES.map((f) => (
@@ -128,10 +123,10 @@ export default function PricingPage() {
             {/* CTA */}
             <div className="mt-10">
               <Link
-                href="/sign-up"
+                href="/#join"
                 className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-sm md:text-base px-6 py-3 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5"
               >
-                <span>Start your free trial</span>
+                <span>Get early access</span>
                 <span
                   aria-hidden
                   className="transition-transform duration-200 group-hover:translate-x-0.5"
@@ -143,8 +138,7 @@ export default function PricingPage() {
 
             {/* Fine print */}
             <p className="mt-4 font-serif italic text-sm text-bark/45">
-              After 30 days, Taproot switches to local-only mode if you
-              don&rsquo;t subscribe. Your files stay on your machine.
+              Early access is free. Billing starts when we flip the switch.
             </p>
           </motion.div>
         </div>

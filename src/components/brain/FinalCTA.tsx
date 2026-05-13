@@ -143,8 +143,7 @@ export default function FinalCTA() {
           viewport={{ once: true, margin: "-80px" }}
           custom={4}
         >
-          30-day free trial &nbsp;·&nbsp; $12/mo after &nbsp;·&nbsp; Cancel
-          anytime
+          Mac-only for now &nbsp;·&nbsp; $12/mo when billing opens
         </motion.p>
       </div>
     </section>
