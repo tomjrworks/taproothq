@@ -25,7 +25,7 @@ const FEATURES = [
 const FAQ = [
   {
     q: "What happens when the trial ends?",
-    a: "After 30 days, Taproot switches to local-only mode. Your files stay on your machine; sync and MCP access pause. You'll get a 7-day nudge window to subscribe before anything changes.",
+    a: "After 30 days, you'll need to subscribe to keep using Taproot through Claude. You'll have a 7-day grace window to subscribe before AI access pauses. Your files always stay on your machine.",
   },
   {
     q: "Will my files disappear if I don't subscribe?",
@@ -135,11 +135,6 @@ export default function PricingPage() {
                 </span>
               </Link>
             </div>
-
-            {/* Fine print */}
-            <p className="mt-4 font-serif italic text-sm text-bark/45">
-              Early access is free. Billing starts when we flip the switch.
-            </p>
           </motion.div>
         </div>
       </section>

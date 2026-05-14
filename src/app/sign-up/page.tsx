@@ -444,6 +444,10 @@ export default function SignUpPage() {
             </form>
           )}
 
+          <p className="mt-3 font-sans text-xs text-bark/50 italic text-center">
+            Free for 30 days, then $12/mo. Cancel anytime.
+          </p>
+
           <div className="mt-6 pt-6 border-t border-bark/8 text-center">
             {mode === "password" ? (
               <button
