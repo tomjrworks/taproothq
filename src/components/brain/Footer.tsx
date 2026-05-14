@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import FeedbackWidget from "@/components/dashboard/FeedbackWidget";
 
 const FOOTER_LINKS = [
   { label: "Pricing", href: "/pricing" },
@@ -45,6 +46,12 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
+            <FeedbackWidget
+              source="marketing"
+              showEmail
+              triggerClassName="font-sans text-sm text-cream/70 transition-colors hover:text-cream text-left"
+              triggerLabel="Send feedback"
+            />
             <a
               href="mailto:tom@taproothq.com"
               className="font-sans text-sm text-cream/70 transition-colors hover:text-cream"

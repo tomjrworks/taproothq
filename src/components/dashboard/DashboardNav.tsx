@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/dashboard/ui/dropdown-menu";
 import { createClient } from "@/lib/supabase/client";
+import FeedbackWidget from "@/components/dashboard/FeedbackWidget";
 
 interface DashboardNavProps {
   userEmail: string;
@@ -191,8 +192,13 @@ export default function DashboardNav({
           </div>
         </div>
 
-        {/* Right: avatar dropdown */}
-        <div className="ml-auto shrink-0">
+        {/* Right: feedback + avatar */}
+        <div className="ml-auto flex shrink-0 items-center gap-3">
+          <FeedbackWidget
+            source="dashboard"
+            triggerClassName="hidden sm:block font-sans text-xs text-bark/50 hover:text-bark transition-colors"
+            triggerLabel="Feedback"
+          />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
