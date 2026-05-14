@@ -31,9 +31,11 @@ function formatDate(iso: string | null) {
 }
 
 export default function BillingCard({ billing }: { billing: BillingStatus }) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [interval, setInterval] = useState<Interval>("month");
   const [loading, setLoading] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleCheckout() {
     setLoading(true);
     await redirectToCheckout(interval);
