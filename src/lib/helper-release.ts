@@ -7,7 +7,7 @@ import "server-only";
 const APPCAST_URL = "https://updates.taproothq.com/appcast.xml";
 const FETCH_TIMEOUT_MS = 3000;
 
-export const FALLBACK_HELPER_VERSION = "0.1.12";
+export const FALLBACK_HELPER_VERSION = "0.1.13";
 export const FALLBACK_DMG_URL = `https://downloads.taproothq.com/releases/v${FALLBACK_HELPER_VERSION}/TaprootHelper-${FALLBACK_HELPER_VERSION}.dmg`;
 
 export type HelperRelease = {
