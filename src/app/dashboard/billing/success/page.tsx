@@ -7,7 +7,7 @@ export default function BillingSuccessPage() {
   const router = useRouter();
 
   useEffect(() => {
-    const t = setTimeout(() => router.push("/dashboard/settings"), 2000);
+    const t = setTimeout(() => router.push("/dashboard/billing"), 2000);
     return () => clearTimeout(t);
   }, [router]);
 
@@ -17,7 +17,7 @@ export default function BillingSuccessPage() {
         you&apos;re subscribed
       </p>
       <p className="font-sans text-sm text-bark/50">
-        taking you back to settings…
+        taking you back to billing…
       </p>
     </div>
   );

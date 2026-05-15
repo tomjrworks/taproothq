@@ -31,11 +31,9 @@ function formatDate(iso: string | null) {
 }
 
 export default function BillingCard({ billing }: { billing: BillingStatus }) {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [interval, setInterval] = useState<Interval>("month");
   const [loading, setLoading] = useState(false);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async function handleCheckout() {
     setLoading(true);
     await redirectToCheckout(interval);
@@ -111,14 +109,6 @@ export default function BillingCard({ billing }: { billing: BillingStatus }) {
         </div>
 
         {/* Action buttons */}
-        {(status === "trialing" || status === "canceled") && (
-          <div className="flex items-center shrink-0">
-            <p className="font-sans text-xs text-bark/45 italic">
-              Billing opens soon — we&apos;ll email you before your trial ends.
-            </p>
-          </div>
-        )}
-
         {status === "active" && (
           <button
             onClick={handlePortal}
@@ -139,6 +129,44 @@ export default function BillingCard({ billing }: { billing: BillingStatus }) {
           </button>
         )}
       </div>
+
+      {(status === "trialing" || status === "canceled") && (
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex overflow-hidden rounded-sm border border-bark/15 font-sans text-sm">
+            <button
+              onClick={() => setInterval("month")}
+              className={`px-3 py-1.5 transition-colors ${
+                interval === "month"
+                  ? "bg-bark text-cream"
+                  : "text-bark/50 hover:text-bark"
+              }`}
+            >
+              $12 / month
+            </button>
+            <button
+              onClick={() => setInterval("year")}
+              className={`px-3 py-1.5 transition-colors ${
+                interval === "year"
+                  ? "bg-bark text-cream"
+                  : "text-bark/50 hover:text-bark"
+              }`}
+            >
+              $99 / year
+            </button>
+          </div>
+          <button
+            onClick={handleCheckout}
+            disabled={loading}
+            className="rounded-sm bg-bark px-4 py-1.5 font-sans text-sm text-cream transition-colors hover:bg-bark/85 disabled:opacity-50"
+          >
+            {loading
+              ? "…"
+              : status === "canceled"
+                ? "resubscribe"
+                : "subscribe"}
+          </button>
+        </div>
+      )}
 
       {grandfathered && status !== "grandfathered" && (
         <p className="font-sans text-xs text-bark/30">grandfathered account</p>

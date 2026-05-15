@@ -123,7 +123,7 @@ export default function PricingPage() {
             {/* CTA */}
             <div className="mt-10">
               <Link
-                href="/#join"
+                href="/sign-up"
                 className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-sm md:text-base px-6 py-3 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5"
               >
                 <span>Get early access</span>
