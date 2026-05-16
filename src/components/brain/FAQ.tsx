@@ -16,47 +16,47 @@ const faqs = [
   {
     question: "What exactly is Taproot?",
     answer:
-      "Taproot is a knowledge layer for your firm — a single place where your decisions, playbooks, client context, and process notes live. Every AI tool you use (Claude, ChatGPT, NotebookLM) plugs into it, so instead of starting each session from zero, your AI already knows how your firm works.",
+      "Taproot is a memory layer for your AI. Your notes live in a folder on your Mac — the same markdown files Obsidian uses — and Taproot makes them readable and writable by whatever AI you already use. Instead of re-explaining your projects, your decisions, and how you think every session, your AI just knows. And when it learns something new, it writes that back too.",
   },
   {
-    question: "How is this different from Notion, Glean, or NotebookLM?",
+    question: "How is this different from Notion or NotebookLM?",
     answer:
-      "Glean is enterprise search at a $60K+ floor — wrong shape for a firm your size. Notion and NotebookLM are fine tools, but they depend on discipline: they work until life happens and the folder goes stale. Taproot's Managed tier includes monthly capture sessions that keep the layer current without putting it on your plate. And your knowledge lives in portable formats you own — not locked to one vendor.",
+      "Notion and NotebookLM are places you go. Taproot is something your AI reaches into. You don't open a Taproot app and search — you talk to Claude or ChatGPT the way you already do, and they pull from (and add to) your notes in the background. Your knowledge also lives in plain markdown files you own, not locked inside someone else's database.",
   },
   {
     question: "How does it work with the AI tools I already use?",
     answer:
-      "Taproot connects to Claude via MCP (an open protocol Anthropic ships). Your team uses Claude exactly as they do today — the difference is that every answer cites your firm's own knowledge instead of generic training data. ChatGPT, NotebookLM, and other AI tools can read from the same root layer when they support it.",
+      "Taproot connects over MCP — an open protocol for giving AI tools access to outside data. Claude (desktop, web, and Claude Code), Cursor, Windsurf, and any other MCP-capable client work today. You use them exactly as you do now; the only difference is they can now read and write your notes. There's no new app to learn.",
   },
   {
-    question: "Where does my data actually live?",
+    question: "Where do my notes actually live? Is this private?",
     answer:
-      "Your choice. Taproot runs on your own Google Drive, SharePoint, or filesystem. Files stay in formats you own (markdown, PDFs, native docs). No vendor lock-in. No training on your data. You can walk away with everything intact any time.",
+      "Your notes live in a folder on your Mac — that's the source of truth, and you can open it in Finder anytime. Taproot syncs an encrypted copy to the cloud so your AI can reach it from anywhere. That copy is encrypted at rest with a key unique to your vault — if our database were ever breached, an attacker gets unreadable data, not your notes. Straight answer on the rest: Taproot is server-trusted, not end-to-end encrypted. The server decrypts your notes to answer your AI's requests, so we could read them. We don't — and we'd rather say that plainly than promise a 'we can't' we couldn't keep.",
   },
   {
     question: "Do I need to be technical to use this?",
     answer:
-      "Solo tier: yes, lightly — you'll connect your Drive, install an MCP client, and run it yourself. Team tier: one tech-literate partner needs to set it up. Managed tier: no technical skill required on your end. We handle setup, structure, and the monthly capture sessions.",
+      "No. You download the Taproot helper app, point it at a folder, and connect your AI client — it's a guided setup, not a config file. If you can install a Mac app, you can run Taproot.",
   },
   {
-    question: "Do I need Claude Team for the Team tier?",
+    question: "Do I need Obsidian?",
     answer:
-      "Yes. Taproot's team tier runs on top of Claude Team (~$25–30 per seat per month, billed to Anthropic). A 5-person firm pays around $125–150/mo to Anthropic before Taproot's own fee. Worth knowing up front — we're making the Claude Team spend you're already making 10× more useful, not replacing it.",
+      "No, but it's a great pairing. Taproot stores your notes as plain markdown files in a folder — Obsidian is just a really good way to browse, edit, and link them by hand. Use Obsidian, use Finder, or never open the folder at all. The files are yours either way.",
   },
   {
-    question: "What if my team never writes anything down?",
+    question: "Is Taproot Mac-only?",
     answer:
-      "That's the normal starting point. For the Managed tier, our kickoff is a 90-minute capture session where we pull knowledge OUT of your senior people — recorded, transcribed, and structured. You don't have to document anything. The layer compounds from sessions, not from people suddenly being disciplined about notes.",
+      "For now, yes. The helper app that syncs your folder is Mac-only while we're in early release. Windows and Linux are on the roadmap — join the waitlist and we'll email you the moment they're ready.",
   },
   {
-    question: "What do I get every month on the Managed tier?",
+    question: "What does it cost, and what happens after the trial?",
     answer:
-      "A Taproot Update: a named monthly deliverable showing what was added this cycle, what's newly documented, and what questions still have no good answer. It's how you see the value compounding — and it's how the retainer stays honest about what it's doing.",
+      "$12/month, or $99/year. Every account starts with a 30-day free trial — no credit card required. If you don't subscribe when the trial ends, Taproot doesn't delete anything: your notes stay in the folder on your Mac. Cloud sync and AI access simply pause until you subscribe.",
   },
   {
-    question: "Can I keep my memory layer if I ever leave Taproot?",
+    question: "Can I keep everything if I cancel?",
     answer:
-      "Yes. The layer lives in your storage, in your formats. You can export, fork, or keep running it without us. We'd rather build a product that holds up to that scrutiny than one that locks you in.",
+      "Yes. Your notes are plain markdown files in a folder you control — they never stop being yours. Cancel anytime and everything stays exactly where it is on your Mac. No export process, no lock-in. That's the whole reason it's built this way.",
   },
 ];
 
