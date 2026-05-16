@@ -43,9 +43,8 @@ export default function PermissionsPage() {
         Your vault stays <em className="italic text-forest-dark">local</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
-        Your notes live in a folder on your Mac. Taproot syncs them to an
-        end-to-end encrypted mirror so your AI clients can read them from
-        anywhere — but we can&apos;t.
+        Your notes live in a folder on your Mac. Taproot syncs an encrypted copy
+        to the cloud so your AI clients can read them from anywhere.
       </p>
 
       <div className="mt-8 space-y-3">
@@ -65,8 +64,9 @@ export default function PermissionsPage() {
             <strong className="font-medium text-bark">
               Encrypted in the cloud.
             </strong>{" "}
-            The cloud mirror is end-to-end encrypted. We can&apos;t read your
-            notes; only your AI clients can, on your behalf.
+            The cloud copy is encrypted with a key unique to your vault. If our
+            database were ever breached, your notes stay encrypted — an attacker
+            gets unreadable data.
           </p>
         </div>
         <div className="flex items-start gap-3 bg-cream-dark/40 border border-bark/8 rounded-lg px-5 py-4">
