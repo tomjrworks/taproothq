@@ -19,7 +19,7 @@ export default function TrialBanner({
       <p className="font-sans text-xs text-bark/60">
         {label} —{" "}
         <Link
-          href="/dashboard/settings"
+          href="/dashboard/billing"
           className="underline underline-offset-2 hover:text-bark"
         >
           subscribe to continue

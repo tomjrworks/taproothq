@@ -2,24 +2,9 @@
 
 import { useState } from "react";
 import type { BillingStatus } from "@/lib/api";
+import { redirectToCheckout, redirectToPortal } from "@/lib/checkout";
 
 type Interval = "month" | "year";
-
-async function redirectToCheckout(interval: Interval) {
-  const res = await fetch("/api/billing/checkout", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ interval }),
-  });
-  const { url } = await res.json();
-  if (url) window.location.href = url;
-}
-
-async function redirectToPortal() {
-  const res = await fetch("/api/billing/portal", { method: "POST" });
-  const { url } = await res.json();
-  if (url) window.location.href = url;
-}
 
 function formatDate(iso: string | null) {
   if (!iso) return "—";

@@ -1,18 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { redirectToCheckout } from "@/lib/checkout";
 
 type Interval = "month" | "year";
-
-async function redirectToCheckout(interval: Interval) {
-  const res = await fetch("/api/billing/checkout", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ interval }),
-  });
-  const { url } = await res.json();
-  if (url) window.location.href = url;
-}
 
 export default function ExpiredBlock() {
   const [interval, setInterval] = useState<Interval>("month");
