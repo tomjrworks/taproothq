@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/brain/SectionHeader";
 import Link from "next/link";
