@@ -18,10 +18,10 @@ export default function Close() {
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-12 md:mt-14">
           <a
-            href="/#join"
+            href="/sign-up"
             className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-[15px] font-medium px-7 py-3.5 rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-forest-dark/20"
           >
-            Get early access
+            Start free trial
             <span className="transition-transform duration-200 group-hover:translate-x-0.5">
               →
             </span>
