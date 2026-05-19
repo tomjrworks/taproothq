@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import SectionHeader from "@/components/brain/SectionHeader";
 import Footer from "@/components/brain/Footer";
+import { createClient } from "@/lib/supabase/client";
 
 const fade = {
   hidden: { opacity: 0, y: 16 },
@@ -42,6 +44,15 @@ const FAQ = [
 ];
 
 export default function PricingPage() {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsSignedIn(!!session);
+    });
+  }, []);
+
   return (
     <main className="min-h-screen bg-cream">
       {/* Header */}
@@ -123,10 +134,10 @@ export default function PricingPage() {
             {/* CTA */}
             <div className="mt-10">
               <Link
-                href="/sign-up"
+                href={isSignedIn ? "/dashboard/billing" : "/sign-up"}
                 className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-sm md:text-base px-6 py-3 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5"
               >
-                <span>Get early access</span>
+                <span>Start free trial</span>
                 <span
                   aria-hidden
                   className="transition-transform duration-200 group-hover:translate-x-0.5"
