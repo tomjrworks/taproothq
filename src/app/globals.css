@@ -130,6 +130,48 @@ h1,
   @apply py-24 md:py-32 lg:py-40;
 }
 
+/* Blog prose styles */
+.prose-taproot {
+  color: #3d3529;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+.prose-taproot p {
+  margin-bottom: 1.5rem;
+}
+.prose-taproot p:last-child {
+  margin-bottom: 0;
+}
+.prose-taproot h2 {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1.75rem;
+  font-variation-settings:
+    "opsz" 36,
+    "SOFT" 50,
+    "WONK" 0;
+  color: #3d3529;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.prose-taproot strong {
+  font-weight: 600;
+  color: #3d3529;
+}
+.prose-taproot em {
+  font-style: italic;
+}
+.prose-taproot a {
+  color: #1a5c32;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-taproot a:hover {
+  color: #1a5c32;
+  opacity: 0.8;
+}
+
 /* Glass effect for dark sections */
 .glass {
   background: rgba(15, 18, 16, 0.85);

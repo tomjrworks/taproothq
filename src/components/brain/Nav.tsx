@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: "Pricing", href: "/pricing" },
   { label: "Why Taproot", href: "/vs-memory" },
   { label: "Use cases", href: "/use-cases" },
+  { label: "Blog", href: "/blog" },
   { label: "About", href: "/about" },
 ] as const;
 
