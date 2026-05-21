@@ -35,10 +35,7 @@ export default function ObsidianPage() {
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
         Your vault is a folder on your Mac. Obsidian opens it, Taproot syncs it,
-        and your AI clients read from it.{" "}
-        <em className="font-serif italic not-italic text-forest-dark">
-          Required — Taproot doesn&apos;t work without it.
-        </em>
+        and your AI clients read from it.
       </p>
 
       <figure className="mt-8 rounded-lg border border-bark/8 bg-cream-dark/40 py-6 flex flex-col items-center">
