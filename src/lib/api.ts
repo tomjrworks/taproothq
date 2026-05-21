@@ -195,3 +195,38 @@ export function createCheckoutSession(jwt: string, interval: "month" | "year") {
 export function createPortalSession(jwt: string) {
   return call<{ url: string }>("POST", "/api/billing/portal", jwt);
 }
+
+// ── Leave / account / digest-pref (PR #5) ────────────────────────────────────
+
+export function leaveTaproot(jwt: string) {
+  return call<{ nuked: true; object_count: number; file_row_count: number }>(
+    "POST",
+    "/api/leave",
+    jwt,
+  );
+}
+
+export function getDigestPref(jwt: string) {
+  return call<{ email_subscribed: boolean }>(
+    "GET",
+    "/api/dashboard/digest-pref",
+    jwt,
+  );
+}
+
+export function setDigestPref(jwt: string, enabled: boolean) {
+  return call<{ email_subscribed: boolean }>(
+    "POST",
+    "/api/dashboard/digest-pref",
+    jwt,
+    { email_subscribed: enabled },
+  );
+}
+
+export function deleteAccount(jwt: string) {
+  return call<{ deleted: true; workspaces_purged: number }>(
+    "DELETE",
+    "/api/account",
+    jwt,
+  );
+}

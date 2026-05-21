@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import DigestToggle from "@/components/dashboard/DigestToggle";
 import LeaveTaprootDialog from "@/components/dashboard/LeaveTaprootDialog";
+import DeleteAccountDialog from "@/components/dashboard/DeleteAccountDialog";
+import { getDigestPref } from "@/lib/api";
 
 export default async function SettingsPage() {
   const supabase = createClient();
@@ -19,6 +21,22 @@ export default async function SettingsPage() {
     : "—";
   const persona =
     (ws?.settings as { persona?: string[] } | null)?.persona?.join(", ") ?? "—";
+
+  // Server-fetch digest pref so DigestToggle renders without a flash.
+  let digestInitialEnabled = true;
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (session) {
+    try {
+      const pref = await getDigestPref(session.access_token);
+      digestInitialEnabled = pref.email_subscribed;
+    } catch {
+      // Fall back to the schema default — DigestToggle will revert on POST
+      // failure if the user toggles before the row resolves.
+      digestInitialEnabled = true;
+    }
+  }
 
   return (
     <div className="max-w-xl">
@@ -76,7 +94,7 @@ export default async function SettingsPage() {
         <p className="mb-4 font-mono text-xs uppercase tracking-widest text-bark/30">
           — weekly digest —
         </p>
-        <DigestToggle />
+        <DigestToggle initialEnabled={digestInitialEnabled} />
       </section>
 
       <div className="mb-8 border-t border-bark/10" />
@@ -86,12 +104,23 @@ export default async function SettingsPage() {
         <p className="mb-4 font-mono text-xs uppercase tracking-widest text-bark/30">
           — danger zone —
         </p>
-        <div className="rounded-sm border border-bark/10 p-4">
-          <p className="mb-1 font-sans text-sm text-bark">leave taproot</p>
-          <p className="mb-4 font-sans text-xs text-bark/50">
-            permanently delete your workspace and all associated data.
-          </p>
-          <LeaveTaprootDialog />
+        <div className="space-y-4">
+          <div className="rounded-sm border border-bark/10 p-4">
+            <p className="mb-1 font-sans text-sm text-bark">leave taproot</p>
+            <p className="mb-4 font-sans text-xs text-bark/50">
+              deletes your encrypted cloud mirror. your local markdown files and
+              account stay.
+            </p>
+            <LeaveTaprootDialog />
+          </div>
+          <div className="rounded-sm border border-[#b45309]/20 p-4">
+            <p className="mb-1 font-sans text-sm text-bark">delete account</p>
+            <p className="mb-4 font-sans text-xs text-bark/50">
+              deletes everything: cloud mirror, account, billing, sign-in. local
+              files stay. irreversible.
+            </p>
+            <DeleteAccountDialog />
+          </div>
         </div>
       </section>
     </div>

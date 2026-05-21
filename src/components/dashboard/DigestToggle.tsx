@@ -1,9 +1,45 @@
 "use client";
 import { useState } from "react";
+import { toast } from "@/components/dashboard/ui/use-toast";
 
-export default function DigestToggle() {
-  const [enabled, setEnabled] = useState(true);
-  // TODO(P3): persist via /api/dashboard/digest-pref
+type Props = { initialEnabled: boolean };
+
+export default function DigestToggle({ initialEnabled }: Props) {
+  const [enabled, setEnabled] = useState(initialEnabled);
+  const [saving, setSaving] = useState(false);
+
+  async function toggle() {
+    if (saving) return;
+    const next = !enabled;
+    // Optimistic flip — revert on failure.
+    setEnabled(next);
+    setSaving(true);
+    try {
+      const res = await fetch("/api/dashboard/digest-pref", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email_subscribed: next }),
+      });
+      if (!res.ok) {
+        setEnabled(!next);
+        toast({
+          title: "Couldn't save preference",
+          description: "Please try again in a moment.",
+          variant: "destructive",
+        });
+      }
+    } catch {
+      setEnabled(!next);
+      toast({
+        title: "Couldn't save preference",
+        description: "Check your connection and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setSaving(false);
+    }
+  }
+
   return (
     <div className="flex items-center justify-between">
       <div>
@@ -17,8 +53,9 @@ export default function DigestToggle() {
       <button
         role="switch"
         aria-checked={enabled}
-        onClick={() => setEnabled((v) => !v)}
-        className={`relative h-5 w-9 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-dark/40 ${
+        onClick={toggle}
+        disabled={saving}
+        className={`relative h-5 w-9 shrink-0 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-dark/40 disabled:opacity-60 ${
           enabled ? "bg-forest-dark" : "bg-bark/15"
         }`}
       >
