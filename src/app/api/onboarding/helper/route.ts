@@ -1,8 +1,3 @@
-import { NextResponse } from "next/server";
-import { withAuthedProxy } from "@/lib/proxy-handler";
-import { advanceStep } from "@/lib/api";
+import { withOnboardingStep } from "@/lib/onboarding-step";
 
-export const POST = withAuthedProxy(async (_req, jwt) => {
-  await advanceStep(jwt, "permissions");
-  return NextResponse.json({ ok: true });
-});
+export const POST = withOnboardingStep("helper", "permissions");
