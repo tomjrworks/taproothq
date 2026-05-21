@@ -8,6 +8,7 @@ import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
+import { safeNext } from "@/lib/safeNext";
 
 type Mode = "password" | "magic-link";
 type Stage = "form" | "check-email";
@@ -15,7 +16,7 @@ type Stage = "form" | "check-email";
 function SignInForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const next = searchParams.get("next") ?? "/dashboard";
+  const next = safeNext(searchParams.get("next")) ?? "/dashboard";
   const urlError = searchParams.get("error");
 
   const [mode, setMode] = useState<Mode>("password");

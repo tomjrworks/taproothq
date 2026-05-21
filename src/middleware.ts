@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { coerceLegacyStep } from "@/lib/api";
+import { safeNext } from "@/lib/safeNext";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
@@ -97,7 +98,8 @@ export async function middleware(request: NextRequest) {
 
   // Redirect signed-in users away from auth pages
   if (user && (pathname === "/sign-in" || pathname === "/sign-up")) {
-    const next = request.nextUrl.searchParams.get("next") ?? "/dashboard";
+    const next =
+      safeNext(request.nextUrl.searchParams.get("next")) ?? "/dashboard";
     const url = request.nextUrl.clone();
     url.pathname = next;
     url.search = "";

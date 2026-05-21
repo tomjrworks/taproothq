@@ -2,6 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 import { coerceLegacyStep } from "@/lib/api";
+import { safeNext } from "@/lib/safeNext";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -72,7 +73,7 @@ export async function GET(request: NextRequest) {
 
   // Honor explicit ?next= (password-reset, magic-link flows). Otherwise
   // compute from the workspace's saved step so returning users resume correctly.
-  let resolvedNext = searchParams.get("next");
+  let resolvedNext = safeNext(searchParams.get("next"));
   if (!resolvedNext) {
     const { data: ws } = await supabase
       .from("workspaces")

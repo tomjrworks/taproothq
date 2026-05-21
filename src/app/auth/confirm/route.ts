@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 import type { EmailOtpType } from "@supabase/supabase-js";
 import { coerceLegacyStep } from "@/lib/api";
+import { safeNext } from "@/lib/safeNext";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -70,7 +71,7 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  let resolvedNext = explicitNext;
+  let resolvedNext = safeNext(explicitNext);
   if (!resolvedNext) {
     const { data: ws } = await supabase
       .from("workspaces")
