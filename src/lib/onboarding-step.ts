@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { withAuthedProxy } from "@/lib/proxy-handler";
-import { advanceStep, type OnboardingStep } from "@/lib/api";
+import { advanceStep, coerceLegacyStep, type OnboardingStep } from "@/lib/api";
 
 export type StepCheck =
   | { ok: true }
@@ -15,8 +15,13 @@ export async function requireOnboardingStep(
     .from("workspaces")
     .select("settings")
     .single();
-  const currentStep = (ws?.settings as { onboarding_step?: string } | null)
+  // PRODUCT seeds new workspaces with legacy step names (migration 0021 still
+  // writes "persona"; 2026-05-06 pivot left "vault" behind). Coerce on read so
+  // the precondition guard compares against canonical names. The first
+  // successful advance through this step overwrites the legacy DB value.
+  const rawStep = (ws?.settings as { onboarding_step?: string } | null)
     ?.onboarding_step;
+  const currentStep = rawStep ? coerceLegacyStep(rawStep) : undefined;
   if (currentStep !== expected) return { ok: false, current: currentStep };
   return { ok: true };
 }

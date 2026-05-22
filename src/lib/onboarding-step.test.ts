@@ -179,3 +179,46 @@ describe("requireOnboardingStep", () => {
     });
   });
 });
+
+describe("requireOnboardingStep — legacy step coercion", () => {
+  it('passes "clients" guard when DB has legacy "persona"', async () => {
+    mockSingle.mockResolvedValue({
+      data: { settings: { onboarding_step: "persona" } },
+    });
+    expect(await requireOnboardingStep("clients")).toEqual({ ok: true });
+  });
+
+  it('passes "obsidian" guard when DB has legacy "vault"', async () => {
+    mockSingle.mockResolvedValue({
+      data: { settings: { onboarding_step: "vault" } },
+    });
+    expect(await requireOnboardingStep("obsidian")).toEqual({ ok: true });
+  });
+
+  it('withOnboardingStep advances clients→obsidian when DB has legacy "persona"', async () => {
+    mockSingle.mockResolvedValue({
+      data: { settings: { onboarding_step: "persona" } },
+    });
+    const handler = withOnboardingStep("clients", "obsidian");
+    const res = await handler(makeReq("/api/onboarding/clients"));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({ ok: true, advanced_to: "obsidian" });
+    expect(mockAdvanceStep).toHaveBeenCalledWith("fake-jwt", "obsidian");
+  });
+
+  it("still rejects with current=<coerced> when DB legacy value maps to a different step than expected", async () => {
+    // "persona" coerces to "clients"; if the route expects "obsidian", guard rejects.
+    mockSingle.mockResolvedValue({
+      data: { settings: { onboarding_step: "persona" } },
+    });
+    const handler = withOnboardingStep("obsidian", "helper");
+    const res = await handler(makeReq("/api/onboarding/obsidian"));
+    expect(res.status).toBe(400);
+    expect(await res.json()).toEqual({
+      error: "precondition_failed",
+      reason: "not_at_obsidian_step",
+      current: "clients",
+    });
+    expect(mockAdvanceStep).not.toHaveBeenCalled();
+  });
+});
