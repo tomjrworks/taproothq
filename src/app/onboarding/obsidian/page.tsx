@@ -31,7 +31,8 @@ export default function ObsidianPage() {
   return (
     <motion.div initial="hidden" animate="visible" variants={fadeIn}>
       <h1 className="font-serif text-4xl text-bark leading-tight">
-        Install <em className="italic text-forest-dark">the editor</em>.
+        Install Obsidian and{" "}
+        <em className="italic text-forest-dark">create your vault</em>.
       </h1>
       <p className="mt-3 font-sans text-base text-bark/60 leading-relaxed">
         Your vault is a folder on your Mac. Obsidian opens it, Taproot syncs it,
@@ -64,9 +65,21 @@ export default function ObsidianPage() {
           Open obsidian.md ↗
         </a>
 
-        <p className="font-sans text-xs text-center text-bark/35">
-          Download it, install it, then come back here.
-        </p>
+        <ol className="font-sans text-sm text-bark/70 leading-relaxed space-y-2 pl-5 list-decimal marker:text-bark/40">
+          <li>Download and install Obsidian.</li>
+          <li>
+            Open it, then click{" "}
+            <em className="font-serif italic text-forest-dark">
+              Create new vault
+            </em>
+            .
+          </li>
+          <li>
+            Name it anything, pick a folder on your Mac, then click{" "}
+            <em className="font-serif italic text-forest-dark">Create</em>.
+          </li>
+          <li>Come back here.</li>
+        </ol>
 
         <div className="pt-2">
           <Button
@@ -76,7 +89,7 @@ export default function ObsidianPage() {
             disabled={loading}
             className="w-full"
           >
-            {loading ? "Saving…" : "I have it — continue →"}
+            {loading ? "Saving…" : "Vault created — continue →"}
           </Button>
         </div>
       </div>
