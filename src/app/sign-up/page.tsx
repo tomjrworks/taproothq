@@ -293,6 +293,13 @@ export default function SignUpPage() {
             the helper that keeps it synced, and connect it to the AI tools you
             already use.
           </p>
+          <p className="mt-4 font-sans text-sm text-bark/70 leading-relaxed border-l-2 border-forest-dark/40 pl-3">
+            Make sure to{" "}
+            <em className="font-serif italic text-forest-dark">
+              sign up on the Mac you&apos;ll use day-to-day
+            </em>
+            .
+          </p>
         </div>
 
         <div className="mt-10 bg-cream-dark/40 rounded-lg border border-bark/8 p-8">
