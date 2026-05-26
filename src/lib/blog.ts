@@ -8,6 +8,14 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "inefficiency-is-the-scariest-word",
+    title: "Inefficiency Is the Scariest Word in Business",
+    description:
+      "Speed kills in tech — and especially in AI. Why Taproot puts efficiency at the center of how solo operators work with their tools.",
+    date: "May 26, 2026",
+    readingTime: "2 min read",
+  },
+  {
     slug: "why-i-dont-worry-about-ais-environmental-impact",
     title: "Why I Don't Worry About AI's Environmental Impact",
     description:
