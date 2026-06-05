@@ -85,10 +85,6 @@ export default function DemoPage() {
           <h2 className="font-serif text-2xl md:text-3xl text-bark leading-tight tracking-tight">
             Want this for your own work?
           </h2>
-          <p className="font-serif italic text-base md:text-lg text-bark/75 leading-[1.5] mt-4">
-            Plant the root once, then keep growing on it. Mac-only for now
-            &nbsp;·&nbsp; 30 days free &nbsp;·&nbsp; $12/mo after.
-          </p>
           <div className="mt-8">
             <Link
               href="/sign-up"
