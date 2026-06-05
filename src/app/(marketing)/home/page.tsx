@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/brain/Hero";
+import DemoVideo from "@/components/brain/DemoVideo";
 import ImagineBridge from "@/components/brain/ImagineBridge";
 import PlainEnglish from "@/components/brain/PlainEnglish";
 import AutoFile from "@/components/brain/AutoFile";
@@ -55,6 +56,7 @@ export default function HomeAlias() {
         <Hero />
       </section>
 
+      <DemoVideo />
       <ImagineBridge />
       <PlainEnglish />
       <AutoFile />

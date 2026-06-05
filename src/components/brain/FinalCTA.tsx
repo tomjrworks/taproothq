@@ -51,7 +51,7 @@ export default function FinalCTA() {
 
         {/* CTA */}
         <motion.div
-          className="mt-12 md:mt-14"
+          className="mt-12 md:mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-7"
           variants={fade}
           initial="hidden"
           whileInView="visible"
@@ -63,6 +63,18 @@ export default function FinalCTA() {
             className="group inline-flex items-center gap-2 bg-forest-dark text-cream font-sans text-base px-7 py-3.5 rounded-full transition-all duration-200 hover:bg-forest-dark/90 hover:-translate-y-0.5"
           >
             <span>Start free trial</span>
+            <span
+              aria-hidden
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            >
+              →
+            </span>
+          </Link>
+          <Link
+            href="/demo"
+            className="group inline-flex items-center gap-2 text-bark font-sans text-base font-medium transition-colors duration-200 hover:text-forest-dark"
+          >
+            <span>Watch the demo</span>
             <span
               aria-hidden
               className="transition-transform duration-200 group-hover:translate-x-0.5"

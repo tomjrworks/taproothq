@@ -77,6 +77,15 @@ export default function Hero() {
             </span>
           </a>
           <a
+            href="#demo"
+            className="group inline-flex items-center gap-2 text-bark font-sans text-[15px] font-medium transition-colors duration-200 hover:text-forest-dark"
+          >
+            Watch the demo
+            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+              &rarr;
+            </span>
+          </a>
+          <a
             href="#how-it-works"
             className="group inline-flex items-center gap-2 text-bark font-sans text-[15px] font-medium transition-colors duration-200 hover:text-forest-dark"
           >

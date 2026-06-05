@@ -10,6 +10,7 @@ const STATIC_ROUTES: Array<{
   changeFrequency: Entry["changeFrequency"];
 }> = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
+  { path: "/demo", priority: 0.9, changeFrequency: "monthly" },
   { path: "/how-it-works", priority: 0.9, changeFrequency: "monthly" },
   { path: "/vs-memory", priority: 0.9, changeFrequency: "monthly" },
   { path: "/use-cases", priority: 0.9, changeFrequency: "monthly" },
