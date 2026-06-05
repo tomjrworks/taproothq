@@ -8,6 +8,22 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "youve-been-fooled-by-how-you-file-your-documents",
+    title: "You've Been Fooled by How You File Your Documents",
+    description:
+      "Cloud storage companies have convinced us their folders are what it means to be organized. They're not — and the alternative is faster, cheaper, and already on your hard drive.",
+    date: "Jun 5, 2026",
+    readingTime: "2 min read",
+  },
+  {
+    slug: "passive-income-but-for-your-data",
+    title: "Passive Income, but for Your Data",
+    description:
+      "Everyone wants income that works while they rest. Taproot does the same for your memory — your AI keeps thinking, building, and connecting your data even when you're not prompting it.",
+    date: "Jun 5, 2026",
+    readingTime: "2 min read",
+  },
+  {
     slug: "inefficiency-is-the-scariest-word",
     title: "Inefficiency Is the Scariest Word in Business",
     description:

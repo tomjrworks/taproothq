@@ -5,6 +5,8 @@ import BlogPostLayout from "@/components/brain/BlogPost";
 import { posts, getPost } from "@/lib/blog";
 import { WhyIDontWorryAboutAI } from "@/content/blog/why-i-dont-worry-about-ais-environmental-impact";
 import { InefficiencyIsTheScariestWord } from "@/content/blog/inefficiency-is-the-scariest-word";
+import { YouveBeenFooledByHowYouFile } from "@/content/blog/youve-been-fooled-by-how-you-file-your-documents";
+import { PassiveIncomeButForYourData } from "@/content/blog/passive-income-but-for-your-data";
 
 export function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
@@ -34,6 +36,9 @@ export async function generateMetadata({
 const contentMap: Record<string, React.ComponentType> = {
   "why-i-dont-worry-about-ais-environmental-impact": WhyIDontWorryAboutAI,
   "inefficiency-is-the-scariest-word": InefficiencyIsTheScariestWord,
+  "youve-been-fooled-by-how-you-file-your-documents":
+    YouveBeenFooledByHowYouFile,
+  "passive-income-but-for-your-data": PassiveIncomeButForYourData,
 };
 
 export default async function BlogPostPage({

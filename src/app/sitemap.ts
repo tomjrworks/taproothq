@@ -19,6 +19,16 @@ const STATIC_ROUTES: Array<{
   { path: "/use-cases/creative", priority: 0.8, changeFrequency: "monthly" },
   { path: "/use-cases/personal", priority: 0.8, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.8, changeFrequency: "monthly" },
+  {
+    path: "/blog/youve-been-fooled-by-how-you-file-your-documents",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
+  {
+    path: "/blog/passive-income-but-for-your-data",
+    priority: 0.6,
+    changeFrequency: "monthly",
+  },
   { path: "/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
