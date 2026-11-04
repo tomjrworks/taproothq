@@ -5,10 +5,10 @@ import Image from "next/image";
 import FeedbackWidget from "@/components/dashboard/FeedbackWidget";
 
 const FOOTER_LINKS = [
-  { label: "Pricing", href: "/pricing" },
-  { label: "Use cases", href: "/use-cases" },
-  { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
+  { label: "Pricing", href: "/taproot/pricing" },
+  { label: "Use cases", href: "/taproot/use-cases" },
+  { label: "About", href: "/taproot/about" },
+  { label: "FAQ", href: "/taproot/faq" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
 ] as const;

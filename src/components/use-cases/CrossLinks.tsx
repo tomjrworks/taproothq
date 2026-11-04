@@ -20,7 +20,7 @@ export default function CrossLinks({ current }: { current: string }) {
           {others.map((o) => (
             <Link
               key={o.slug}
-              href={`/use-cases/${o.slug}`}
+              href={`/taproot/use-cases/${o.slug}`}
               className="group bg-cream-dark rounded-sm px-6 py-5 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-12px_rgba(61,53,41,0.2)]"
             >
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-bark/55">

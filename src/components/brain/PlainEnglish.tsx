@@ -284,7 +284,7 @@ export default function PlainEnglish() {
           custom={6}
         >
           <Link
-            href="/use-cases"
+            href="/taproot/use-cases"
             className="group inline-flex items-center gap-2 text-forest-dark font-sans text-[15px] font-medium transition-colors duration-200 hover:text-bark"
           >
             <span className="font-serif italic text-base md:text-lg">

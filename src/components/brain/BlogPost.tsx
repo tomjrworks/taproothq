@@ -30,7 +30,7 @@ export default function BlogPostLayout({ post, children }: Props) {
           custom={0}
         >
           <Link
-            href="/blog"
+            href="/taproot/blog"
             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-forest-dark/70 hover:text-forest-dark transition-colors"
           >
             <span aria-hidden>←</span> All posts

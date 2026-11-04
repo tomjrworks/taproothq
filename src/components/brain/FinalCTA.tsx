@@ -71,7 +71,7 @@ export default function FinalCTA() {
             </span>
           </Link>
           <Link
-            href="/demo"
+            href="/taproot/demo"
             className="group inline-flex items-center gap-2 text-bark font-sans text-base font-medium transition-colors duration-200 hover:text-forest-dark"
           >
             <span>Watch the demo</span>

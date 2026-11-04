@@ -24,7 +24,7 @@ export function OnboardingShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-cream flex flex-col">
       <header className="flex items-center justify-between px-6 py-4 border-b border-bark/8">
         <Link
-          href="/"
+          href="/taproot"
           className="flex items-center gap-2 font-serif text-xl text-bark tracking-tight leading-none"
         >
           Taproot
