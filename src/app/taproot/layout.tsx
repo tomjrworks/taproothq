@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/brain/Nav";
 
 const SITE_URL = "https://taproothq.com";
+const PRODUCT_URL = `${SITE_URL}/taproot`;
 const TITLE = "Taproot — The root beneath the work";
 const DESCRIPTION =
   "A private memory layer for the work you do — captured, kept current, owned by you.";
@@ -29,7 +30,7 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Taproot",
-  url: SITE_URL,
+  url: PRODUCT_URL,
   logo: `${SITE_URL}/images/taproot-logo.png`,
   description:
     "Taproot is a private memory layer for the work you do, connecting any AI you use (Claude, ChatGPT, Cursor, Copilot) to your own files so every session starts with full context.",
@@ -40,7 +41,7 @@ const softwareApplicationSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Taproot",
-  url: SITE_URL,
+  url: PRODUCT_URL,
   applicationCategory: "ProductivityApplication",
   operatingSystem: "Web, macOS",
   description:
@@ -54,7 +55,7 @@ const softwareApplicationSchema = {
   publisher: {
     "@type": "Organization",
     name: "Taproot",
-    url: SITE_URL,
+    url: PRODUCT_URL,
   },
 };
 

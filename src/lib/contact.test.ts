@@ -46,6 +46,10 @@ describe("parseContactSubmission", () => {
     expect(parse({ email: "ada@example.com\rfoo" })).toBeNull();
   });
 
+  it.each([0x00, 0x09, 0x85, 0x2028, 0x2029])("rejects control character %i inside an email", (code) => {
+    expect(parse({ email: `ada@example.com${String.fromCharCode(code)}evil` })).toBeNull();
+  });
+
   it("requires a message of 1-4000 on contact", () => {
     expect(parse({ message: undefined })).toBeNull();
     expect(parse({ message: "" })).toBeNull();

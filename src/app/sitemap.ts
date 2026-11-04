@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { posts } from "@/lib/blog";
 
 const BASE = "https://taproothq.com";
 
@@ -24,16 +25,11 @@ const STATIC_ROUTES: Array<{
   { path: "/taproot/use-cases/personal", priority: 0.8, changeFrequency: "monthly" },
   { path: "/taproot/pricing", priority: 0.8, changeFrequency: "monthly" },
   { path: "/taproot/blog", priority: 0.7, changeFrequency: "weekly" },
-  {
-    path: "/taproot/blog/youve-been-fooled-by-how-you-file-your-documents",
+  ...posts.map((p) => ({
+    path: `/taproot/blog/${p.slug}`,
     priority: 0.6,
-    changeFrequency: "monthly",
-  },
-  {
-    path: "/taproot/blog/passive-income-but-for-your-data",
-    priority: 0.6,
-    changeFrequency: "monthly",
-  },
+    changeFrequency: "monthly" as const,
+  })),
   { path: "/taproot/about", priority: 0.7, changeFrequency: "monthly" },
   { path: "/taproot/faq", priority: 0.7, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },

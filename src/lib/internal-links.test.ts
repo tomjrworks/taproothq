@@ -31,8 +31,8 @@ const PATTERNS = [
 const ALLOWED = [
   "src/app/api/clients/[id]/connected/route.ts:6 — splits a URL path",
   "src/app/layout.tsx:39 — root default canonical, already on the backlog",
-  "src/app/sitemap.ts:12 — the Labs home belongs in the sitemap",
-  "src/app/sitemap.ts:13 — the Labs About belongs in the sitemap",
+  "src/app/sitemap.ts:13 — the Labs home belongs in the sitemap",
+  "src/app/sitemap.ts:14 — the Labs About belongs in the sitemap",
   "src/components/dashboard/RecentAdditions.tsx:72 — splits a file path",
   "src/lib/dashboard/buildTree.ts:69 — splits a file path",
   "src/lib/safeNext.ts:4 — a comment about path validation",

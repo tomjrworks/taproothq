@@ -29,9 +29,9 @@ export function parseContactSubmission(input: unknown): ContactSubmission | null
   const cleanName = clean(name);
   if (!cleanName || cleanName.length > LIMITS.name) return null;
 
-  // Checked before stripping: joining "a@b.com\nfoo" would pass as a different address.
-  if (/[\r\n]/.test(email.trim())) return null;
-  const cleanEmail = clean(email);
+  // Rejected rather than stripped: joining "a@b.com\nfoo" would pass as a different address.
+  const cleanEmail = email.trim();
+  if (clean(cleanEmail) !== cleanEmail) return null;
   if (cleanEmail.length > LIMITS.email || !EMAIL_RE.test(cleanEmail)) return null;
 
   if (message !== undefined && typeof message !== "string") return null;

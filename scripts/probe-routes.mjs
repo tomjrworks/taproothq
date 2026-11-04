@@ -23,7 +23,8 @@ const rows = [
   ["labs-new", "/services", 200, ["What we", "AI training", ...canonical("/services")]],
   ["labs-new", "/work", 200, ["Ask to see our work", ...canonical("/work")]],
 
-  ["taproot", "/taproot", 200, ["SoftwareApplication", ...canonical("/taproot")]],
+  // Structured data names /taproot as the product's home: the bare domain is the Labs home now.
+  ["taproot", "/taproot", 200, ["SoftwareApplication", ...canonical("/taproot"), '"name":"Taproot","url":"https://taproothq.com/taproot"'], ['"url":"https://taproothq.com"']],
   ...[
     "about",
     "blog",
@@ -68,7 +69,7 @@ const rows = [
     "sitemap",
     "/sitemap.xml",
     200,
-    ["/services<", "/work<", "/about<", "/taproot<", "/taproot/about<", "/taproot/pricing<", "/privacy<", "/terms<"],
+    ["/services<", "/work<", "/about<", "/taproot<", "/taproot/about<", "/taproot/pricing<", "/privacy<", "/terms<", ...["youve-been-fooled-by-how-you-file-your-documents", "passive-income-but-for-your-data", "inefficiency-is-the-scariest-word", "why-i-dont-worry-about-ais-environmental-impact"].map((s) => `/taproot/blog/${s}<`)],
     ["com/pricing<", "com/demo<", "com/faq<", "com/how-it-works<", "com/vs-memory<", "com/use-cases", "com/blog", "com/home<", "/preview/"],
   ],
   ["llms", "/llms.txt", 200, ["taproothq.com/taproot)", "taproothq.com/taproot/about)", "taproothq.com/privacy)"], ["taproothq.com/pricing", "taproothq.com/about"]],
