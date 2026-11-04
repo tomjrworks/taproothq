@@ -1,0 +1,60 @@
+/* Labs font helpers and shared bits. The em rules undo the opsz that globals.css sets on every em. */
+.f-fr {
+  font-family: var(--font-fraunces-st), Georgia, serif;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 50,
+    "WONK" 0;
+}
+.f-fr em {
+  font-variation-settings: inherit;
+}
+.f-ar {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-variation-settings: normal;
+}
+.f-ar-cond {
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-stretch: 68%;
+  font-variation-settings: "wdth" 68;
+}
+.f-s4 {
+  font-family: var(--font-serif4), Georgia, serif;
+  font-variation-settings: normal;
+}
+.f-s4 em {
+  font-variation-settings: normal;
+}
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+.labs-root ::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+.labs-root a:focus-visible,
+.labs-root button:focus-visible,
+.labs-root input:focus-visible,
+.labs-root textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.labs-root input::placeholder,
+.labs-root textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+.labs-root h1,
+.labs-root h2,
+.labs-root h3 {
+  text-wrap: balance;
+}
+
+/* Server-rendered motion styles start hidden, so reduced motion has to win in CSS, even before hydration. */
+@media (prefers-reduced-motion: reduce) {
+  [data-labs-motion] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
