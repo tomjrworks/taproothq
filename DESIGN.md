@@ -98,7 +98,7 @@ The server's rules, and the limits the forms share with it, are in `src/lib/cont
 
 ## Art
 
-Scenes are drawn in code in `sketch.ts`. Each has its own seed, so changing one can't change another.
+Scenes are drawn in code in `sketch.ts`. Each has its own seed, so changing one can't change another. `src/app/art/[name]/route.ts` serves each as one static file at `/art/<name>.svg`, and `Engraving` points at it with `<use>`. Never put a scene's paths back in a page: the orchard alone is 2 MB, and a server-rendered drawing travels twice, once in the HTML and once in the page's data.
 
 | Scene | Seed | Where | How |
 | --- | --- | --- | --- |
@@ -136,6 +136,7 @@ Lines use `currentColor` and leaves fill with `--paper`, so every drawing follow
 | `/`, `/about`, `/services`, `/work` | Labs, in `src/app/(labs)/` |
 | `/taproot/*` | Taproot product marketing, in `src/app/taproot/` |
 | `/privacy`, `/terms` | At the root, in `src/app/(marketing)/` |
+| `/art/<name>.svg` | The drawings, one static file each |
 | `/sign-in`, `/sign-up`, `/onboarding/*`, `/dashboard/*`, `/auth/*`, `/api/*` | The app, unchanged |
 
 Old marketing paths redirect to `/taproot/*` with a 308, from the table in `redirects.mjs`. `/signup` redirects to `/sign-up`. `/about` is not redirected, because it belongs to Labs now.

@@ -507,7 +507,8 @@ export function staked(s: Sketch, x: number, gy: number, h: number) {
 /* Scenes                                                               */
 /* ------------------------------------------------------------------ */
 
-export type SceneName = "orchard" | "workshop" | "bg-endpaper";
+export const SCENE_NAMES = ["orchard", "workshop", "bg-endpaper"] as const;
+export type SceneName = (typeof SCENE_NAMES)[number];
 
 export type Scene = { w: number; h: number; layers: RenderedLayer[] };
 

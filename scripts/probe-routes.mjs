@@ -60,6 +60,10 @@ const rows = [
 
   ["api", "/api/contact", 405],
 
+  // One copy of each drawing, outside the pages, still following the theme.
+  ...["orchard", "workshop", "bg-endpaper"].map((n) => ["art", `/art/${n}.svg`, 200, ['id="art"', "var(--paper)", "currentColor"]]),
+  ["art", "/art/no-such-scene.svg", 404],
+
   ["app", "/sign-in", 200],
   ["app", "/sign-up", 200],
   ["app", "/onboarding", 307, "/sign-in?next=%2Fonboarding"],
@@ -153,6 +157,30 @@ if ((!only || only.includes("share")) && !skip.includes("share")) {
       check(`${page} ${name}`, pageProblems, measured);
     }
   }
+}
+
+// Page weight: the drawings stay out of the pages, and the browser can keep its one copy.
+if ((!only || only.includes("weight")) && !skip.includes("weight")) {
+  const MAX_PAGE_BYTES = 300_000;
+  const check = (label, problems, measured) => {
+    if (problems.length) failed++;
+    console.log(`${problems.length ? "FAIL" : "ok  "} weight     ${label} ${measured}${problems.length ? ` <- ${problems.join("; ")}` : ""}`);
+  };
+  for (const page of ["/", "/about", "/services", "/work"]) {
+    const html = await (await fetch(base + page)).text();
+    const bytes = Buffer.byteLength(html);
+    const problems = [];
+    if (bytes > MAX_PAGE_BYTES) problems.push(`over ${MAX_PAGE_BYTES}`);
+    if (!html.includes('href="/art/orchard.svg#art"')) problems.push("no orchard reference");
+    check(page, problems, `${bytes} bytes`);
+  }
+  const res = await fetch(`${base}/art/orchard.svg`);
+  const type = res.headers.get("content-type");
+  const cache = res.headers.get("cache-control");
+  const problems = [];
+  if (type !== "image/svg+xml") problems.push(`type ${type}`);
+  if (!/max-age=[1-9]/.test(cache ?? "")) problems.push(`cache-control ${cache}`);
+  check("/art/orchard.svg", problems, `${type} ${cache}`);
 }
 
 console.log(failed ? `${failed} row(s) failed` : "all rows passed");
