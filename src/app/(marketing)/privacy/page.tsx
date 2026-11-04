@@ -40,6 +40,11 @@ export default function PrivacyPage() {
                 Standard web analytics &mdash; pages visited, browser type,
                 referrer &mdash; via Vercel.
               </li>
+              <li>
+                Your name, email and whatever else you type into a form on this
+                site, when you send it. Our email provider delivers it to our
+                inbox, and we only use it to reply to you.
+              </li>
               <li>That&rsquo;s it.</li>
             </ul>
           </div>

@@ -52,8 +52,10 @@ const rows = [
   ["redirect", `/blog/${POST}`, 308, `/taproot/blog/${POST}`],
   ["redirect", "/signup", 308, "/sign-up"],
 
-  ["legal", "/privacy", 200],
+  ["legal", "/privacy", 200, ["whatever else you type into a form on this site"]],
   ["legal", "/terms", 200],
+
+  ["api", "/api/contact", 405],
 
   ["app", "/sign-in", 200],
   ["app", "/sign-up", 200],

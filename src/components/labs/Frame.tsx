@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import ContactForm from "./ContactForm";
 import { contact } from "./content";
 import Engraving from "./Engraving";
 import { Mark } from "./Mark";
@@ -282,56 +283,7 @@ export default function Frame({
             </div>
             <Rule className="mt-4" />
           </div>
-          <form
-            className="md:col-span-7 rounded-[8px] p-6 md:p-9"
-            style={{
-              border: "1.5px solid var(--rule)",
-              borderTopWidth: 4,
-              background: "var(--card)",
-            }}
-          >
-            <p className={`${condensed} text-[36px]`}>
-              Tell us what you want to build
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 mt-7">
-              {[
-                ["Name", "text"],
-                ["Email", "email"],
-              ].map(([l, t]) => (
-                <label key={l} className="block">
-                  <span className={label}>
-                    {l} <span style={{ color: "var(--accent)" }}>*</span>
-                  </span>
-                  <input
-                    type={t}
-                    className="f-s4 w-full mt-2 px-3.5 py-3 rounded-[5px] bg-transparent text-[16px]"
-                    style={{
-                      border: "1px solid var(--rule)",
-                      color: "var(--ink)",
-                    }}
-                  />
-                </label>
-              ))}
-            </div>
-            <label className="block mt-5">
-              <span className={label}>
-                What do you want to build?{" "}
-                <span style={{ color: "var(--accent)" }}>*</span>
-              </span>
-              <textarea
-                rows={5}
-                className="f-s4 w-full mt-2 px-3.5 py-3 rounded-[5px] bg-transparent text-[16px] resize-y"
-                style={{ border: "1px solid var(--rule)", color: "var(--ink)" }}
-              />
-            </label>
-            <button
-              type="button"
-              className="w-full mt-6 py-4 rounded-[5px] f-ar caps text-[12px] font-bold tracking-[0.18em]"
-              style={{ background: "var(--btn)", color: "var(--btn-ink)" }}
-            >
-              Send it
-            </button>
-          </form>
+          <ContactForm />
         </div>
       </section>
         </>
