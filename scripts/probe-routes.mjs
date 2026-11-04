@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { createHash } from "node:crypto";
+
 // Route table probe. usage: node scripts/probe-routes.mjs <BASE_URL> [--only g1,g2] [--skip g1,g2]
 // Prints the measured status/location/marker per row and exits 1 on any mismatch.
 
@@ -99,5 +101,58 @@ for (const [group, path, status, expect, absent = []] of rows) {
   if (problems.length) failed++;
   console.log(`${problems.length ? "FAIL" : "ok  "} ${group.padEnd(10)} ${path} ${res.status} ${measured}${problems.length ? ` <- ${problems.join("; ")}` : ""}`);
 }
+// Share cards: every Labs page shows its own card, /taproot keeps the Taproot one.
+const meta = (html, attr, name) =>
+  html.match(new RegExp(`<meta ${attr}="${name}" content="([^"]+)"`))?.[1];
+const pathOf = (url) => new URL(url, base).pathname;
+
+async function image(url) {
+  const res = await fetch(new URL(pathOf(url), base));
+  const bytes = Buffer.from(await res.arrayBuffer());
+  return {
+    status: res.status,
+    type: res.headers.get("content-type"),
+    width: bytes.readUInt32BE(16), // PNG IHDR
+    height: bytes.readUInt32BE(20),
+    md5: createHash("md5").update(bytes).digest("hex"),
+  };
+}
+
+if ((!only || only.includes("share")) && !skip.includes("share")) {
+  const check = (label, problems, measured) => {
+    if (problems.length) failed++;
+    console.log(`${problems.length ? "FAIL" : "ok  "} share      ${label} ${measured}${problems.length ? ` <- ${problems.join("; ")}` : ""}`);
+  };
+
+  const html = await (await fetch(`${base}/taproot`)).text();
+  const og = meta(html, "property", "og:image");
+  const taprootCard = og ? await image(og) : null;
+  const problems = [];
+  // Compare the path: the file convention adds a hash to the query.
+  if (!og || pathOf(og) !== "/taproot/opengraph-image.png") problems.push(`og:image ${og}`);
+  if (!html.includes(`rel="canonical" href="${SITE}/taproot"`)) problems.push("canonical");
+  if (meta(html, "property", "og:url") !== `${SITE}/taproot`) problems.push(`og:url ${meta(html, "property", "og:url")}`);
+  check("/taproot", problems, og ? pathOf(og) : "(no og:image)");
+
+  for (const page of ["/", "/about", "/services", "/work"]) {
+    const pageHtml = await (await fetch(base + page)).text();
+    for (const [attr, name] of [["property", "og:image"], ["name", "twitter:image"]]) {
+      const url = meta(pageHtml, attr, name);
+      const pageProblems = [];
+      let measured = "(missing)";
+      if (!url) pageProblems.push(`no ${name}`);
+      else {
+        const img = await image(url);
+        measured = `${pathOf(url)} ${img.status} ${img.type} ${img.width}x${img.height} ${img.md5.slice(0, 8)}`;
+        if (img.status !== 200) pageProblems.push(`status ${img.status}`);
+        if (img.type !== "image/png") pageProblems.push(`type ${img.type}`);
+        if (img.width !== 1200 || img.height !== 630) pageProblems.push(`size ${img.width}x${img.height}`);
+        if (img.md5 === taprootCard?.md5) pageProblems.push("same bytes as the Taproot card");
+      }
+      check(`${page} ${name}`, pageProblems, measured);
+    }
+  }
+}
+
 console.log(failed ? `${failed} row(s) failed` : "all rows passed");
 process.exit(failed ? 1 : 0);
