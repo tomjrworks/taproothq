@@ -4,7 +4,7 @@ import Footer from "@/components/brain/Footer";
 export const metadata: Metadata = {
   title: "Privacy — Taproot",
   description:
-    "How we handle your data. Short version: your vault stays on your machine, we just keep your email so we can tell you when access opens.",
+    "How we handle your data. Short version: your vault stays on your machine, we keep your email so we can tell you when access opens, and anything you send us through a form.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -22,7 +22,8 @@ export default function PrivacyPage() {
           </h1>
           <p className="font-serif italic text-lg md:text-xl text-bark/75 leading-[1.5] mt-6">
             Short version: your vault lives on your machine, not ours. We keep
-            your email so we can tell you when access opens. That&rsquo;s it.
+            your email so we can tell you when access opens. If you write to us
+            through a form, we keep what you sent.
           </p>
         </div>
       </section>
@@ -104,8 +105,8 @@ export default function PrivacyPage() {
               Your rights
             </h2>
             <p className="font-serif text-base md:text-lg text-bark/85 leading-[1.7] mt-4">
-              You can ask us to delete your email at any time, or ask what we
-              have on you (which is just your email). Email{" "}
+              You can ask us to delete what we have on you at any time, or ask
+              to see it. Email{" "}
               <a
                 href="mailto:tom@taproothq.com"
                 className="text-forest-dark underline hover:text-forest-dark/75"
