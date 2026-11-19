@@ -3,7 +3,7 @@ const KEY = "analytics-clean-reload";
 
 export type Win = {
   clarity?: unknown;
-  dataLayer?: unknown;
+  gtag?: unknown;
   document: { querySelector(s: string): unknown };
   sessionStorage: Pick<Storage, "getItem" | "setItem" | "removeItem">;
 };
@@ -12,7 +12,8 @@ export type Win = {
 // tab. A page without the public layouts' mark gets one full reload, which brings it up without them.
 // The flag stops a loop if they somehow survive the reload; it clears once a page is clean.
 export function needsCleanReload(w: Win, path: string): boolean {
-  const running = w.clarity !== undefined || w.dataLayer !== undefined;
+  // gtag, not dataLayer: anything can create a dataLayer, only GA's snippet defines gtag.
+  const running = w.clarity !== undefined || w.gtag !== undefined;
   const isPublic = w.document.querySelector(`[${PUBLIC_MARK}]`) !== null;
   try {
     if (!running) {
@@ -22,7 +23,8 @@ export function needsCleanReload(w: Win, path: string): boolean {
     if (isPublic || w.sessionStorage.getItem(KEY) === path) return false;
     w.sessionStorage.setItem(KEY, path);
   } catch {
-    if (isPublic) return false;
+    // Blocked storage: no loop guard, so reload only what still needs it.
+    return running && !isPublic;
   }
   return true;
 }

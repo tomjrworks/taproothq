@@ -39,7 +39,7 @@ describe("clean reload after a soft navigation", () => {
     const store = new Map<string, string>(flag ? [["analytics-clean-reload", flag]] : []);
     const guard = <T,>(f: () => T) => () => { if (throws) throw new Error("blocked"); return f(); };
     return {
-      ...(running ? { clarity: () => {}, dataLayer: [] } : {}),
+      ...(running ? { clarity: () => {}, gtag: () => {} } : {}),
       document: { querySelector: () => (mark ? {} : null) },
       sessionStorage: {
         getItem: (k: string) => guard(() => store.get(k) ?? null)(),
@@ -56,8 +56,8 @@ describe("clean reload after a soft navigation", () => {
     expect(w.store.get("analytics-clean-reload")).toBe("/sign-in");
   });
 
-  it("reloads on dataLayer alone, and on clarity alone", () => {
-    expect(needsCleanReload({ ...win({ running: false }), dataLayer: [] }, "/dashboard")).toBe(true);
+  it("reloads on gtag alone, and on clarity alone", () => {
+    expect(needsCleanReload({ ...win({ running: false }), gtag: () => {} }, "/dashboard")).toBe(true);
     expect(needsCleanReload({ ...win({ running: false }), clarity: () => {} }, "/dashboard")).toBe(true);
   });
 
@@ -79,6 +79,15 @@ describe("clean reload after a soft navigation", () => {
   it("still reloads when storage is blocked", () => {
     expect(needsCleanReload(win({ throws: true }), "/sign-in")).toBe(true);
     expect(needsCleanReload(win({ throws: true, mark: true }), "/")).toBe(false);
+  });
+
+  it("never reloads a clean page when storage is blocked (no loop)", () => {
+    expect(needsCleanReload(win({ running: false, throws: true }), "/dashboard")).toBe(false);
+  });
+
+  // A dataLayer can come from an extension or another tag; only GA's own gtag means GA is running.
+  it("ignores a foreign dataLayer", () => {
+    expect(needsCleanReload(Object.assign(win({ running: false }), { dataLayer: [] }), "/dashboard")).toBe(false);
   });
 
   it("only the root layout mounts the guard", () => {

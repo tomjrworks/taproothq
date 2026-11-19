@@ -25,8 +25,10 @@ export async function POST(req: Request) {
 
   // Vercel BotID (Basic). Closed on failure: a person still has the error line's mailto,
   // and an open door would spend the Resend quota every other product's mail shares.
+  // Only an explicit isBot: false passes: botid turns an error body from Vercel into a verdict without isBot.
   try {
-    if ((await checkBotId()).isBot) return json({ error: "forbidden" }, 403);
+    const verdict = await checkBotId();
+    if (verdict.isBot !== false || verdict.isVerifiedBot) return json({ error: "forbidden" }, 403);
   } catch (err) {
     console.error("[contact] bot check threw", err instanceof Error ? err.name : "unknown");
     return json({ error: "forbidden" }, 403);

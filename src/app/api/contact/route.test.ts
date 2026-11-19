@@ -207,6 +207,17 @@ describe("BotID", () => {
     expect(send).not.toHaveBeenCalled();
   });
 
+  // botid reads Vercel's answer without checking res.ok: an error body comes back as { isHuman: true }, no isBot.
+  it.each([
+    ["an error body (isBot missing)", { isHuman: true }],
+    ["isBot null", { isHuman: true, isBot: null }],
+    ["a verified bot without isBot", { isHuman: false, isBot: false, isVerifiedBot: true }],
+  ])("answers 403 with no email for %s", async (_name, verdict) => {
+    checkBotId.mockResolvedValue(verdict);
+    expect((await post()).status).toBe(403);
+    expect(send).not.toHaveBeenCalled();
+  });
+
   it("gives a bot no quiet 200 through the honeypot", async () => {
     checkBotId.mockResolvedValue(BOT);
     expect((await post({ ...valid, hp: "x" })).status).toBe(403);
