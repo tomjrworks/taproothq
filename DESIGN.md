@@ -9,7 +9,7 @@ The design is locked. Changing the look needs Tom. Rejected directions are liste
 ## Brand rules
 
 - Never black. The darkest color is bark, `#3D3529`. Dark mode is bark, not forest and not black.
-- Every page headline is one Fraunces line, with its last words in the italic accent.
+- Every page headline is one Fraunces line at desktop width, with its last words in the italic accent. On a phone the longer ones wrap, as locked: About runs to two lines at 390.
 - No fabricated assets. The mark is `/images/taproot-logo.png` with "Taproot Labs" typed beside it.
 - The code drawings are final. No generated engravings.
 
@@ -66,7 +66,7 @@ From `Frame.tsx`:
 Elsewhere in `src/components/labs/`:
 
 - `Mark`: the sprout mark with "Taproot Labs" beside it.
-- `Engraving`: renders a scene from `sketch.ts`.
+- `Engraving`: shows a drawing through `<use href="/art/<name>.svg#art">`, sized from the scene's `w` and `h` in `sketch.ts`.
 - `Backdrop`: the home page's seed endpaper.
 - `Reveal`, `DrawRule`: entrance motion for a block and for a rule.
 - `ThemeShell`, `ThemeToggle`: theme state and the DARK / LIGHT pill.
@@ -79,7 +79,7 @@ Client components import class strings from `tokens.ts`, never from `Frame.tsx`.
 ## Buttons and labels
 
 - `btn`: Archivo caps, 12px, semibold, `rounded-[4px]`, on `--btn` with `--btn-ink`.
-- Form submit: full width, `py-4`, `rounded-[5px]`, Archivo caps, 12px, bold, 0.18em tracking.
+- Form submit: full width, `py-4`, `rounded-[5px]`, Archivo caps, 12px, bold, 0.14em tracking. The button also carries `tracking-[0.18em]`, but `.caps` comes later in the CSS and wins.
 - `label`: Archivo caps, 11px, semibold. A required field marks itself with an asterisk in `--accent`.
 
 ## Form states
@@ -126,6 +126,7 @@ Lines use `currentColor` and leaves fill with `--paper`, so every drawing follow
 - Plain words. No seeds, roots or growing as metaphors.
 - No colons and no em dashes.
 - Never name Claude for AI.
+- No Bookbug "Latest" note.
 - Services never point at our own products. The apps aren't shown publicly, so Work is an "Ask to see our work" form.
 - Positioning: our own SaaS products, plus contract work for companies, including hands-on AI training.
 
@@ -137,7 +138,7 @@ Lines use `currentColor` and leaves fill with `--paper`, so every drawing follow
 | `/taproot/*` | Taproot product marketing, in `src/app/taproot/` |
 | `/privacy`, `/terms` | At the root, in `src/app/(marketing)/` |
 | `/art/<name>.svg` | The drawings, one static file each |
-| `/sign-in`, `/sign-up`, `/onboarding/*`, `/dashboard/*`, `/auth/*`, `/api/*` | The app, unchanged |
+| `/sign-in`, `/sign-up`, `/onboarding/*`, `/dashboard/*`, `/auth/*`, `/api/*` | The app. Unchanged except the decision-5 links to `/taproot` (sign-in, sign-up, sign-out, `DashboardNav`, the onboarding shell) and the new `/api/contact` behind the Labs forms |
 
 Old marketing paths redirect to `/taproot/*` with a 308, from the table in `redirects.mjs`. `/signup` redirects to `/sign-up`. `/about` is not redirected, because it belongs to Labs now.
 
