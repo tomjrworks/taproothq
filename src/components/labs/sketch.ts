@@ -567,6 +567,8 @@ function build(name: SceneName): Scene {
     fieldHatch(s, 0, W, gy, 420);
     return { w: W, h: 420, layers: s.render() };
   }
+  // A cast can lie: an unknown name must never come back as the endpaper.
+  if (name !== "bg-endpaper") throw new Error("Unknown scene");
   // An old book's endpaper: seeds, sprouts and sown dots in a loose lattice.
   const s = new Sketch(331);
   const g = 64;

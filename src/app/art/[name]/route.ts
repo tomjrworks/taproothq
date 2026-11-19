@@ -33,7 +33,10 @@ export function GET(
   _request: Request,
   { params }: { params: { name: string } },
 ) {
-  const name = params.name.replace(/\.svg$/, "") as SceneName;
+  const name = SCENE_NAMES.find((n) => `${n}.svg` === params.name);
+  // Throw, never answer: on a case-insensitive disk `next start` serves /art/Orchard.svg from
+  // orchard's cached file, then stores this handler's result over it. A thrown error isn't stored.
+  if (!name) throw new Error("Unknown drawing");
   return new Response(markup(name), {
     headers: {
       "Content-Type": "image/svg+xml",
