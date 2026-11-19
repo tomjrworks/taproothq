@@ -202,6 +202,21 @@ if (want("share")) {
   }
 }
 
+// Analytics on public pages only (S2). Opt-in (--only analytics) and only against a build made with dummy,
+// non-empty NEXT_PUBLIC_GA_MEASUREMENT_ID / NEXT_PUBLIC_CLARITY_PROJECT_ID: a blank build shows 0 tags everywhere.
+if (only?.includes("analytics")) {
+  const check = checker("analytics");
+  const TAGS = ["googletagmanager.com/gtag/js", "clarity.ms/tag/"];
+  const pub = ["/", "/about", "/services", "/work", "/taproot", "/taproot/pricing", "/taproot/blog", "/privacy", "/terms"];
+  const priv = ["/sign-in", "/sign-up", "/no-such-page"];
+  for (const page of [...pub, ...priv]) {
+    const html = await (await fetch(base + page)).text();
+    const found = TAGS.filter((t) => html.includes(t));
+    const want = pub.includes(page) ? TAGS.length : 0;
+    check(page, found.length === want ? [] : [`${found.length} tags, want ${want}`], `tags ${found.length}/${TAGS.length}`);
+  }
+}
+
 // Page weight: the drawings stay out of the pages, and the browser can keep its one copy.
 if (want("weight")) {
   const check = checker("weight");

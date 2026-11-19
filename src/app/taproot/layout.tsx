@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Nav from "@/components/brain/Nav";
+import PublicAnalytics from "@/components/PublicAnalytics";
 
 const SITE_URL = "https://taproothq.com";
 const PRODUCT_URL = `${SITE_URL}/taproot`;
@@ -80,6 +81,7 @@ export default function TaprootLayout({
       />
       <Nav />
       {children}
+      <PublicAnalytics />
     </>
   );
 }

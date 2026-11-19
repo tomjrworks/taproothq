@@ -1,6 +1,7 @@
 import { Archivo, Fraunces, Source_Serif_4 } from "next/font/google";
 import { cookies } from "next/headers";
 import { ThemeShell } from "@/components/labs/theme";
+import PublicAnalytics from "@/components/PublicAnalytics";
 import "@/components/labs/labs.css";
 
 const archivo = Archivo({
@@ -48,6 +49,7 @@ export default function LabsLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <ThemeShell initial={initial}>{children}</ThemeShell>
+      <PublicAnalytics />
     </div>
   );
 }
