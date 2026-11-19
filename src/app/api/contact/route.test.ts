@@ -231,6 +231,15 @@ describe("send", () => {
     expect(await res.json()).toEqual({ error: "send_failed" });
   });
 
+  // No error and no message id is not a send: showing "Thanks, we got it" would lose the lead.
+  it("answers 502 when Resend resolves with neither data nor an error", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    send.mockResolvedValue({ data: null, error: null });
+    const res = await post();
+    expect(res.status).toBe(502);
+    expect(await res.json()).toEqual({ error: "send_failed" });
+  });
+
   it("answers 502 when Resend rejects", async () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
     send.mockRejectedValue(new Error("boom ada.secret@example.com"));

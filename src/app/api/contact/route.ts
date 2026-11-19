@@ -72,6 +72,11 @@ export async function POST(req: Request) {
       console.error("[contact] send failed", result.error.name, result.error.statusCode);
       return json({ error: "send_failed" }, 502);
     }
+    // No error and no message id is not a send either.
+    if (!result.data) {
+      console.error("[contact] send returned no data");
+      return json({ error: "send_failed" }, 502);
+    }
   } catch (err) {
     console.error("[contact] send threw", err instanceof Error ? err.name : "unknown");
     return json({ error: "send_failed" }, 502);
