@@ -11,6 +11,9 @@ const flag = (name) => {
 };
 const only = flag("only");
 const skip = flag("skip") ?? [];
+const want = (group) => (!only || only.includes(group)) && !skip.includes(group);
+const md5 = (bytes) => createHash("md5").update(bytes).digest("hex");
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // [group, path, expected status, markers in the body | redirect target path+query, strings that must be absent]
 const SITE = "https://taproothq.com";
@@ -60,22 +63,11 @@ const rows = [
 
   ["api", "/api/contact", 405],
 
-  // One copy of each drawing, outside the pages, still following the theme.
-  ...["orchard", "workshop", "bg-endpaper"].map((n) => ["art", `/art/${n}.svg`, 200, ['id="art"', "var(--paper)", "currentColor"]]),
-  ["art", "/art/no-such-scene.svg", 404],
-
   ["app", "/sign-in", 200],
   ["app", "/sign-up", 200],
   ["app", "/onboarding", 307, "/sign-in?next=%2Fonboarding"],
   ["app", "/dashboard", 307, "/sign-in?next=%2Fdashboard"],
 
-  [
-    "sitemap",
-    "/sitemap.xml",
-    200,
-    ["/services<", "/work<", "/about<", "/taproot<", "/taproot/about<", "/taproot/pricing<", "/privacy<", "/terms<", ...["youve-been-fooled-by-how-you-file-your-documents", "passive-income-but-for-your-data", "inefficiency-is-the-scariest-word", "why-i-dont-worry-about-ais-environmental-impact"].map((s) => `/taproot/blog/${s}<`)],
-    ["com/pricing<", "com/demo<", "com/faq<", "com/how-it-works<", "com/vs-memory<", "com/use-cases", "com/blog", "com/home<", "/preview/"],
-  ],
   ["llms", "/llms.txt", 200, ["taproothq.com/taproot)", "taproothq.com/taproot/about)", "taproothq.com/privacy)"], ["taproothq.com/pricing", "taproothq.com/about"]],
 
   ["gone", "/studio", 404],
@@ -84,8 +76,13 @@ const rows = [
 ];
 
 let failed = 0;
+const checker = (group) => (label, problems, measured) => {
+  if (problems.length) failed++;
+  console.log(`${problems.length ? "FAIL" : "ok  "} ${group.padEnd(10)} ${label} ${measured}${problems.length ? ` <- ${problems.join("; ")}` : ""}`);
+};
+
 for (const [group, path, status, expect, absent = []] of rows) {
-  if ((only && !only.includes(group)) || skip.includes(group)) continue;
+  if (!want(group)) continue;
   const res = await fetch(base + path, { redirect: "manual" });
   const problems = [];
   if (res.status !== status) problems.push(`status ${res.status}, want ${status}`);
@@ -103,10 +100,26 @@ for (const [group, path, status, expect, absent = []] of rows) {
     if (missing.length) problems.push(`missing ${JSON.stringify(missing)}`);
     if (present.length) problems.push(`present ${JSON.stringify(present)}`);
   }
-  if (problems.length) failed++;
-  console.log(`${problems.length ? "FAIL" : "ok  "} ${group.padEnd(10)} ${path} ${res.status} ${measured}${problems.length ? ` <- ${problems.join("; ")}` : ""}`);
+  checker(group)(`${path} ${res.status}`, problems, measured);
 }
-// Share cards: every Labs page shows its own card, /taproot keeps the Taproot one.
+
+// The sitemap: every page we want indexed, the home included, and nothing outside the routes we serve.
+if (want("sitemap")) {
+  const check = checker("sitemap");
+  const xml = await (await fetch(`${base}/sitemap.xml`)).text();
+  const locs = [...xml.matchAll(/<loc>([^<]*)<\/loc>/g)].map((m) => m[1]);
+  const POSTS = ["youve-been-fooled-by-how-you-file-your-documents", "passive-income-but-for-your-data", "inefficiency-is-the-scariest-word", "why-i-dont-worry-about-ais-environmental-impact"];
+  const need = ["/", "/about", "/services", "/work", "/taproot", "/taproot/about", "/taproot/pricing", "/taproot/blog", ...POSTS.map((s) => `/taproot/blog/${s}`), "/privacy", "/terms"];
+  const missing = need.filter((p) => !locs.includes(SITE + p));
+  const served = (p) => ["/", "/about", "/services", "/work", "/privacy", "/terms", "/taproot"].includes(p) || (p.startsWith("/taproot/") && !p.startsWith("/taproot/preview/"));
+  const stray = locs.filter((u) => !u.startsWith(`${SITE}/`) || !served(u.slice(SITE.length)));
+  const problems = [];
+  if (missing.length) problems.push(`missing ${JSON.stringify(missing)}`);
+  if (stray.length) problems.push(`stray ${JSON.stringify(stray)}`);
+  check("/sitemap.xml", problems, `${locs.length} entries, ${need.length - missing.length}/${need.length} required, ${stray.length} stray`);
+}
+
+// Share cards and structured data: every Labs page shows its own card, /taproot keeps the Taproot one.
 const meta = (html, attr, name) =>
   html.match(new RegExp(`<meta ${attr}="${name}" content="([^"]+)"`))?.[1];
 const pathOf = (url) => new URL(url, base).pathname;
@@ -119,25 +132,30 @@ async function image(url) {
     type: res.headers.get("content-type"),
     width: bytes.readUInt32BE(16), // PNG IHDR
     height: bytes.readUInt32BE(20),
-    md5: createHash("md5").update(bytes).digest("hex"),
+    md5: md5(bytes),
   };
 }
 
-if ((!only || only.includes("share")) && !skip.includes("share")) {
-  const check = (label, problems, measured) => {
-    if (problems.length) failed++;
-    console.log(`${problems.length ? "FAIL" : "ok  "} share      ${label} ${measured}${problems.length ? ` <- ${problems.join("; ")}` : ""}`);
-  };
+if (want("share")) {
+  const check = checker("share");
+  const LABS_ORG = '{"@context":"https://schema.org","@type":"Organization","name":"Taproot Labs","url":"https://taproothq.com","logo":"https://taproothq.com/images/taproot-logo.png"}';
 
   const html = await (await fetch(`${base}/taproot`)).text();
   const og = meta(html, "property", "og:image");
+  const tw = meta(html, "name", "twitter:image");
   const taprootCard = og ? await image(og) : null;
   const problems = [];
   // Compare the path: the file convention adds a hash to the query.
   if (!og || pathOf(og) !== "/taproot/opengraph-image.png") problems.push(`og:image ${og}`);
+  if (!tw || pathOf(tw) !== "/taproot/twitter-image.png") problems.push(`twitter:image ${tw}`);
+  else {
+    const img = await image(tw);
+    if (img.status !== 200 || img.type !== "image/png" || img.width !== 1200 || img.height !== 630) problems.push(`twitter:image ${img.status} ${img.type} ${img.width}x${img.height}`);
+  }
   if (!html.includes(`rel="canonical" href="${SITE}/taproot"`)) problems.push("canonical");
   if (meta(html, "property", "og:url") !== `${SITE}/taproot`) problems.push(`og:url ${meta(html, "property", "og:url")}`);
-  check("/taproot", problems, og ? pathOf(og) : "(no og:image)");
+  if (html.includes(LABS_ORG)) problems.push("carries the Labs structured data");
+  check("/taproot", problems, `${og ? pathOf(og) : "(no og:image)"} ${tw ? pathOf(tw) : "(no twitter:image)"}`);
 
   for (const page of ["/", "/about", "/services", "/work"]) {
     const pageHtml = await (await fetch(base + page)).text();
@@ -156,16 +174,20 @@ if ((!only || only.includes("share")) && !skip.includes("share")) {
       }
       check(`${page} ${name}`, pageProblems, measured);
     }
+    const ogUrl = meta(pageHtml, "property", "og:url");
+    const wantUrl = page === "/" ? SITE : SITE + page;
+    const ldProblems = [];
+    if (ogUrl !== wantUrl) ldProblems.push(`og:url ${ogUrl}, want ${wantUrl}`);
+    if (!pageHtml.includes(LABS_ORG)) ldProblems.push("no Labs Organization structured data");
+    if (pageHtml.includes("SoftwareApplication")) ldProblems.push("carries Taproot's structured data");
+    check(`${page} og:url + structured data`, ldProblems, ogUrl ?? "(no og:url)");
   }
 }
 
 // Page weight: the drawings stay out of the pages, and the browser can keep its one copy.
-if ((!only || only.includes("weight")) && !skip.includes("weight")) {
+if (want("weight")) {
+  const check = checker("weight");
   const MAX_PAGE_BYTES = 300_000;
-  const check = (label, problems, measured) => {
-    if (problems.length) failed++;
-    console.log(`${problems.length ? "FAIL" : "ok  "} weight     ${label} ${measured}${problems.length ? ` <- ${problems.join("; ")}` : ""}`);
-  };
   for (const page of ["/", "/about", "/services", "/work"]) {
     const html = await (await fetch(base + page)).text();
     const bytes = Buffer.byteLength(html);
@@ -180,7 +202,47 @@ if ((!only || only.includes("weight")) && !skip.includes("weight")) {
   const problems = [];
   if (type !== "image/svg+xml") problems.push(`type ${type}`);
   if (!/max-age=[1-9]/.test(cache ?? "")) problems.push(`cache-control ${cache}`);
-  check("/art/orchard.svg", problems, `${type} ${cache}`);
+  // Printed, not asserted: next start sends it uncompressed; production's edge is expected to compress.
+  check("/art/orchard.svg", problems, `${type} ${cache} encoding=${res.headers.get("content-encoding") ?? "none"}`);
+}
+
+// The drawings, last: exact bytes per scene (the seeds are fixed), so a wrong drawing can't pass, then
+// requests that must never change one. Production paths are case-sensitive, so a case variant 404s
+// there; on a case-insensitive disk next start serves orchard's own file for it, which is fine. Any
+// other drawing means the real file was written over.
+if (want("art")) {
+  const check = checker("art");
+  const ART = {
+    orchard: [2_151_124, "dd60fb6e457c37372f047d1b0a34fa45"],
+    workshop: [1_199_262, "4a084cb543b6afc2e35a39bb27e168f2"],
+    "bg-endpaper": [54_664, "dca76ca21728aa29c7ecce860bf21784"],
+  };
+  const get = async (path) => {
+    const res = await fetch(base + path, { redirect: "manual" });
+    const bytes = Buffer.from(await res.arrayBuffer());
+    return { status: res.status, size: bytes.length, md5: md5(bytes) };
+  };
+  const is = (name, got) => got.status === 200 && got.size === ART[name][0] && got.md5 === ART[name][1];
+  const drawn = (got) => Object.keys(ART).find((n) => got.size === ART[n][0] && got.md5 === ART[n][1]) ?? "no drawing";
+  const show = (got) => `${got.status} ${got.size} md5 ${got.md5.slice(0, 10)} (${drawn(got)})`;
+
+  for (const name of Object.keys(ART)) {
+    const got = await get(`/art/${name}.svg`);
+    check(`/art/${name}.svg`, is(name, got) ? [] : ["not the pinned bytes"], show(got));
+  }
+  const unknown = await get("/art/no-such-scene.svg");
+  check("/art/no-such-scene.svg", unknown.status === 404 ? [] : ["want 404"], show(unknown));
+  // The route's own literal path: next start answers it with a router error before the handler; never a drawing.
+  const literal = await get("/art/%5Bname%5D");
+  check("/art/%5Bname%5D", literal.status !== 200 && drawn(literal) === "no drawing" ? [] : ["served a drawing"], show(literal));
+  for (const round of [1, 2]) {
+    if (round === 2) await sleep(2500); // past the 1 s revalidate Next gives a path it didn't prerender
+    const got = await get("/art/Orchard.svg");
+    check(`/art/Orchard.svg #${round}`, got.status === 404 || is("orchard", got) ? [] : ["neither a 404 nor orchard's bytes"], show(got));
+  }
+  await sleep(1000);
+  const after = await get("/art/orchard.svg");
+  check("/art/orchard.svg after the requests above", is("orchard", after) ? [] : ["the real file was written over"], show(after));
 }
 
 console.log(failed ? `${failed} row(s) failed` : "all rows passed");
