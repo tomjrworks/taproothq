@@ -72,6 +72,11 @@ describe("origin", () => {
   it("refuses www posting to the apex", async () => {
     expect((await post(valid, { origin: `https://www.${HOST}` })).status).toBe(403);
   });
+
+  it("refuses the same host on another port", async () => {
+    expect((await post(valid, { origin: `https://${HOST}:8443` })).status).toBe(403);
+    expect(send).not.toHaveBeenCalled();
+  });
 });
 
 describe("size and shape", () => {
@@ -90,6 +95,21 @@ describe("size and shape", () => {
     const res = await post("x".repeat(16 * 1024 + 1), { raw: true });
     expect(res.status).toBe(413);
     expect(send).not.toHaveBeenCalled();
+  });
+
+  it("accepts a body of exactly 16 KB, by header and by bytes", async () => {
+    const json = JSON.stringify(valid);
+    const body = json + " ".repeat(16 * 1024 - Buffer.byteLength(json));
+    expect(Buffer.byteLength(body)).toBe(16 * 1024);
+    const res = await POST(
+      new Request(`https://${HOST}/api/contact`, {
+        method: "POST",
+        headers: { origin: `https://${HOST}`, host: HOST, "content-length": String(16 * 1024) },
+        body,
+      }),
+    );
+    expect(res.status).toBe(200);
+    expect(send).toHaveBeenCalledOnce();
   });
 
   it("measures the body in bytes, not characters", async () => {
@@ -249,17 +269,36 @@ describe("send", () => {
 
 describe("logging", () => {
   const SECRETS = ["Secretname", "ada.secret", "my secret message", "provider said"];
+  const RAW = "Ada Secretname ada.secret@example.com my secret message {";
+  const none = () => {};
 
+  // Every exit the route has, each carrying the secrets, each proven reached by its status.
   it.each([
-    ["resolved error", () => send.mockResolvedValue({ data: null, error: { name: "x", statusCode: 500, message: "provider said ada.secret@example.com" } })],
-    ["rejection", () => send.mockRejectedValue(new Error("provider said ada.secret@example.com"))],
-    ["success", () => {}],
-  ])("never logs the submission or the provider's message: %s", async (_name, arrange) => {
-    const spies = (["error", "log", "warn", "info"] as const).map((m) =>
+    ["no Origin", none, () => post(valid, { origin: null }), 403],
+    ["a foreign Origin", none, () => post(valid, { origin: "https://evil.example" }), 403],
+    ["a Content-Length over the cap", none, () =>
+      POST(new Request(`https://${HOST}/api/contact`, {
+        method: "POST",
+        headers: { origin: `https://${HOST}`, host: HOST, "content-length": String(16 * 1024 + 1) },
+        body: JSON.stringify(valid),
+      })), 413],
+    ["a body over the cap", none, () => post({ ...valid, message: `my secret message ${"x".repeat(16 * 1024)}` }), 413],
+    ["a body that isn't JSON", none, () => post(RAW, { raw: true }), 400],
+    ["JSON that isn't an object", none, () => post(JSON.stringify(SECRETS), { raw: true }), 400],
+    ["a filled honeypot", none, () => post({ ...valid, hp: "x" }), 200],
+    ["a too-fast submit", none, () => post({ ...valid, elapsedMs: 100 }), 429],
+    ["a failed validation", none, () => post({ ...valid, email: "ada.secret@" }), 400],
+    ["a missing key", () => { delete process.env.RESEND_API_KEY; }, () => post(), 500],
+    ["a resolved error", () => send.mockResolvedValue({ data: null, error: { name: "x", statusCode: 500, message: "provider said ada.secret@example.com" } }), () => post(), 502],
+    ["neither data nor an error", () => send.mockResolvedValue({ data: null, error: null }), () => post(), 502],
+    ["a rejection", () => send.mockRejectedValue(new Error("provider said ada.secret@example.com")), () => post(), 502],
+    ["a success", none, () => post(), 200],
+  ] as const)("never logs the submission or the provider's message: %s", async (_name, arrange, request, status) => {
+    const spies = (["error", "log", "warn", "info", "debug"] as const).map((m) =>
       vi.spyOn(console, m).mockImplementation(() => {}),
     );
     arrange();
-    await post();
+    expect((await request()).status).toBe(status);
     const logged = JSON.stringify(spies.flatMap((s) => s.mock.calls), (_k, v) =>
       v instanceof Error ? { message: v.message, name: v.name } : v,
     );
