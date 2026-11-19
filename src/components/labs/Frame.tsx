@@ -232,15 +232,17 @@ export default function Frame({
                 ? { textDecoration: "underline", textUnderlineOffset: 6 }
                 : undefined
             }
+            aria-current={page === n.id ? "page" : undefined}
           >
             {n.label}
           </Link>
         ))}
       </nav>
 
-      <main>{children}</main>
+      <main>
+      {children}
 
-      {/* Contact, on every page but Work (Work is its own form) */}
+      {/* Contact, on every page but Work (Work is its own form). Inside main, so it's in a landmark. */}
       {page !== "work" && (
         <>
       <section className={`${W} pt-24 md:pt-32`}>
@@ -288,6 +290,7 @@ export default function Frame({
       </section>
         </>
       )}
+      </main>
 
       <footer className="mt-6">
         <Engraving

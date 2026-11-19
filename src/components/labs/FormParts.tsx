@@ -95,14 +95,27 @@ export function Honeypot() {
 export function SubmitButton({
   sending,
   mounted,
+  error,
   children,
 }: {
   sending: boolean;
   mounted: boolean;
+  error: boolean;
   children: ReactNode;
 }) {
+  const button = useRef<HTMLButtonElement>(null);
+
+  // A clicked button that disables itself drops focus to the page. Give it back when the send fails,
+  // unless focus is still somewhere useful (Enter from a field keeps it there).
+  useEffect(() => {
+    if (error && (!document.activeElement || document.activeElement === document.body)) {
+      button.current?.focus();
+    }
+  }, [error]);
+
   return (
     <button
+      ref={button}
       type="submit"
       disabled={!mounted || sending}
       className="w-full mt-6 py-4 rounded-[5px] f-ar caps text-[12px] font-bold tracking-[0.18em]"

@@ -224,6 +224,20 @@ if (want("weight")) {
   check("/art/orchard.svg", problems, `${type} ${cache} encoding=${res.headers.get("content-encoding") ?? "none"}`);
 }
 
+// Landmarks: the contact section sits inside <main>, and both navs mark the current page.
+if (want("a11y")) {
+  const check = checker("a11y");
+  for (const [page, current] of [["/", 0], ["/about", 2], ["/services", 2], ["/work", 2]]) {
+    const html = await (await fetch(base + page)).text();
+    const marked = html.split('aria-current="page"').length - 1;
+    const [open, contact, close] = ["<main", 'id="contact"', "</main>"].map((s) => html.indexOf(s));
+    const problems = [];
+    if (marked !== current) problems.push(`aria-current ${marked}, want ${current}`);
+    if (!(open >= 0 && open < contact && contact < close)) problems.push("contact section outside <main>");
+    check(page, problems, `aria-current ${marked}, <main ${open} < contact ${contact} < </main> ${close}`);
+  }
+}
+
 // The drawings, last: exact bytes per scene (the seeds are fixed), so a wrong drawing can't pass, then
 // requests that must never change one. Production paths are case-sensitive, so a case variant 404s
 // there; on a case-insensitive disk next start serves orchard's own file for it, which is fine. Any

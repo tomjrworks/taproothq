@@ -71,7 +71,7 @@ export default function ContactForm() {
           />
         </label>
         <Honeypot />
-        <SubmitButton sending={status === "sending"} mounted={mounted}>
+        <SubmitButton sending={status === "sending"} mounted={mounted} error={status === "error"}>
           Send it
         </SubmitButton>
         {status === "error" && <SendError />}

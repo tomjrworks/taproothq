@@ -98,7 +98,7 @@ export default function AskToSeeForm() {
           />
         </label>
         <Honeypot />
-        <SubmitButton sending={status === "sending"} mounted={mounted}>
+        <SubmitButton sending={status === "sending"} mounted={mounted} error={status === "error"}>
           Send
         </SubmitButton>
         {status === "error" && <SendError />}
