@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
+import { BotIdClient } from "botid/client";
 import { Toaster } from "@/components/dashboard/ui/toaster";
 import { TooltipProvider } from "@/components/dashboard/ui/tooltip";
 import "./globals.css";
@@ -64,6 +65,10 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
+      {/* Root, not (labs): its inline script never runs on a client-side navigation into Labs. */}
+      <head>
+        <BotIdClient protect={[{ path: "/api/contact", method: "POST" }]} />
+      </head>
       <body
         className="antialiased bg-cream text-bark"
         style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}

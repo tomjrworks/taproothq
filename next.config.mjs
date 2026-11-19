@@ -1,3 +1,4 @@
+import { withBotId } from "botid/next/config";
 import { redirects } from "./redirects.mjs";
 
 /** @type {import('next').NextConfig} */
@@ -10,4 +11,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withBotId(nextConfig);

@@ -1,6 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-const { send, keys } = vi.hoisted(() => ({ send: vi.fn(), keys: [] as string[] }));
+const { send, keys, checkBotId } = vi.hoisted(() => ({ send: vi.fn(), keys: [] as string[], checkBotId: vi.fn() }));
+
+// Local and test runs never see a real verdict (botid answers "human" outside Vercel), so the verdict is mocked.
+vi.mock("botid/server", () => ({ checkBotId }));
 
 vi.mock("resend", () => ({
   Resend: class {
@@ -42,6 +45,8 @@ beforeEach(() => {
   send.mockReset();
   keys.length = 0;
   send.mockResolvedValue({ data: { id: "em_1" }, error: null });
+  checkBotId.mockReset();
+  checkBotId.mockResolvedValue({ isHuman: true, isBot: false, isVerifiedBot: false, bypassed: false });
   process.env.RESEND_API_KEY = "re_test";
 });
 
@@ -180,6 +185,48 @@ describe("bot traps", () => {
   });
 });
 
+describe("BotID", () => {
+  const BOT = { isHuman: false, isBot: true, isVerifiedBot: false, bypassed: false };
+
+  it("checks every valid send once", async () => {
+    expect((await post()).status).toBe(200);
+    expect(checkBotId).toHaveBeenCalledOnce();
+  });
+
+  it("answers 403 with no email when BotID calls it a bot", async () => {
+    checkBotId.mockResolvedValue(BOT);
+    const res = await post();
+    expect(res.status).toBe(403);
+    expect(await res.json()).toEqual({ error: "forbidden" });
+    expect(send).not.toHaveBeenCalled();
+  });
+
+  it("refuses a verified bot too: no crawler has a reason to send this form", async () => {
+    checkBotId.mockResolvedValue({ ...BOT, isVerifiedBot: true });
+    expect((await post()).status).toBe(403);
+    expect(send).not.toHaveBeenCalled();
+  });
+
+  it("gives a bot no quiet 200 through the honeypot", async () => {
+    checkBotId.mockResolvedValue(BOT);
+    expect((await post({ ...valid, hp: "x" })).status).toBe(403);
+  });
+
+  // Closed on purpose: a person still has the mailto on the error line; an open door spends the shared quota.
+  it("answers 403 with no email when the check itself fails", async () => {
+    const error = vi.spyOn(console, "error").mockImplementation(() => {});
+    checkBotId.mockRejectedValue(new Error("upstream ada.secret@example.com"));
+    expect((await post()).status).toBe(403);
+    expect(send).not.toHaveBeenCalled();
+    expect(JSON.stringify(error.mock.calls)).not.toContain("ada.secret");
+  });
+
+  it("runs after the Origin check, so a cross-site post costs no verdict", async () => {
+    expect((await post(valid, { origin: "https://evil.example" })).status).toBe(403);
+    expect(checkBotId).not.toHaveBeenCalled();
+  });
+});
+
 describe("send", () => {
   it("sends one text-only email for a valid contact", async () => {
     const res = await post();
@@ -285,6 +332,8 @@ describe("logging", () => {
     ["a body over the cap", none, () => post({ ...valid, message: `my secret message ${"x".repeat(16 * 1024)}` }), 413],
     ["a body that isn't JSON", none, () => post(RAW, { raw: true }), 400],
     ["JSON that isn't an object", none, () => post(JSON.stringify(SECRETS), { raw: true }), 400],
+    ["a bot verdict", () => checkBotId.mockResolvedValue({ isHuman: false, isBot: true, isVerifiedBot: false, bypassed: false }), () => post(), 403],
+    ["a failed bot check", () => checkBotId.mockRejectedValue(new Error("provider said ada.secret@example.com")), () => post(), 403],
     ["a filled honeypot", none, () => post({ ...valid, hp: "x" }), 200],
     ["a too-fast submit", none, () => post({ ...valid, elapsedMs: 100 }), 429],
     ["a failed validation", none, () => post({ ...valid, email: "ada.secret@" }), 400],

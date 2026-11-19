@@ -32,8 +32,8 @@ const PATTERNS = [
 const ALLOWED = [
   "src/app/api/auth/sign-out/route.ts:8 — the base URL for the /taproot redirect",
   "src/app/api/clients/[id]/connected/route.ts:6 — splits a URL path",
-  "src/app/layout.tsx:31 — the metadataBase constant (the root og:url default is on the backlog)",
-  "src/app/layout.tsx:39 — root default canonical, already on the backlog",
+  "src/app/layout.tsx:32 — the metadataBase constant (the root og:url default is on the backlog)",
+  "src/app/layout.tsx:40 — root default canonical, already on the backlog",
   "src/app/sitemap.ts:4 — the base the sitemap joins every path to",
   "src/app/sitemap.ts:13 — the Labs home belongs in the sitemap",
   "src/app/sitemap.ts:14 — the Labs About belongs in the sitemap",

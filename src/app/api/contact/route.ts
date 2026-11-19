@@ -1,3 +1,4 @@
+import { checkBotId } from "botid/server";
 import { Resend } from "resend";
 import { buildContactEmail, parseContactSubmission } from "@/lib/contact";
 
@@ -21,6 +22,15 @@ function sameOrigin(req: Request) {
 
 export async function POST(req: Request) {
   if (!sameOrigin(req)) return json({ error: "forbidden" }, 403);
+
+  // Vercel BotID (Basic). Closed on failure: a person still has the error line's mailto,
+  // and an open door would spend the Resend quota every other product's mail shares.
+  try {
+    if ((await checkBotId()).isBot) return json({ error: "forbidden" }, 403);
+  } catch (err) {
+    console.error("[contact] bot check threw", err instanceof Error ? err.name : "unknown");
+    return json({ error: "forbidden" }, 403);
+  }
 
   if (Number(req.headers.get("content-length")) > MAX_BODY_BYTES) {
     return json({ error: "too_large" }, 413);
