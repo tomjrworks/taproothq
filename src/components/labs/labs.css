@@ -40,6 +40,11 @@
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+/* The DARK / LIGHT pill clips anything outside it, so its ring sits inside, in the button's own ink. */
+.labs-root header button:focus-visible {
+  outline-color: currentColor;
+  outline-offset: -4px;
+}
 .labs-root input::placeholder,
 .labs-root textarea::placeholder {
   color: var(--muted);
