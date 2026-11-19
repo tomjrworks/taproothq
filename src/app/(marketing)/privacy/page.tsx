@@ -103,7 +103,8 @@ export default function PrivacyPage() {
               </li>
               <li>
                 <span className="font-semibold">Vercel</span> &mdash; hosts the
-                site and provides lightweight analytics.
+                site, provides lightweight analytics, and checks that form
+                submissions come from a person, not a bot.
               </li>
               <li>
                 <span className="font-semibold">Google Analytics</span> measures

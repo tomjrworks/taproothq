@@ -74,6 +74,7 @@ const rows = [
       "so we could read your notes",
       "Microsoft Clarity</span> records how people use the site",
       "Effective November 19, 2026",
+      "and checks that form submissions come from a person, not a bot",
     ],
     ["which is just your email", "we just keep your email", "We have no copy of it", "not ours", "stays on your machine", "That’s it", "Effective April 27, 2026"],
   ],
