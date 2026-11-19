@@ -58,7 +58,25 @@ const rows = [
   ["redirect", `/blog/${POST}`, 308, `/taproot/blog/${POST}`],
   ["redirect", "/signup", 308, "/sign-up"],
 
-  ["legal", "/privacy", 200, ["whatever else you type into a form on this site", "we keep what you sent", "anything you send us through a form", "or ask to see it"], ["which is just your email", "we just keep your email"]],
+  [
+    "legal",
+    "/privacy",
+    200,
+    [
+      "whatever else you type into a form on this site",
+      "we keep what you sent",
+      "anything you send us through a form",
+      "or ask to see it",
+      "your notes live on your Mac with an encrypted copy in our cloud",
+      "Taproot keeps an encrypted copy in the cloud so your AI can reach them",
+      "through Google Analytics and Microsoft Clarity",
+      "The contact forms on this site are masked in those recordings",
+      "so we could read your notes",
+      "Microsoft Clarity</span> records how people use the site",
+      "Effective November 19, 2026",
+    ],
+    ["which is just your email", "we just keep your email", "We have no copy of it", "not ours", "stays on your machine", "That’s it", "Effective April 27, 2026"],
+  ],
   ["legal", "/terms", 200],
 
   ["api", "/api/contact", 405],
