@@ -86,7 +86,7 @@ export default function DashboardNav({
   async function handleSignOut() {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push("/");
+    router.push("/taproot");
   }
 
   return (

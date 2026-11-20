@@ -4,7 +4,7 @@ import Footer from "@/components/brain/Footer";
 export const metadata: Metadata = {
   title: "Privacy — Taproot",
   description:
-    "How we handle your data. Short version: your vault stays on your machine, we just keep your email so we can tell you when access opens.",
+    "How we handle your data. Short version: your notes live on your Mac with an encrypted copy in our cloud, we keep your email so we can tell you when access opens, and anything you send us through a form.",
   alternates: { canonical: "/privacy" },
 };
 
@@ -21,8 +21,10 @@ export default function PrivacyPage() {
             How we handle your data.
           </h1>
           <p className="font-serif italic text-lg md:text-xl text-bark/75 leading-[1.5] mt-6">
-            Short version: your vault lives on your machine, not ours. We keep
-            your email so we can tell you when access opens. That&rsquo;s it.
+            Short version: your notes live on your Mac, and Taproot keeps an
+            encrypted copy in the cloud so your AI can reach them. We keep your
+            email so we can tell you when access opens. If you write to us
+            through a form, we keep what you sent.
           </p>
         </div>
       </section>
@@ -40,7 +42,24 @@ export default function PrivacyPage() {
                 Standard web analytics &mdash; pages visited, browser type,
                 referrer &mdash; via Vercel.
               </li>
-              <li>That&rsquo;s it.</li>
+              <li>
+                How visitors use this site, through Google Analytics and
+                Microsoft Clarity. That covers the pages they view, their clicks
+                and scrolling, and Clarity&rsquo;s session recordings. The
+                contact forms on this site are masked in those recordings.
+              </li>
+              <li>
+                Your name, email and whatever else you type into a form on this
+                site, when you send it. Our email provider delivers it to our
+                inbox, and we only use it to reply to you.
+              </li>
+              <li>
+                If you use the Taproot app, an encrypted copy of your notes. They
+                live in a folder on your Mac, and Taproot syncs an encrypted copy
+                to the cloud so your AI can reach them from anywhere. Our server
+                decrypts that copy to answer your AI&rsquo;s requests, so we
+                could read your notes. We don&rsquo;t.
+              </li>
             </ul>
           </div>
 
@@ -49,10 +68,6 @@ export default function PrivacyPage() {
               What we don&rsquo;t collect
             </h2>
             <ul className="font-serif text-base md:text-lg text-bark/85 leading-[1.7] mt-4 space-y-3 list-disc pl-6">
-              <li>
-                Your vault files. Taproot stores your memory layer on your
-                machine. We have no copy of it.
-              </li>
               <li>
                 Your AI conversations. Whatever you send to Claude, ChatGPT, or
                 anything else &mdash; we never see it.
@@ -88,9 +103,17 @@ export default function PrivacyPage() {
               </li>
               <li>
                 <span className="font-semibold">Vercel</span> &mdash; hosts the
-                site and provides lightweight analytics.
+                site, provides lightweight analytics, and checks that form
+                submissions come from a person, not a bot.
               </li>
-              <li>That&rsquo;s it.</li>
+              <li>
+                <span className="font-semibold">Google Analytics</span> measures
+                which pages people visit.
+              </li>
+              <li>
+                <span className="font-semibold">Microsoft Clarity</span> records
+                how people use the site, with the contact forms masked.
+              </li>
             </ul>
           </div>
 
@@ -99,8 +122,8 @@ export default function PrivacyPage() {
               Your rights
             </h2>
             <p className="font-serif text-base md:text-lg text-bark/85 leading-[1.7] mt-4">
-              You can ask us to delete your email at any time, or ask what we
-              have on you (which is just your email). Email{" "}
+              You can ask us to delete what we have on you at any time, or ask
+              to see it. Email{" "}
               <a
                 href="mailto:tom@taproothq.com"
                 className="text-forest-dark underline hover:text-forest-dark/75"
@@ -123,7 +146,7 @@ export default function PrivacyPage() {
           </div>
 
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-bark/45 pt-6 border-t border-bark/10">
-            Effective April 27, 2026
+            Effective November 19, 2026
           </p>
         </div>
       </section>

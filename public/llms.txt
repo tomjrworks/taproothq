@@ -6,17 +6,17 @@ Taproot is not a chatbot, a vendor-locked memory feature, or a knowledge base. I
 
 ## Pages
 
-- [Home](https://taproothq.com/): What Taproot is, who it is for, how the memory layer works
-- [How it works](https://taproothq.com/how-it-works): The mechanics — files, MCP, retrieval in the open
-- [vs ChatGPT and Claude memory](https://taproothq.com/vs-memory): Side-by-side comparison with vendor memory features, including a save-and-recall demo with Paul Graham's essay
-- [Pricing](https://taproothq.com/pricing): Free during early access
-- [Use cases](https://taproothq.com/use-cases): Research, business, creative, personal — patterns of work that benefit from a memory layer
-- [Use cases — Research](https://taproothq.com/use-cases/research): For researchers, analysts, lawyers, journalists, investors
-- [Use cases — Business](https://taproothq.com/use-cases/business): For founders, sales, consultants, PMs, operators
-- [Use cases — Creative](https://taproothq.com/use-cases/creative): For novelists, screenwriters, designers, filmmakers, composers
-- [Use cases — Personal](https://taproothq.com/use-cases/personal): For travel planners, home cooks, parents, hobbyists, learners
-- [About](https://taproothq.com/about): The team and the thesis
-- [FAQ](https://taproothq.com/faq): Common questions about how Taproot works
+- [Home](https://taproothq.com/taproot): What Taproot is, who it is for, how the memory layer works
+- [How it works](https://taproothq.com/taproot/how-it-works): The mechanics — files, MCP, retrieval in the open
+- [vs ChatGPT and Claude memory](https://taproothq.com/taproot/vs-memory): Side-by-side comparison with vendor memory features, including a save-and-recall demo with Paul Graham's essay
+- [Pricing](https://taproothq.com/taproot/pricing): Free during early access
+- [Use cases](https://taproothq.com/taproot/use-cases): Research, business, creative, personal — patterns of work that benefit from a memory layer
+- [Use cases — Research](https://taproothq.com/taproot/use-cases/research): For researchers, analysts, lawyers, journalists, investors
+- [Use cases — Business](https://taproothq.com/taproot/use-cases/business): For founders, sales, consultants, PMs, operators
+- [Use cases — Creative](https://taproothq.com/taproot/use-cases/creative): For novelists, screenwriters, designers, filmmakers, composers
+- [Use cases — Personal](https://taproothq.com/taproot/use-cases/personal): For travel planners, home cooks, parents, hobbyists, learners
+- [About](https://taproothq.com/taproot/about): The team and the thesis
+- [FAQ](https://taproothq.com/taproot/faq): Common questions about how Taproot works
 
 ## Optional
 

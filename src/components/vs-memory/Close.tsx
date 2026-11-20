@@ -27,7 +27,7 @@ export default function Close() {
             </span>
           </a>
           <a
-            href="/#how-it-works"
+            href="/taproot#how-it-works"
             className="group inline-flex items-center gap-2 text-bark font-sans text-[15px] font-medium transition-colors duration-200 hover:text-forest-dark"
           >
             Read how it works

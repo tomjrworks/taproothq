@@ -6,19 +6,19 @@ import Image from "next/image";
 import { AnimatePresence, motion, useScroll } from "framer-motion";
 
 const NAV_LINKS = [
-  { label: "Home", href: "/home" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Why Taproot", href: "/vs-memory" },
-  { label: "Use cases", href: "/use-cases" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
+  { label: "Home", href: "/taproot" },
+  { label: "Pricing", href: "/taproot/pricing" },
+  { label: "Why Taproot", href: "/taproot/vs-memory" },
+  { label: "Use cases", href: "/taproot/use-cases" },
+  { label: "Blog", href: "/taproot/blog" },
+  { label: "About", href: "/taproot/about" },
 ] as const;
 
 const USE_CASE_ARCHETYPES = [
-  { label: "Research", href: "/use-cases/research" },
-  { label: "Business", href: "/use-cases/business" },
-  { label: "Creative", href: "/use-cases/creative" },
-  { label: "Personal", href: "/use-cases/personal" },
+  { label: "Research", href: "/taproot/use-cases/research" },
+  { label: "Business", href: "/taproot/use-cases/business" },
+  { label: "Creative", href: "/taproot/use-cases/creative" },
+  { label: "Personal", href: "/taproot/use-cases/personal" },
 ] as const;
 
 export default function Nav() {
@@ -63,7 +63,7 @@ export default function Nav() {
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:px-8">
           {/* Wordmark */}
           <Link
-            href="/"
+            href="/taproot"
             onClick={() => setMenuOpen(false)}
             className="flex items-center gap-2 font-serif text-2xl text-bark tracking-tight leading-none"
           >

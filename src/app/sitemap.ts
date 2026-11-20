@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { posts } from "@/lib/blog";
 
 const BASE = "https://taproothq.com";
 
@@ -10,27 +11,27 @@ const STATIC_ROUTES: Array<{
   changeFrequency: Entry["changeFrequency"];
 }> = [
   { path: "/", priority: 1.0, changeFrequency: "weekly" },
-  { path: "/demo", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/how-it-works", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/vs-memory", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/use-cases", priority: 0.9, changeFrequency: "monthly" },
-  { path: "/use-cases/research", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/use-cases/business", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/use-cases/creative", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/use-cases/personal", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/pricing", priority: 0.8, changeFrequency: "monthly" },
-  {
-    path: "/blog/youve-been-fooled-by-how-you-file-your-documents",
+  { path: "/about", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/services", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/work", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/taproot", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/taproot/demo", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/taproot/how-it-works", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/taproot/vs-memory", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/taproot/use-cases", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/taproot/use-cases/research", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/taproot/use-cases/business", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/taproot/use-cases/creative", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/taproot/use-cases/personal", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/taproot/pricing", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/taproot/blog", priority: 0.7, changeFrequency: "weekly" },
+  ...posts.map((p) => ({
+    path: `/taproot/blog/${p.slug}`,
     priority: 0.6,
-    changeFrequency: "monthly",
-  },
-  {
-    path: "/blog/passive-income-but-for-your-data",
-    priority: 0.6,
-    changeFrequency: "monthly",
-  },
-  { path: "/about", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/taproot/about", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/taproot/faq", priority: 0.7, changeFrequency: "monthly" },
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
   { path: "/terms", priority: 0.3, changeFrequency: "yearly" },
 ];

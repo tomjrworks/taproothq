@@ -1,4 +1,5 @@
 import Nav from "@/components/brain/Nav";
+import PublicAnalytics from "@/components/PublicAnalytics";
 
 export default function MarketingLayout({
   children,
@@ -9,6 +10,7 @@ export default function MarketingLayout({
     <>
       <Nav />
       {children}
+      <PublicAnalytics />
     </>
   );
 }

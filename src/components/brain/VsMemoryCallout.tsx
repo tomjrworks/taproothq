@@ -75,7 +75,7 @@ export default function VsMemoryCallout() {
           custom={POINTS.length + 2}
         >
           <Link
-            href="/vs-memory"
+            href="/taproot/vs-memory"
             className="group inline-flex items-center gap-2 text-forest-dark font-sans text-[15px] font-medium transition-colors duration-200 hover:text-bark"
           >
             <span className="font-serif italic text-base md:text-lg">

@@ -56,7 +56,7 @@ export default function HubGrid() {
           {ARCHETYPES.map((a) => (
             <Link
               key={a.slug}
-              href={`/use-cases/${a.slug}`}
+              href={`/taproot/use-cases/${a.slug}`}
               className="group bg-cream-dark rounded-sm p-8 md:p-10 lg:p-12 shadow-[0_8px_28px_-12px_rgba(61,53,41,0.18)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_36px_-12px_rgba(61,53,41,0.25)]"
             >
               <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-bark/55">

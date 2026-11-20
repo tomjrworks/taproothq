@@ -6,7 +6,7 @@ export const EMAIL = "tom@mainloopsystems.com";
 export const NAV_LINKS = [
   { label: "How We Help", href: "#services" },
   { label: "About", href: "#about" },
-  { label: "Blog", href: "/blog", external: false },
+  { label: "Blog", href: "/taproot/blog", external: false },
   { label: "Free Audit", href: AUDIT_URL, external: true },
 ];
 

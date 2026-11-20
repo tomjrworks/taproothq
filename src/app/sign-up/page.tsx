@@ -499,7 +499,7 @@ export default function SignUpPage() {
 function WordmarkLink() {
   return (
     <Link
-      href="/"
+      href="/taproot"
       className="flex items-center gap-2 font-serif text-2xl text-bark tracking-tight leading-none w-fit"
     >
       Taproot
